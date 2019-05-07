@@ -6,6 +6,9 @@ public class Theater{
     private int rows;
     private int seatsPerRow;
 
+
+    //constructors
+
     public Theater (int id, String name, int rows, int seatsPerRow){
         this.id = id;
         this.name = name;
@@ -15,6 +18,9 @@ public class Theater{
 
     public Theater(){
     }
+
+
+    //getters and setters
 
     public int getId(){
         return id;
@@ -46,5 +52,15 @@ public class Theater{
 
     public void setSeatsPerRow(int seatsPerRow){
         this.seatsPerRow = seatsPerRow;
+    }
+
+    @Override
+    public String toString(){
+        return "Theater{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rows='" + rows + '\'' +
+                ", seatsPerRow='" + seatsPerRow +
+                "}";
     }
 }
