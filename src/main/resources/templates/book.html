@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema hall like Rambler kassa</title>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+</head>
+
+<body>
+<script>notie.alert({ text: 'Info!' });</script>
+<script>alert( 'Hello, world!' );</script>
+<div class="hall" id="hall">
+    <!-- Высота wrapper это высота зала плюс, его pagging 50px сверху 10px снизу   -->
+    <div class="hall__wrapper" style="height: 800px;">
+        <div class="hall__box" style="width: 260px;">
+            <div class="hall__screen">
+                <span class="hall__screen-tip _left">Screen</span>
+                <div class="hall__screen-cloth"></div>
+                <span class="hall__screen-tip _right">Screen</span>
+            </div>
+            <div class="hall_places">
+                <!-- Левая метка метка -->
+                <!-- Дублирует data-row data-trubune и top в стилях -->
+                <!-- Атрибут data-row выводится контекстом, data-trubune не используется, но мб понадобится для чего то-->
+
+
+                <th:block class="hall__row" th:each="row, row_iterator: ${theater.getRows()}">
+                    <div class="hall__places-row _left" th:attr="data-row=${row.getId()}" th:attrappend="style=${'top: '+(row_iterator.index*20)+'px'}"> </div>
+                    <div class="hall__places-item is-free" th:each="seat, seat_iterator : ${row.getSeats()}" th:attr="data-row=${row.getId()}" data-column="1" data-price-id="1" data-pos-x="1" data-pos-y="12" data-state="free" data-price="40" data-place-size="20" th:attrappend="style=${'left: '+((seat_iterator.index+1)*20)+'px;'+'top: '+(row_iterator.index*20)+'px'}">
+                        <div class="hall__places-chair" th:attr="data-title=${movie.getPrice()}" data-toggle="tooltip" data-placement="top"></div>
+                    </div>
+                    <div class="hall__places-row _right" th:attr="data-row=${row.getId()}" th:attrappend="style=${'top: '+(row_iterator.index*20)+'px'}"> </div>
+            </th:block>
+
+            </div>
+        </div>
+        <div class="hall__box _lines">
+            <div class="hall__line" id="hallLine_3_3" style="top:0"></div>
+            <div class="hall__line" id="hallLine_2_3" style="top:20px"></div>
+            <div class="hall__line" id="hallLine_1_3" style="top:40px"></div>
+            <div class="hall__line" id="hallLine_11_2" style="top:80px"></div>
+            <div class="hall__line" id="hallLine_10_2" style="top:100px"></div>
+            <div class="hall__line" id="hallLine_9_2" style="top:120px"></div>
+            <div class="hall__line" id="hallLine_8_2" style="top:140px"></div>
+            <div class="hall__line" id="hallLine_7_2" style="top:160px"></div>
+            <div class="hall__line" id="hallLine_6_2" style="top:180px"></div>
+            <div class="hall__line" id="hallLine_5_2" style="top:200px"></div>
+            <div class="hall__line" id="hallLine_5_1" style="top:0px"></div>
+            <div class="hall__line" id="hallLine_4_1" style="top:260px"></div>
+            <div class="hall__line" id="hallLine_3_1" style="top:280px"></div>
+            <div class="hall__line" id="hallLine_2_1" style="top:300px"></div>
+            <div class="hall__line" id="hallLine_1_1" style="top:320px"></div>
+        </div>
+    </div>
+    <div class="hall-info">
+        <div class="hall-info__title">
+            Зал №2
+        </div>
+        <div class="hall-info__legend is-dark">
+            <div class="hall-info__story is-free">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Обычные (150р)</div>
+            </div>
+            <div class="hall-info__story is-busy">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Место занято</div>
+            </div>
+            <div class="hall-info__story is-checked">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Место выбрано</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hall-buy">
+    <div class="hall-buy__no-data col-xs-12 col-md-8" id='hallNoData'>
+        Выберите места
+    </div>
+    <div class="hall-buy__data hidden col-xs-12 col-md-8" id='hallData'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3 hall-buy__overall">
+                Всего
+                <br \>
+                <span class="hall-buy__overall-count" id='hallCountTickets'>0 билетов</span>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9 hall-buy__places" id='hallPlaces'>
+                <!-- <div class="hall-buy__places-row">
+                                <div class="hall-buy__places-row-num">
+                                    ряд <span class="hall-buy__places-row-value">7</span>
+                                </div>
+                                <div class="hall-buy__places-row-num">
+                                    место <span class="hall-buy__places-row-value">7</span>
+                                </div>
+                            </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="hall-buy__btns col-xs-12 col-md-4">
+        <div class="hall-buy__cost">
+            <div class="hall-buy__cost-value">
+                Итог <span class="hall-buy__cost-total" id='hallTotalSum'>0 р</span>
+            </div>
+            <div class="hall-buy__cost-tax">
+                Сбор <span class="hall-buy__cost-tax-total">0 р</span>
+            </div>
+        </div>
+        <button class="hall-buy__btn-buy ">
+            Купить билеты
+        </button>
+    </div>
+</div>
+</div>
+<div class="col-xs-12" style="background-image: url(http://www.hdwallpapers.in/walls/2015_mad_max_fury_road_movie-wide.jpg); background-size:cover;">
+
+    <div class="ticket-form row" >
+        <form action="#" class="ticket-form__form col-xs-12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ticket-form__info">
+                    <div class="ticket-form__timer">
+                        Duration: <span id="ticketTimer" th:inline="TEXT" >[(${movie.getMovieDuration()})] minutes</span>
+                    </div>
+
+                    <div class="ticket-form__data">
+                        <div class="ticket-form__date">
+                            04 августа, Чт, 13:55
+                        </div>
+                        <div class="ticket-form__cinema">
+                            Киносити Оренбург
+                        </div>
+                    </div>
+                    <div class="ticket-form__film-title" th:inline="TEXT">
+                        [(${movie.getMovieTitle()})]
+                    </div>
+                    <div class="ticket-form__places">
+                        № 2, ряд 3 место 4
+                    </div>
+                </div>
+                <div class="ticket-form__fields col-xs-12 col-sm-6 col-md-5">
+                    <div class="form-group ticket-form__form-group is-error">
+                        <input class="ticket-form__input" placeholder="Ваш email" type="email">
+                    </div>
+                    <div class="form-group ticket-form__form-group">
+                        <input type="tel" class="ticket-form__input" placeholder="Ваш телефон">
+                    </div>
+                    <div class="form-group ticket-form__form-group">
+                        <select name="payment" id="" class="ticket-form__select">
+                            <option value="" disabled selected>Способ оплаты</option>
+                            <option value="1">Paypal</option>
+                            <option value="1">Visa</option>
+                            <option value="1">Наличными</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ticket-form__form-bottom row">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ticket-form__offer">
+                    Нажимая кнопку «Оплатить», вы соглашаетесь
+                    <br /> с <a href="#" class="ticket-form__offer-link">условиями покупки</a>.
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-5 ">
+                    <button class="ticket-form__btn">Оплатить</button>
+                    <div class="ticket-form__total">
+                        130руб за 1 билет
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-xs-12 ticket-form__timeout hidden" id="timeoutPopUp">
+            <div class="ticket-form__timeout-message">
+                <div class="ticket-form__timeout-message-title">Начните покупку заново</div>
+                <div class="ticket-form__timeout-message-descr">Истекло время отведенное на завершение оплаты</div>
+                <button class="ticket-form__timeout-btn">Начать заново</button>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src="https://unpkg.com/notie"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
+
+
+
+    <script  src="/css/js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
