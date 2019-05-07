@@ -2,14 +2,15 @@ package dk.kea.project.biotrio;
 
 public class Movie {
 
-    private int movie_id;
-    private String movie_title;
-    private String movie_genre;
-    private String movie_year;
-    private String movie_origin;
-    private int movie_duration;
-    private String movie_director;
-    private String movie_actor;
+    private int movieId;
+    private String movieTitle;
+    private String movieGenre;
+    private String movieYear;
+    private String movieOrigin;
+    private int movieDuration;
+    private String movieDirector;
+    private String movieActor;
+    private String imdbCode;
     private double price;
 
     //constructors
@@ -17,84 +18,93 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int movie_id, String movie_title, String movie_genre, String movie_year,
-                 String movie_origin, int movie_duration, String movie_director,
-                 String movie_actor, double price) {
-        this.movie_id = movie_id;
-        this.movie_title = movie_title;
-        this.movie_genre = movie_genre;
-        this.movie_year = movie_year;
-        this.movie_origin = movie_origin;
-        this.movie_duration = movie_duration;
-        this.movie_director = movie_director;
-        this.movie_actor = movie_actor;
+    public Movie(int movieId, String movieTitle, String movieGenre, String movieYear,
+                 String movieOrigin, int movieDuration, String movieDirector,
+                 String movieActor, String imdbCode, double price) {
+        this.movieId = movieId;
+        this.movieTitle = movieTitle;
+        this.movieGenre = movieGenre;
+        this.movieYear = movieYear;
+        this.movieOrigin = movieOrigin;
+        this.movieDuration = movieDuration;
+        this.movieDirector = movieDirector;
+        this.movieActor = movieActor;
+        this.imdbCode = imdbCode;
         this.price = price;
     }
 
     //getters and setters
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
-    public String getMovie_title() {
-        return movie_title;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setMovie_title(String movie_title) {
-        this.movie_title = movie_title;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
-    public String getMovie_genre() {
-        return movie_genre;
+    public String getMovieGenre() {
+        return movieGenre;
     }
 
-    public void setMovie_genre(String movie_genre) {
-        this.movie_genre = movie_genre;
+    public void setMovieGenre(String movieGenre) {
+        this.movieGenre = movieGenre;
     }
 
-    public String getMovie_year() {
-        return movie_year;
+    public String getMovieYear() {
+        return movieYear;
     }
 
-    public void setMovie_year(String movie_year) {
-        this.movie_year = movie_year;
+    public void setMovieYear(String movieYear) {
+        this.movieYear = movieYear;
     }
 
-    public String getMovie_origin() {
-        return movie_origin;
+    public String getMovieOrigin() {
+        return movieOrigin;
     }
 
-    public void setMovie_origin(String movie_origin) {
-        this.movie_origin = movie_origin;
+    public void setMovieOrigin(String movieOrigin) {
+        this.movieOrigin = movieOrigin;
     }
 
-    public int getMovie_duration() {
-        return movie_duration;
+    public int getMovieDuration() {
+        return movieDuration;
     }
 
-    public void setMovie_duration(int movie_duration) {
-        this.movie_duration = movie_duration;
+    public void setMovieDuration(int movieDuration) {
+        this.movieDuration = movieDuration;
     }
 
-    public String getMovie_director() {
-        return movie_director;
+    public String getMovieDirector() {
+        return movieDirector;
     }
 
-    public void setMovie_director(String movie_director) {
-        this.movie_director = movie_director;
+    public void setMovieDirector(String movieDirector) {
+        this.movieDirector = movieDirector;
     }
 
-    public String getMovie_actor() {
-        return movie_actor;
+    public String getMovieActor() {
+        return movieActor;
     }
 
-    public void setMovie_actor(String movie_actor) {
-        this.movie_actor = movie_actor;
+    public void setMovieActor(String movieActor) {
+        this.movieActor = movieActor;
+    }
+
+    public String getImdbCode() {
+        return imdbCode;
+    }
+
+    public void setImdbCode(String imdbCode) {
+        this.imdbCode = imdbCode;
     }
 
     public double getPrice() {
@@ -108,17 +118,16 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "movie_id=" + movie_id +
-                ", movie_title='" + movie_title + '\'' +
-                ", movie_genre='" + movie_genre + '\'' +
-                ", movie_year='" + movie_year + '\'' +
-                ", movie_origin='" + movie_origin + '\'' +
-                ", movie_duration=" + movie_duration +
-                ", movie_director='" + movie_director + '\'' +
-                ", movie_actor='" + movie_actor + '\'' +
+                "movieId=" + movieId +
+                ", movieTitle='" + movieTitle + '\'' +
+                ", movieGenre='" + movieGenre + '\'' +
+                ", movieYear='" + movieYear + '\'' +
+                ", movieOrigin='" + movieOrigin + '\'' +
+                ", movieDuration=" + movieDuration +
+                ", movieDirector='" + movieDirector + '\'' +
+                ", movieActor='" + movieActor + '\'' +
+                ", imdbCode='" + imdbCode + '\'' +
                 ", price=" + price +
                 '}';
     }
-
-
 }
