@@ -1,12 +1,15 @@
+package dk.kea.project.biotrio.Domain;
+
+import java.time.LocalDate;
 import java.util.Date;
-import java.time.format.DateTimeFormatter;
+
 
 public class Customer {
     private int id;
     private String username;
     private String password;
     private String name;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String phoneNumber;
     private String paymentDetails;
@@ -15,7 +18,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String username, String password, String name, Date dob, String email,
+    public Customer(int id, String username, String password, String name, LocalDate dob, String email,
                     String phoneNumber, String paymentDetails) {
         this.id = id;
         this.username = username;
@@ -59,11 +62,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -93,7 +96,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "dk.kea.project.biotrio.Domain.Customer{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
