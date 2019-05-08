@@ -1,10 +1,11 @@
 package dk.kea.project.biotrio.Domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Row {
     int id;
-    ArrayList<Seat> seats;
+    Seat[] seats;
 
     public int getId() {
         return id;
@@ -14,15 +15,15 @@ public class Row {
         this.id = id;
     }
 
-    public ArrayList <Seat> getSeats() {
+    public Seat[] getSeats() {
         return seats;
     }
 
-    public void setSeats(ArrayList <Seat> seats) {
+    public void setSeats(Seat[]  seats) {
         this.seats = seats;
     }
 
-    public Row(int id, ArrayList <Seat> seats) {
+    public Row(int id, Seat[]  seats) {
         this.id = id;
         this.seats = seats;
     }

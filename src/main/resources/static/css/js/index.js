@@ -1,9 +1,17 @@
 $('[data-toggle="tooltip"]').tooltip();
+var tickets;
 let HallStorage = {
   totalTickets: 0,
   ticket: {},
   summ: 0 };
 
+let ticketArray = new Array();
+class Ticket {
+    constructor(row, seat) {
+        this.row = row;
+        this.seat = seat;
+    }
+}
 
 class HallActions {
   constructor(data) {
@@ -11,7 +19,7 @@ class HallActions {
   }
 
   addTicket(ticket) {
-    let id = ticket.row + '-' + ticket.tribune;
+    let id = ticket.row;
 
     if (id in this.storage.ticket) {
       this.storage.ticket[id].push(ticket);
@@ -26,7 +34,7 @@ class HallActions {
   }
 
   removeTicket(ticket) {
-    let id = ticket.row + '-' + ticket.tribune;
+    let id = ticket.row;
 
     this.storage.ticket[id].splice(this.storage.ticket[id].indexOf(ticket.place), 1);
 
@@ -50,12 +58,12 @@ class HallActions {
 
   _renderRow(places) {
     //Тут получение шаблона и заполнение переменными
-    let string = '<div class="hall-buy__places-row"><div class="hall-buy__places-row-num">ряд <span class="hall-buy__places-row-value">' + places[0].row + '</span></div>';
+    let string = '<div class="hall-buy__places-row"><div class="hall-buy__places-row-num">row <span class="hall-buy__places-row-value">' + places[0].row + '</span></div>';
     let arr = [];
     for (let key in places) {
       arr.push(places[key].place);
     }
-    string += '<div class="hall-buy__places-row-num">место <span class="hall-buy__places-row-value">' + arr.join(', ') + '</span></div></div>';
+    string += '<div class="hall-buy__places-row-num">seat <span class="hall-buy__places-row-value">' + arr.join(', ') + '</span></div></div>';
     return string;
   }
 
@@ -69,8 +77,9 @@ class HallActions {
     }
 
     //Todo сделать окончание
-    $('#hallCountTickets').html(this.storage.totalTickets + ' билетов');
-    $('#hallTotalSum').html(this.storage.summ + ' р');
+    $('#hallCountTickets').html(this.storage.totalTickets + ' tickets');
+    $('#hallTotalSum').html(this.storage.summ + ' DKK');
+    $('#hallTotalTax').html(this.storage.summ * 0.25 + ' DKK');
     let html = '';
     //А это переделайте на _.template а то на скорую руку лиж бы работало
     for (let ticket in this.storage.ticket) {
@@ -78,9 +87,28 @@ class HallActions {
     }
     $('#hallPlaces').html(html);
     return this;
-  }}
-
-
+  }
+}
+var txt = "";
+let submitTickets = function(){
+    xhr = new XMLHttpRequest();
+    var url = "/booking/post/";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    }
+    var data = format(ticketArray);
+    xhr.send(data);
+}
+// let submitTickets = function(){
+//     alert( 'Ticket!'+ format(hall.storage.ticket));
+// }
+function format(obj) {
+    return JSON.stringify(obj, null, " ");
+}
 let hall = new HallActions(HallStorage);
 
 const $hall = $('#hall');
@@ -98,8 +126,7 @@ $item.on('mouseenter', function () {
   //Ставим наведение родителям
   $(this).parents('.hall__row').addClass('is-dark');
   let row = $(this).data('row');
-  let tribune = $(this).data('tribune');
-  $(`#hallLine_${row}_${tribune}`, $hall).addClass('is-hover');
+  $(`#hallLine_${row}`, $hall).addClass('is-hover');
 });
 
 $item.on('mouseout', blur);
@@ -107,18 +134,18 @@ $item.on('mouseout', blur);
 $itemFree.on('click', function () {
   let ticket = {
     row: $(this).data('row'),
-    tribune: $(this).data('tribune'),
     place: $(this).data('pos-x'),
     price: $(this).data('price') };
+  var t = new Ticket($(this).data('row'), $(this).data('pos-x'));
+  ticketArray.push(t);
+
 
   if ($(this).hasClass('is-checked')) {
     $(this).removeClass('is-checked');
     hall.removeTicket(ticket);
   } else {
     if (!hall.validate()) {
-      Notification.requestPermission(function (permission) {
-        var notification = new Notification("Не надо так", { body: 'За один раз можно заказать не более 4 билетов.', icon: 'https://avatars0.githubusercontent.com/u/9361325?v=3&s=466', dir: 'auto' });
-      });
+        alert( 'No more than 4 tickets per booking!' );
       return false;
     }
     $(this).addClass('is-checked');

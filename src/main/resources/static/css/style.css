@@ -143,11 +143,11 @@
 }
 .hall__line {
   position: absolute;
-  top: 0;
+  top: 0px;
   bottom: 0;
   background-color: #9199a1;
-  height: 21px;
-  margin-top: -1px;
+  height: 20px;
+  margin-top: 1px;
   width: 100%;
   opacity: 0;
 }

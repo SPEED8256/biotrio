@@ -117,7 +117,7 @@ $itemFree.on('click', function(){
 	}else{
 		if(!hall.validate() ){
   Notification.requestPermission(function(permission){
-				var notification = new Notification("Не надо так",{body:'За один раз можно заказать не более 5 билетов.', icon:'https://avatars0.githubusercontent.com/u/9361325?v=3&s=466',dir:'auto'});
+				var notification = new Notification("dsadas надо так",{body:'За один раз можно заказать не более 5 билетов.', icon:'https://avatars0.githubusercontent.com/u/9361325?v=3&s=466',dir:'auto'});
 			});
 			return false;
 		}

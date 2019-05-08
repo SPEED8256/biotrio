@@ -11,7 +11,7 @@ public class Movie {
     private int movieDuration;
     private String movieDirector;
     private String movieActor;
-    private double price;
+    private int price;
 
 
     //constructors
@@ -21,7 +21,7 @@ public class Movie {
 
     public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear,
                  String movieOrigin, int movie_duration, String movieDirector,
-                 String movieActor, double price) {
+                 String movieActor, int price) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.imdbCode = imdbCode;
@@ -109,11 +109,11 @@ public class Movie {
         this.movieActor = movieActor;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
