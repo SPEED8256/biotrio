@@ -52,7 +52,7 @@ public class Theater {
         this.rows = rows;
     }
     public int getWidth(){
-        return this.getRows().get(1).getSeats().length;
+        return this.getRows().get(0).getSeats().size();
     }
     public int getHeight(){
         return this.getRows().size();

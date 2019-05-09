@@ -16,15 +16,13 @@
 </head>
 
 <body>
-    <!--<ul th:each="row, row_iterator: ${theater.getRows()}">-->
-        <!--<li th:text="${row.getId()}"> </li>-->
-            <!--<ul th:each="seat, seat_iterator: ${row.getSeats()}">-->
-                <!--<li th:text="${seat.getId()}"> </li>-->
-            <!--</ul>-->
-    <!--</ul>-->
+
 
 <script>alert( 'Hello, world!' );</script>
 <div class="hall" id="hall">
+    <span id="booking-info" th:attr="customer_id = ${customer.id}, screening_id=${screening.id}"> </span>
+
+    <h1  th:text=${customer.name}></h1>
     <!-- Высота wrapper это высота зала плюс, его pagging x*20+20 50px сверху 10px снизу   -->
     <div class="hall__wrapper"  th:attr="style=${'height: '+(theater.getHeight()*20+20)+'px; '}">
         <div class="hall__box" th:attr="style=${'width: '+(theater.getWidth()*20+20)+'px; '}">
@@ -42,8 +40,8 @@
                 <div class="hall__row is-dark" th:each="row, row_iterator: ${theater.getRows()}">
                     <div class="hall__places-row _left" th:attr="data-row=${row.getId()}" th:attrappend="style=${'top: '+(row_iterator.index*20)+'px'}"> </div>
                     <div th:each="seat, seat_iterator : ${row.getSeats()}">
-                        <div class="hall__places-item " th:classappend= "${seat.getStatus()}? 'is-busy' : 'is-free'"  data-place-size="50"  th:attr="data-row=${row.getId()}, data-pos-x=${seat.getId()}, data-pos-y=${row.getId()}, data-state=${seat.getStatus()}? 'busy' : 'is-free', data-price=${movie.getPrice()}, style=${'left: '+((seat_iterator.index+1)*20)+'px;'+'top: '+(row_iterator.index*20)+'px'}">
-                            <div class="hall__places-chair" th:attr="data-title=${movie.getPrice()}" data-toggle="tooltip" data-placement="top">[(${seat.getId()})]</div>
+                        <div class="hall__places-item " th:classappend= "${seat.status}? 'is-busy' : 'is-free'"  data-place-size="50"  th:attr="data-row=${row.getId()}, data-pos-x=${seat.getId()}, data-pos-y=${row.getId()}, data-state=${seat.status}? 'busy' : 'is-free', data-price=${screening.price}, style=${'left: '+((seat_iterator.index+1)*20)+'px;'+'top: '+(row_iterator.index*20)+'px'}">
+                            <div class="hall__places-chair" th:attr="data-title=${screening.price}" data-toggle="tooltip" data-placement="top">[(${seat.getId()})]</div>
                         </div>
                     </div>
                     <div class="hall__places-row _right" th:attr="data-row=${row.getId()}" th:attrappend="style=${'top: '+(row_iterator.index*20)+'px'}"> </div>
@@ -62,7 +60,7 @@
         <div class="hall-info__legend is-dark">
             <div class="hall-info__story is-free">
                 <div class="hall-info__story-pointer"></div>
-                <div class="hall-info__story-descr">Seats ([(${movie.getPrice()})])</div>
+                <div class="hall-info__story-descr">Seats ([(${screening.getPrice()})])</div>
             </div>
             <div class="hall-info__story is-busy">
                 <div class="hall-info__story-pointer"></div>
@@ -99,13 +97,16 @@
                 VAT <span class="hall-buy__cost-tax-total" id='hallTotalTax'>0 DKK</span>
             </div>
         </div>
-        <button class="hall-buy__btn-buy " onclick="submitTickets()" >
+        <button class="hall-buy__btn-buy " onclick="submitTickets()" action="/pay" >
             Buy tickets
         </button>
     </div>
 </div>
 </div>
 
+<button class="hall-buy__btn-buy " onclick="checkSelectedSeats()"  >
+    Buy tickets
+</button>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>

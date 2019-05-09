@@ -11,39 +11,22 @@ public class Movie {
     private int movieDuration;
     private String movieDirector;
     private String movieActor;
-    private int price;
-
-
-    //constructors
 
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear,
-                 String movieOrigin, int movie_duration, String movieDirector,
-                 String movieActor, int price) {
+    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear, String movieOrigin, int movieDuration, String movieDirector, String movieActor) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.imdbCode = imdbCode;
         this.movieGenre = movieGenre;
         this.movieYear = movieYear;
         this.movieOrigin = movieOrigin;
-        this.movieDuration = movie_duration;
+        this.movieDuration = movieDuration;
         this.movieDirector = movieDirector;
         this.movieActor = movieActor;
-        this.price = price;
     }
 
-    //getters and setters
-
-
-    public String getImdbCode() {
-        return imdbCode;
-    }
-
-    public void setImdbCode(String imdbCode) {
-        this.imdbCode = imdbCode;
-    }
 
     public int getMovieId() {
         return movieId;
@@ -59,6 +42,14 @@ public class Movie {
 
     public void setMovieTitle(String movieTitle) {
         this.movieTitle = movieTitle;
+    }
+
+    public String getImdbCode() {
+        return imdbCode;
+    }
+
+    public void setImdbCode(String imdbCode) {
+        this.imdbCode = imdbCode;
     }
 
     public String getMovieGenre() {
@@ -108,29 +99,4 @@ public class Movie {
     public void setMovieActor(String movieActor) {
         this.movieActor = movieActor;
     }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movieId=" + movieId +
-                ", movieTitle='" + movieTitle + '\'' +
-                ", movieGenre='" + movieGenre + '\'' +
-                ", movieYear='" + movieYear + '\'' +
-                ", movieOrigin='" + movieOrigin + '\'' +
-                ", movieDuration=" + movieDuration +
-                ", movieDirector='" + movieDirector + '\'' +
-                ", movieActor='" + movieActor + '\'' +
-                ", price=" + price +
-                '}';
-    }
-
-
 }

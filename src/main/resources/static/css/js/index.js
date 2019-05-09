@@ -89,23 +89,7 @@ class HallActions {
     return this;
   }
 }
-var txt = "";
-let submitTickets = function(){
-    xhr = new XMLHttpRequest();
-    var url = "/booking/post/";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var json = JSON.parse(xhr.responseText);
-        }
-    }
-    var data = format(ticketArray);
-    xhr.send(data);
-}
-// let submitTickets = function(){
-//     alert( 'Ticket!'+ format(hall.storage.ticket));
-// }
+
 function format(obj) {
     return JSON.stringify(obj, null, " ");
 }
@@ -163,4 +147,52 @@ $('select').select2({
   minimumResultsForSearch: -1,
   placeholder: 'Способ оплаты' });
 
-window.cancelBooking = cancelBooking;
+
+
+
+let booking = function(){
+    var customerId = document.getElementById("booking-info").getAttribute("customer_id");
+    var screeningId = document.getElementById("booking-info").getAttribute("screening_id");
+
+    let selectedSeats = function(){
+        var ticketsArray = Array();
+        $(".is-checked").each(function() {
+            console.log($(this).html());
+
+            let ticket = {
+                row: $(this).data('row'),
+                place: $(this).data('pos-x') };
+            if (ticket.place==undefined||ticket.row==undefined) {
+
+            }
+            else {
+                ticketsArray.push(ticket);
+            }
+
+        });
+        //console.log(ticketsArray);
+        return ticketsArray;
+    }
+
+    var booking = {customerId: customerId,
+    screeningId: screeningId,
+    tickets: selectedSeats()}
+
+    return booking;
+
+}
+
+let submitTickets = function(){
+    xhr = new XMLHttpRequest();
+    var url = "/booking";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    }
+    var data = format(booking());
+    console.log(data);
+    xhr.send(data);
+}

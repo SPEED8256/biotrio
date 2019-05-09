@@ -1,8 +1,19 @@
 package dk.kea.project.biotrio.Domain;
 
+
+
+
 public class Seat {
     int id;
     boolean status;
+
+    public Seat() {
+    }
+
+    public Seat(int id, boolean status) {
+        this.id = id;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -12,19 +23,11 @@ public class Seat {
         this.id = id;
     }
 
-    public boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Seat(int id) {
-        this.id = id;
-    }
-    public Seat(int id, boolean status){
-        this.id = id;
         this.status = status;
     }
 }
