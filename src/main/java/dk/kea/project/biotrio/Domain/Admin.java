@@ -1,4 +1,4 @@
-package dk.kea.project.biotrio;
+package dk.kea.project.biotrio.Domain;
 
 public class Admin {
 

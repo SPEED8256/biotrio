@@ -1,5 +1,6 @@
 package dk.kea.project.biotrio;
 
+import dk.kea.project.biotrio.Domain.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -24,15 +25,15 @@ public class MovieRepository {
         Movie movie = new Movie();
         while (rs.next()) {
             movie.setMovieId(rs.getInt("movieId"));
-            movie.setMovieTitle(rs.getString("movie_title"));
-            movie.setMovieGenre(rs.getString("movie_genre"));
-            movie.setMovieYear(rs.getString("movie_year"));
-            movie.setMovieOrigin(rs.getString("movie_origin"));
-            movie.setMovieDuration(rs.getInt("movie_duration"));
-            movie.setMovieDirector(rs.getString("movie_director"));
-            movie.setMovieActor(rs.getString("movie_actors"));
+            movie.setMovieTitle(rs.getString("movieTitle"));
+            movie.setMovieGenre(rs.getString("movieGenre"));
+            movie.setMovieYear(rs.getString("movieYear"));
+            movie.setMovieOrigin(rs.getString("movieOrigin"));
+            movie.setMovieDuration(rs.getInt("movieDuration"));
+            movie.setMovieDirector(rs.getString("movieDirector"));
+            movie.setMovieActor(rs.getString("movieActors"));
             movie.setPrice(rs.getDouble("price"));
-            movie.setImdbCode(rs.getString("imdb_id"));
+            movie.setImdbCode(rs.getString("imdbCode"));
         }
         return movie;
     }
@@ -42,16 +43,17 @@ public class MovieRepository {
         List<Movie> movieList = new ArrayList();
         while (rs.next()) {
             Movie movie = new Movie();
-            movie.setMovieId(rs.getInt("movie_id"));
-            movie.setMovieTitle(rs.getString("movie_title"));
-            movie.setMovieGenre(rs.getString("movie_genre"));
-            movie.setMovieYear(rs.getString("movie_year"));
-            movie.setMovieOrigin(rs.getString("movie_origin"));
-            movie.setMovieDuration(rs.getInt("movie_duration"));
-            movie.setMovieDirector(rs.getString("movie_director"));
-            movie.setMovieActor(rs.getString("movie_actors"));
-            movie.setImdbCode(rs.getString("price"));
-            movie.setPrice(rs.getDouble("imdb_id"));
+            movie.setMovieId(rs.getInt("movieId"));
+            movie.setMovieTitle(rs.getString("movieTitle"));
+            movie.setMovieGenre(rs.getString("movieGenre"));
+            movie.setMovieYear(rs.getString("movieYear"));
+            movie.setMovieOrigin(rs.getString("movieOrigin"));
+            movie.setMovieDuration(rs.getInt("movieDuration"));
+            movie.setMovieDirector(rs.getString("movieDirector"));
+            movie.setMovieActor(rs.getString("movieActors"));
+            movie.setPrice(rs.getDouble("price"));
+            movie.setImdbCode(rs.getString("imdbCode"));
+
 
             movieList.add(movie);
         }
@@ -63,7 +65,8 @@ public class MovieRepository {
         PreparedStatementCreator psc = new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement("INSERT INTO movie VALUES(null , ?,?,?,?,?,?,?,?,?)", new String[]{"id"});
+                String sql = "INSERT INTO movie VALUES(null , ?,?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
                 ps.setString(1, movie.getMovieTitle());
                 ps.setString(2, movie.getMovieGenre());
                 ps.setString(3, movie.getMovieYear());
@@ -85,11 +88,12 @@ public class MovieRepository {
     }
 
     public void update(Movie movie) {
-        String sql = "UPDATE movie SET movie_title=?, movie_genre=?, movie_year=?, movie_origin=?, movie_duration=?, movie_director=?," +
-                " movie_actors=?, price=?, imdb_id=?, WHERE movie_id=" + movie.getMovieId();
+        String sql = "UPDATE movie SET movie_title=?, movie_genre=?, movie_year=?, movie_origin=?, movie_duration=?, " +
+                "movie_director=?," + " movie_actors=?, price=?, imdb_id=?, WHERE movie_id=" + movie.getMovieId();
 
         jdbc.update(sql, movie.getMovieTitle(), movie.getMovieGenre(), movie.getMovieYear(), movie.getMovieOrigin(),
-                movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActor(), movie.getImdbCode(), movie.getPrice());
+                movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActor(), movie.getImdbCode(),
+                movie.getPrice());
     }
 
     public void delete(int id) {
