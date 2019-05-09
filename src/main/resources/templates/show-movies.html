@@ -40,16 +40,24 @@
         <th scope="col">Director</th>
         <th scope="col">Actors</th>
         <th scope="col">Price</th>
-        <th scope="col">imdb</th>
+        <th scope="col">Rating</th>
 
     </tr>
     </thead>
     <tbody>
     <tr th:each="movie:${movies}">
-        <th scope="row" th:text="${movie.movieTitle}">1</th>
-        <td th:text="${movie.movieGenre}">Mark</td>
-        <td th:text="${movie.movieYear}">Otto</td>
-        <td th:text="${movie.movieOrigin}">@mdo</td>
+        <th scope="row" th:text="${movie.movieTitle}">Star Wars: Episode VII - The Force Awakens </th>
+        <td th:text="${movie.movieGenre}"> Action, Adventure, Fantasy</td>
+        <td th:text="${movie.movieYear}">2015</td>
+        <td th:text="${movie.movieOrigin}">USA</td>
+        <td th:text="${movie.movieDuration}">2h 16min </td>
+        <td th:text="${movie.movieDirector}"> J.J. Abrams</td>
+        <td th:text="${movie.movieActors}"> Daisy Ridley, Domhnall Gleeson</td>
+        <td th:text="${movie.Price}">50 DKK</td>
+        <td th:text="${movie.imdbCode}">8/10</td>
+
+
+
         <td><a target="_blank" th:href="@{'https://www.imdb.com/' + ${movie.movieTitle}}">Details</a></td>
         <td><a class="btn btn-danger" th:href="@{'/deletecar/' + ${movie.id}}">Delete</a></td>
         <td><a class="btn btn-success" th:href="@{'/updatecar/' + ${movie.id}}">Edit</a></td>
