@@ -1,5 +1,7 @@
-package dk.kea.project.biotrio;
+package dk.kea.project.biotrio.Controller;
 
+import dk.kea.project.biotrio.Domain.Movie;
+import dk.kea.project.biotrio.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +17,7 @@ public class MovieController {
     public String movie(Model model) {
         List<Movie> movieList = movieRepo.findAllMovies();
         model.addAttribute("movies", movieList);
-        return "show-movie";
+        return "show-movies";
     }
 
     @GetMapping("/addmovie")
@@ -46,12 +48,12 @@ public class MovieController {
     }
 
     @PostMapping("/saveupdate")
-    public String saveUpdateCar(@ModelAttribute Movie movie) {
+    public String saveUpdateMovie(@ModelAttribute Movie movie) {
         movieRepo.update(movie);
-        return "redirect:/mycar";
+        return "redirect:/mymovie";
     }
 
-    @GetMapping("/deletecar/{id}")
+    @GetMapping("/deletemovie/{id}")
     public String deleteMovie(@PathVariable(name = "id") int id) {
         movieRepo.delete(id);
         return "redirect:/mymovie";
