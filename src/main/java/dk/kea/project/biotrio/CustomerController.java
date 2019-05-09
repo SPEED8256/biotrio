@@ -25,7 +25,7 @@ public class CustomerController {
 
         @GetMapping("/new-user")
         public String addCustomer(Model m){
-            m.addAttribute("carform", new Customer());
+            m.addAttribute("customerform", new Customer());
             return "new-customer";
         }
 
