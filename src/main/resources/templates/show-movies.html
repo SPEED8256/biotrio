@@ -59,8 +59,8 @@
 
 
         <td><a target="_blank" th:href="@{'https://www.imdb.com/' + ${movie.movieTitle}}">Details</a></td>
-        <td><a class="btn btn-danger" th:href="@{'/deletecar/' + ${movie.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/updatecar/' + ${movie.id}}">Edit</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/deletemovie/' + ${movie.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/updatemovie/' + ${movie.id}}">Update</a></td>
     </tr>
     </tbody>
 </table>
