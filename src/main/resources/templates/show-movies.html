@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
@@ -46,21 +46,36 @@
     </thead>
     <tbody>
     <tr th:each="movie:${movies}">
-        <th scope="row" th:text="${movie.movieTitle}">Star Wars: Episode VII - The Force Awakens </th>
+        <th scope="row" th:text="${movie.movieTitle}">Star Wars: Episode VII - The Force Awakens</th>
         <td th:text="${movie.movieGenre}"> Action, Adventure, Fantasy</td>
         <td th:text="${movie.movieYear}">2015</td>
         <td th:text="${movie.movieOrigin}">USA</td>
-        <td th:text="${movie.movieDuration}">2h 16min </td>
+        <td th:text="${movie.movieDuration}">2h 16min</td>
         <td th:text="${movie.movieDirector}"> J.J. Abrams</td>
         <td th:text="${movie.movieActors}"> Daisy Ridley, Domhnall Gleeson</td>
         <td th:text="${movie.Price}">50 DKK</td>
-        <td th:text="${movie.imdbCode}">8/10</td>
-
+        <td th:text="${movie.imdbCode}"><span class="imdbRatingPlugin" data-user="ur62746291" data-title="tt2488496"
+                                               data-style="p2"><a
+                href="https://www.imdb.com/title/tt2488496/?ref_=plg_rt_1"><img
+                src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png" alt=" Star Wars: Episódio VII - O Despertar da Força
+(2015) on IMDb"/>
+</a></span>
+            <script>(function (d, s, id) {
+                var js, stags = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
+                stags.parentNode.insertBefore(js, stags);
+            })(document, "script", "imdb-rating-api");</script>
+        </td>
 
 
         <td><a target="_blank" th:href="@{'https://www.imdb.com/' + ${movie.movieTitle}}">Details</a></td>
-        <td><a class="btn btn-danger" th:href="@{'/deletecar/' + ${movie.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/updatecar/' + ${movie.id}}">Edit</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/deletemovie/' + ${movie.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/updatemovie/' + ${movie.id}}">Update</a></td>
     </tr>
     </tbody>
 </table>

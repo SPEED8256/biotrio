@@ -88,8 +88,8 @@ public class MovieRepository {
     }
 
     public void update(Movie movie) {
-        String sql = "UPDATE movie SET movie_title=?, movie_genre=?, movie_year=?, movie_origin=?, movie_duration=?, " +
-                "movie_director=?," + " movie_actors=?, price=?, imdb_id=?, WHERE movie_id=" + movie.getMovieId();
+        String sql = "UPDATE movie SET movieTitle=?, movie_Genre=?, movieYear=?, movieOrigin=?, movieDureation=?, " +
+                "movieDirector=?," + " movieActors=?, price=?, imdbCode=?, WHERE movieId=" + movie.getMovieId();
 
         jdbc.update(sql, movie.getMovieTitle(), movie.getMovieGenre(), movie.getMovieYear(), movie.getMovieOrigin(),
                 movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActor(), movie.getImdbCode(),
