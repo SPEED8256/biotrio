@@ -1,41 +1,45 @@
 package dk.kea.project.biotrio.Domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Screening {
 
-    private int screeningIid;
-    private LocalDateTime screeningDateTime;
+    private int screeningId;
+    private LocalTime screeningTime;
 
     //constructors
 
-    public Screening(int screeningIid, LocalDateTime screeningDateTime) {
-        this.screeningIid = screeningIid;
-        this.screeningDateTime = screeningDateTime;
+    public Screening() {
+    }
+
+    public Screening(int screeningId, LocalTime screeningTime) {
+        this.screeningId = screeningId;
+        this.screeningTime = screeningTime;
     }
 
     //getters and setters
-    public int getScreeningIid() {
-        return screeningIid;
+
+    public int getScreeningId() {
+        return screeningId;
     }
 
-    public void setScreeningIid(int screeningIid) {
-        this.screeningIid = screeningIid;
+    public void setScreeningId(int screeningId) {
+        this.screeningId = screeningId;
     }
 
-    public LocalDateTime getScreeningDateTime() {
-        return screeningDateTime;
+    public LocalTime getScreeningTime() {
+        return screeningTime;
     }
 
-    public void setScreeningDateTime(LocalDateTime screeningDateTime) {
-        this.screeningDateTime = screeningDateTime;
+    public void setScreeningTime(LocalTime screeningTime) {
+        this.screeningTime = screeningTime;
     }
 
     @Override
     public String toString() {
         return "Screening{" +
-                "screeningIid=" + screeningIid +
-                ", screeningDateTime=" + screeningDateTime +
+                "screeningId=" + screeningId +
+                ", screeningTime=" + screeningTime +
                 '}';
     }
 }
