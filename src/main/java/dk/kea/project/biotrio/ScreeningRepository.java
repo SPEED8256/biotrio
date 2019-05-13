@@ -50,7 +50,6 @@ public class ScreeningRepository {
                 String sql = "INSERT INTO screening VALUES(null , ?)";
                 PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
                 ps.setTime(1, java.sql.Time.valueOf(screening.getScreeningTime()));
-
                 return ps;
             }
         };
