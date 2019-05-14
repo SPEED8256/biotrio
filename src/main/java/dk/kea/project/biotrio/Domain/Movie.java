@@ -5,13 +5,13 @@ public class Movie {
     private int movieId;
     private String movieTitle;
     private String movieGenre;
-    private String movieYear;
+    private int movieYear;
     private String movieOrigin;
     private int movieDuration;
     private String movieDirector;
     private String movieActors;
     private double price;
-    private String imdbCode;
+    private String  imdbCode;
 
 
     //constructors
@@ -19,7 +19,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String movieGenre, String movieYear, String movieOrigin,
+    public Movie(int movieId, String movieTitle, String movieGenre, int movieYear, String movieOrigin,
                  int movieDuration, String movieDirector, String movieActors, double price, String imdbCode) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
@@ -60,11 +60,11 @@ public class Movie {
         this.movieGenre = movieGenre;
     }
 
-    public String getMovieYear() {
+    public int getMovieYear() {
         return movieYear;
     }
 
-    public void setMovieYear(String movieYear) {
+    public void setMovieYear(int movieYear) {
         this.movieYear = movieYear;
     }
 
@@ -122,7 +122,7 @@ public class Movie {
                 "movieId=" + movieId +
                 ", movieTitle='" + movieTitle + '\'' +
                 ", movieGenre='" + movieGenre + '\'' +
-                ", movieYear='" + movieYear + '\'' +
+                ", movieYear=" + movieYear +
                 ", movieOrigin='" + movieOrigin + '\'' +
                 ", movieDuration=" + movieDuration +
                 ", movieDirector='" + movieDirector + '\'' +

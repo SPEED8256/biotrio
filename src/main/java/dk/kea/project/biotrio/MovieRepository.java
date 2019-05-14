@@ -29,7 +29,7 @@ public class MovieRepository {
             movie.setMovieId(rs.getInt("movie_id"));
             movie.setMovieTitle(rs.getString("movie_title"));
             movie.setMovieGenre(rs.getString("movie_genre"));
-            movie.setMovieYear(rs.getString("movie_year"));
+            movie.setMovieYear(rs.getInt("movie_year"));
             movie.setMovieOrigin(rs.getString("movie_origin"));
             movie.setMovieDuration(rs.getInt("movie_duration"));
             movie.setMovieDirector(rs.getString("movie_director"));
@@ -48,7 +48,7 @@ public class MovieRepository {
             movie.setMovieId(rs.getInt("movie_id"));
             movie.setMovieTitle(rs.getString("movie_title"));
             movie.setMovieGenre(rs.getString("movie_genre"));
-            movie.setMovieYear(rs.getString("movie_year"));
+            movie.setMovieYear(rs.getInt("movie_year"));
             movie.setMovieOrigin(rs.getString("movie_origin"));
             movie.setMovieDuration(rs.getInt("movie_duration"));
             movie.setMovieDirector(rs.getString("movie_director"));
@@ -70,13 +70,14 @@ public class MovieRepository {
                 PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
                 ps.setString(1, movie.getMovieTitle());
                 ps.setString(2, movie.getMovieGenre());
-                ps.setString(3, movie.getMovieYear());
+                ps.setInt(3, movie.getMovieYear());
                 ps.setString(4, movie.getMovieOrigin());
                 ps.setInt(5, movie.getMovieDuration());
                 ps.setString(6, movie.getMovieDirector());
                 ps.setString(7, movie.getMovieActors());
-                ps.setString(8, movie.getImdbCode());
                 ps.setDouble(9, movie.getPrice());
+                ps.setString(8, movie.getImdbCode());
+
 
                 return ps;
             }
@@ -93,12 +94,12 @@ public class MovieRepository {
                 "movie_director=?," + " movie_actors=?, price=?, imdb_id=?, WHERE movie_id=" + movie.getMovieId();
 
         jdbc.update(sql, movie.getMovieTitle(), movie.getMovieGenre(), movie.getMovieYear(), movie.getMovieOrigin(),
-                movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActors(), movie.getImdbCode(),
-                movie.getPrice());
+                movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActors(),  movie.getPrice(),
+                movie.getImdbCode());
     }
 
     public void delete(int id) {
-        jdbc.update("DELETE FROM movie WHERE movie_id = " + id);
+        jdbc.update("DELETE FROM movie WHERE movie_id =" + id);
     }
 
 
