@@ -45,8 +45,7 @@ public class Booking {
         return movieId;
     }
 
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
+    public void setMovieId(int movieId) { this.movieId = movieId;
     }
 
     public int getTheaterId() {

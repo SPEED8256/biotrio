@@ -1,13 +1,14 @@
 package dk.kea.project.biotrio.Controller;
-
 import dk.kea.project.biotrio.Domain.Movie;
 import dk.kea.project.biotrio.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Controller
 public class MovieController {
 
     @Autowired
