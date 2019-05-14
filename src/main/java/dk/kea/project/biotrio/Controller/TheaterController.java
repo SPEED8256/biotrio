@@ -15,41 +15,41 @@ public class TheaterController {
     @Autowired
     private TheaterRepository theaterRepo;
 
-    @GetMapping("/mytheater")
+    @GetMapping("/my-theater")
     public String theater(Model model) {
         List<Theater> theaterList = theaterRepo.findAllTheaters();
         model.addAttribute("theaters", theaterList);
         return "show-theaters";
     }
 
-    @GetMapping("/addtheater")
+    @GetMapping("/add-theater")
     public String addTheater(Model model){
         model.addAttribute("theater", new Theater());
         return "add-theater";
     }
 
-    @PostMapping("/savetheater")
+    @PostMapping("/save-theater")
     public String save(@ModelAttribute Theater theater) {
         Theater theaterInserted = theaterRepo.insert(theater);
-        return "redirect:/mytheater";
+        return "redirect:/my-theater";
     }
 
-    @GetMapping("/theaterview")
+    @GetMapping("/theater-view")
     @ResponseBody
     public Theater showTheater(int id) {
         Theater theater = theaterRepo.findTheater(id);\
         return theater;
     }
 
-    @PostMapping("/saveupdate")
+    @PostMapping("/update-theater")
     public String saveUpdateTheater(@ModelAttribute Theater theater) {
         theaterRepo.update(theater);
-        return "redirect:/mytheater";
+        return "redirect:/my-theater";
     }
 
-    @GetMapping("/deletetheater/{id}")
+    @GetMapping("/delete-theater/{id}")
     public String deleteTheater(@PathVariable(name = "id") int id) {
         theaterRepo.delete(id);
-        return "redirect:/mytheater";
+        return "redirect:/my-theater";
     }
 }

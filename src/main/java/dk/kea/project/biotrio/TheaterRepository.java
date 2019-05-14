@@ -27,9 +27,9 @@ public class TheaterRepository {
         Theater theater = new Theater();
         while (rs.next()) {
             theater.setTheaterId(rs.getInt("theater_id"));
-            theater.setName(rs.getString("theater_name"));
-            theater.setRows(rs.getInt("theater_rows"));
-            theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
+            theater.setTheaterName(rs.getString("theater_name"));
+           //theater.setRows(rs.getInt("theater_rows"));
+            //theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
         }
         return theater;
     }
@@ -40,14 +40,43 @@ public class TheaterRepository {
         Theater theater = new Theater();
         while (rs.next()) {
             theater.setTheaterId(rs.getInt("theater_id"));
-            theater.setName(rs.getString("theater_name"));
-            theater.setRows(rs.getInt("theater_rows"));
-            theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
+            theater.setTheaterName(rs.getString("theater_name"));
+            //theater.setRows(rs.getInt("theater_rows"));
+            //theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
 
             theaterList.add(theater);
         }
         return theaterList;
     }
 
+    public Theater insert(Theater theater) {
 
+        PreparedStatementCreator psc = new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                String sql = "INSERT INTO theater VALUES(null, ?)";
+                PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
+                ps.setString(1, theater.getTheaterName());
+                //ps.setString(2, theater.getRows());
+                //ps.setString(3, theater.getSeatsPerRow());
+
+                return ps;
+            }
+        };
+
+        KeyHolder id = new GeneratedKeyHolder();
+        jdbc.update(psc, id);
+        theater.setTheaterId(id.getKey().intValue());
+        return theater;
+    }
+
+    public void update(Theater theater) {
+        String sql = "UPDATE theater SET theater_name=? WHERE theater_id=" + theater.getTheaterId();
+
+        jdbc.update(sql, theater.getTheaterName());
+    }
+
+    public void delete(int id) {
+        jdbc.update("DELETE FROM theater WHERE theater_id =" + id);
+    }
 }

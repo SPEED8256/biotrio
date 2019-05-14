@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Theater list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        .element1{float:left;}
+        .element2{padding-left : 20px;float:right;}
+    </style>
+
+
+</head>
+<body>
+
+<div class="element1">
+    <h1> All theaters</h1>
+</div>
+
+<div class="element2">
+    <a class="btn btn-success" th:href="@{'/new-theater/'}">New Theater</a></td>
+</div>
+</br></br></br></br>
+
+<h2>Here you can see all the theaters in BioTrio.</h2>
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Theater ID</th>
+        <th scope="col">Theater Name</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="theater:${theater}">
+        <th scope="row" th:text="${theater.theaterId}"> 1 </th>
+        <td th:text="${theater.theaterName}"> Blue </td>
+
+        <td><a class="btn btn-danger" th:href="@{'/delete-theater/' + ${theater.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/update-theater/' + ${theater.id}}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>
