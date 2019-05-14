@@ -12,9 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
 
 
 @Repository
@@ -31,7 +29,7 @@ public class CustomerRepository {
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getDate("date_of_birth"));
+            customer.setDob(rs.getDate("dob"));
             customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
@@ -44,12 +42,12 @@ public class CustomerRepository {
         List<Customer> customerList = new ArrayList<>();
         Customer customer = new Customer();
         while (rs.next()){
-            customer.setId(rs.getInt("id"));
+            customer.setId(rs.getInt("customer_id"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getDate("date_of_birth"));
-            customer.setEmail(rs.getString("email "));
+            customer.setDob(rs.getDate("dob"));
+            customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
 
@@ -66,17 +64,14 @@ public class CustomerRepository {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO customer VALUES(null , ?,?,?,?,?,?,?)", new String[]{"id"});
                 ps.setString(1, customer.getUsername());
                 ps.setString(2, customer.getPassword());
-                ps.setDate(3, (java.sql.Date) customer.getDob()); //????????????????????????????
-                ps.setString(4, customer.getEmail());
-                ps.setString(4, customer.getPhoneNumber());
-                ps.setString(4, customer.getPaymentDetails());
+                ps.setString(3, customer.getName());
+                ps.setDate(4, (java.sql.Date) customer.getDob()); //????????????????????????????
+                ps.setString(5, customer.getEmail());
+                ps.setString(6, customer.getPhoneNumber());
+                ps.setString(7, customer.getPaymentDetails());
                 return ps;
             }
         };
-
-//        String sql = "INSERT INTO cars VALUES(NULL, '"+car.getReg()+"', '"+car.getBrand()+"', '"+car.getColor()+"', "+car.getMaxSpeed()+")";
-//        jdbc.execute(sql);
-//        jdbc.execute("SELECT last_insert_id() FROM cars");
 
 
         KeyHolder id = new GeneratedKeyHolder();
@@ -89,5 +84,18 @@ public class CustomerRepository {
     public void delete(int id) {
         jdbc.update("DELETE FROM customer WHERE id = "+id);
     }
+
+    public void update(Customer customer) {
+        jdbc.update("UPDATE customer SET " +
+                "username='" + customer.getUsername() + "', " +
+                "password='" + customer.getPassword() + "', " +
+                "name='" + customer.getName() + "', " +
+                "date of bith=" + customer.getDob() + "' " +
+                "email='" + customer.getEmail() + "', " +
+                "phone number='" + customer.getPhoneNumber() + "', " +
+                "Payment details='" + customer.getPaymentDetails() + "' " +
+                "WHERE id=" + customer.getId());
+    }
 }
+
 
