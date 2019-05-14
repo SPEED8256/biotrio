@@ -4,14 +4,14 @@ public class Movie {
 
     private int movieId;
     private String movieTitle;
-    private String imdbCode;
     private String movieGenre;
     private String movieYear;
     private String movieOrigin;
     private int movieDuration;
     private String movieDirector;
-    private String movieActor;
+    private String movieActors;
     private double price;
+    private String imdbCode;
 
 
     //constructors
@@ -19,31 +19,22 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear,
-                 String movieOrigin, int movie_duration, String movieDirector,
-                 String movieActor, double price) {
+    public Movie(int movieId, String movieTitle, String movieGenre, String movieYear, String movieOrigin,
+                 int movieDuration, String movieDirector, String movieActors, double price, String imdbCode) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
-        this.imdbCode = imdbCode;
         this.movieGenre = movieGenre;
         this.movieYear = movieYear;
         this.movieOrigin = movieOrigin;
-        this.movieDuration = movie_duration;
+        this.movieDuration = movieDuration;
         this.movieDirector = movieDirector;
-        this.movieActor = movieActor;
+        this.movieActors = movieActors;
         this.price = price;
+        this.imdbCode = imdbCode;
     }
 
     //getters and setters
 
-
-    public String getImdbCode() {
-        return imdbCode;
-    }
-
-    public void setImdbCode(String imdbCode) {
-        this.imdbCode = imdbCode;
-    }
 
     public int getMovieId() {
         return movieId;
@@ -101,12 +92,12 @@ public class Movie {
         this.movieDirector = movieDirector;
     }
 
-    public String getMovieActor() {
-        return movieActor;
+    public String getMovieActors() {
+        return movieActors;
     }
 
-    public void setMovieActor(String movieActor) {
-        this.movieActor = movieActor;
+    public void setMovieActors(String movieActors) {
+        this.movieActors = movieActors;
     }
 
     public double getPrice() {
@@ -115,6 +106,14 @@ public class Movie {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getImdbCode() {
+        return imdbCode;
+    }
+
+    public void setImdbCode(String imdbCode) {
+        this.imdbCode = imdbCode;
     }
 
     @Override
@@ -127,8 +126,9 @@ public class Movie {
                 ", movieOrigin='" + movieOrigin + '\'' +
                 ", movieDuration=" + movieDuration +
                 ", movieDirector='" + movieDirector + '\'' +
-                ", movieActor='" + movieActor + '\'' +
+                ", movieActors='" + movieActors + '\'' +
                 ", price=" + price +
+                ", imdbCode='" + imdbCode + '\'' +
                 '}';
     }
 }

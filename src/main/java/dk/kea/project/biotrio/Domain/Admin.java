@@ -2,7 +2,7 @@ package dk.kea.project.biotrio.Domain;
 
 public class Admin {
 
-    private String adminId;
+    private int adminId;
     private String username;
     private String password;
     private String name;
@@ -12,18 +12,18 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String adminId, String username, String password, String name) {
+    public Admin(int adminId, String username, String password, String name) {
         this.adminId = adminId;
         this.username = username;
         this.password = password;
         this.name = name;
     }
 
-    public String getAdminId() {
+    public int getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 
