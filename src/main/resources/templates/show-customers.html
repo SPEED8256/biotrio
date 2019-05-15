@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        .element1{float:left;}
+        .element2{padding-left : 20px;float:right;}
+    </style>
+
+
+</head>
+<body>
+
+<div class="element1">
+    <h1> All customers</h1>
+</div>
+
+<div class="element2">
+    <a class="btn btn-success" th:href="@{'/new-user/'}">New Customer</a></td>
+</div>
+</br></br></br></br>
+
+<h2>Here you can see all the customers stored in database</h2>
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Customer ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date of birth</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone number</th>
+        <th scope="col">Payment details</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer:${customer}">
+        <th scope="row" th:text="${customer.id}"> 1 </th>
+        <td th:text="${customer.username}"> avatar</td>
+        <td th:text="${customer.password}"> 123456 </td>
+        <td th:text="${customer.name}"> Ben Jon</td>
+        <td th:text="${customer.dob}"> 15/01/2019</td>
+        <td th:text="${customer.email}"> asa@gmail.com </td>
+        <td th:text="${customer.phoneNumber}"> 12457845 </td>
+        <td th:text="${customer.paymentDetails}"> 545645645446544 54/21 425</td>
+
+
+
+
+        <td><a class="btn btn-danger" th:href="@{'/delete-customer/' + ${customer.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/updatecustomer/' + ${customer.id}}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>
