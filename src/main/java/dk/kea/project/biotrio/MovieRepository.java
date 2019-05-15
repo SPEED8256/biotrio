@@ -78,7 +78,6 @@ public class MovieRepository {
                 ps.setDouble(9, movie.getPrice());
                 ps.setString(8, movie.getImdbCode());
 
-
                 return ps;
             }
         };
@@ -91,7 +90,7 @@ public class MovieRepository {
 
     public void update(Movie movie) {
         String sql = "UPDATE movie SET movie_title=?, movie_genre=?, movie_year=?, movie_origin=?, movie_dureation=?, " +
-                "movie_director=?," + " movie_actors=?, price=?, imdb_id=?, WHERE movie_id=" + movie.getMovieId();
+                "movie_director=?," + " movie_actors=?, price=?, imdb_id=? WHERE movie_id=" + movie.getMovieId();
 
         jdbc.update(sql, movie.getMovieTitle(), movie.getMovieGenre(), movie.getMovieYear(), movie.getMovieOrigin(),
                 movie.getMovieDuration(), movie.getMovieDirector(), movie.getMovieActors(),  movie.getPrice(),

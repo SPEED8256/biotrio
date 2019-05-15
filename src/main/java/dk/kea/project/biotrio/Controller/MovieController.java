@@ -35,6 +35,14 @@ public class MovieController {
         return "redirect:/mymovie";
     }
 
+    @GetMapping("/updatemovie/{id}")
+    public String updateMovie(@PathVariable(name = "id") int id, Model m) {
+        Movie movieData = movieRepo.findMovie(id);
+        m.addAttribute("movieform", movieData);
+        return "update-movie";
+    }
+
+
     @GetMapping("/moviev")
     @ResponseBody
     public Movie showMovie(int id) {

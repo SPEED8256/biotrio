@@ -37,7 +37,7 @@ public class TheaterController {
     @GetMapping("/theater-view")
     @ResponseBody
     public Theater showTheater(int id) {
-        Theater theater = theaterRepo.findTheater(id);\
+        Theater theater = theaterRepo.findTheater(id);
         return theater;
     }
 
