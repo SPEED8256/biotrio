@@ -19,6 +19,8 @@ public class Admin {
         this.name = name;
     }
 
+    //getters and setters
+
     public int getAdminId() {
         return adminId;
     }

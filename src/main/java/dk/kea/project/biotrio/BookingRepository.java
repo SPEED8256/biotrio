@@ -7,14 +7,16 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class BookingRepository {
     @Autowired
     private JdbcTemplate jdbc;
@@ -33,7 +35,7 @@ public class BookingRepository {
         return booking;
     }
 
-    public List<Booking> findAllBooking() {
+    public List<Booking> findAllBookings() {
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM booking ");
         List<Booking> bookingList = new ArrayList();
         while (rs.next()) {
@@ -66,12 +68,6 @@ public class BookingRepository {
         jdbc.update(psc, id);
         booking.setBookingId(id.getKey().intValue());
         return booking;
-    }
-
-    public void update(Booking booking) {
-        String sql = "UPDATE screening SET customerId=?, movieId=?, theaterId=?, screeningId=?, seatId=?,  " +
-                "WHERE bookingId=" + booking.getBookingId();
-        jdbc.update(sql, booking.getBookingId());
     }
 
     public void delete(int id) {
