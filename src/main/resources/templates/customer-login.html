@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+</head>
+<body>
+<h1>Login Page</h1>
+<p th:if="${invalidCredentials}" class="error">Invalid Username/Password</p>
+<form th:action="@{/login}" th:object="${customerForm}" method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autofocus="autofocus"/>
+    <br/>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"/>
+    <br/>
+    <input type="submit" value="Log In"/>
+</form>
+
+</body>
+</html>
