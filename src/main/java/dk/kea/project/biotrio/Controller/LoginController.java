@@ -20,7 +20,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("customerForm") Customer customer, Model model) {
         if (customer.getUsername().equals("admin") && customer.getPassword().equals("admin")) {
-            //should return a booking page, where the customer (now logged in) continues to book a ticket. As of now returns a test page
+            //should return a booking page, where the customer (now logged in) continues to book a ticket.
+            // As of now returns a test page
             return "login-home";
         }
         model.addAttribute("invalidCredentials", true);
