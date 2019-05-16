@@ -15,17 +15,18 @@
 </head>
 <body>
 
-<div class="element1">
-    <h1> All customers</h1>
+<div class="element1"style="margin:5px">
+    <h1>  All customers</h1>
 </div>
 
 <div class="element2">
-    <a class="btn btn-success" th:href="@{'/new-user/'}">New Customer</a></td>
+    <a  style="margin:5px" class="btn btn-success" th:href="@{'/new-user/'}">New Customer</a></td>
 </div>
 </br></br></br></br>
 
+<div class="element1"style="margin:5px">
 <h2>Here you can see all the customers stored in database</h2>
-
+</div>
 
 <table class="table table-bordered">
     <thead>
@@ -38,13 +39,12 @@
         <th scope="col">Email</th>
         <th scope="col">Phone number</th>
         <th scope="col">Payment details</th>
-
-
     </tr>
+
     </thead>
     <tbody>
     <tr th:each="customer:${customer}">
-        <th scope="row" th:text="${customer.id}"> 1 </th>
+        <td scope="row" th:text="${customer.id}"> </td>
         <td th:text="${customer.username}"> avatar</td>
         <td th:text="${customer.password}"> 123456 </td>
         <td th:text="${customer.name}"> Ben Jon</td>
@@ -54,10 +54,8 @@
         <td th:text="${customer.paymentDetails}"> 545645645446544 54/21 425</td>
 
 
-
-
         <td><a class="btn btn-danger" th:href="@{'/delete-customer/' + ${customer.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/updatecustomer/' + ${customer.id}}">Edit</a></td>
+        <td><a class="btn btn-success" th:href="@{'/edit/' + ${customer.id}}">Edit</a></td>
     </tr>
     </tbody>
 </table>
@@ -68,3 +66,9 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
