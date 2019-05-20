@@ -28,8 +28,6 @@ public class TheaterRepository {
         while (rs.next()) {
             theater.setTheaterId(rs.getInt("theater_id"));
             theater.setTheaterName(rs.getString("theater_name"));
-           //theater.setRows(rs.getInt("theater_rows"));
-            //theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
         }
         return theater;
     }
@@ -41,8 +39,6 @@ public class TheaterRepository {
         while (rs.next()) {
             theater.setTheaterId(rs.getInt("theater_id"));
             theater.setTheaterName(rs.getString("theater_name"));
-            //theater.setRows(rs.getInt("theater_rows"));
-            //theater.setSeatsPerRow(rs.getInt("theater_seats_per_row"));
 
             theaterList.add(theater);
         }
@@ -57,8 +53,6 @@ public class TheaterRepository {
                 String sql = "INSERT INTO theater VALUES(null, ?)";
                 PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
                 ps.setString(1, theater.getTheaterName());
-                //ps.setString(2, theater.getRows());
-                //ps.setString(3, theater.getSeatsPerRow());
 
                 return ps;
             }

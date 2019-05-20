@@ -33,7 +33,7 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute Customer customer){
 
         Customer customerCreated = customerRepo.insert(customer);
-        return "redirect:/customers info";
+        return "redirect:/customers-info";
     }
 
 
@@ -51,14 +51,14 @@ public class CustomerController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCar(Model m, @PathVariable(name = "id") int id){
+    public String editCustomer(Model m, @PathVariable(name = "id") int id){
         Customer customerToEdit = customerRepo.findCustomer(id);
         m.addAttribute("customerform", customerToEdit);
         return "edit-customer";
     }
 
 
-    @PostMapping("/updatecustomer")
+    @PostMapping("/update-customer")
     public String saveEditCustomer(@ModelAttribute Customer customer){
         customerRepo.update(customer);
         return "redirect:/customers-info";
