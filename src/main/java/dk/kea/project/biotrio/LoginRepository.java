@@ -20,30 +20,26 @@ public class LoginRepository {
     //and adds the created objects to a list.
     //returns list
 
-    /*public List<Customer> findAllCustomers() {
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer");
-        List<Customer> customerListUP = new ArrayList<>();
-        while (rs.next()) {
-            Customer customer = new Customer();
-            customer.setUsername(rs.getString("username"));
-            customer.setPassword(rs.getString("password"));
+    public List<Customer> findCustomerUsernamePassword() {
 
-            customerListUP.add(customer);
+        String sql = "SELECT  customer_id * FROM customer WHERE  username = ? and password = ?";
+
+        try {
+            SqlRowSet rs = jdbc.queryForRowSet(sql);
+            List<Customer> customerListUP = new ArrayList<>();
+            while (rs.next()) {
+                Customer customer = new Customer();
+                customer.setUsername(rs.getString("username"));
+                customer.setPassword(rs.getString("password"));
+
+                customerListUP.add(customer);
+            }
+            return customerListUP;
+
+        } catch (Exception e) {
+            return null;
         }
-        return customerListUP;
-    }*/
 
-    public List<Customer> findCustomerUsernamePassword(){
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer WHERE  username = ? and password = ?");
-        List<Customer> customerListUP = new ArrayList<>();
-        while (rs.next()){
-            Customer customer = new Customer();
-            customer.setUsername(rs.getString("username"));
-            customer.setPassword(rs.getString("password"));
-
-            customerListUP.add(customer);
-        }
-        return customerListUP;
     }
 
 
