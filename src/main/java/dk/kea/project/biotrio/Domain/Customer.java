@@ -2,6 +2,7 @@ package dk.kea.project.biotrio.Domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class Customer {
@@ -9,7 +10,7 @@ public class Customer {
     private String username;
     private String password;
     private String name;
-    private LocalDate dob;
+    private String dob;
     private String email;
     private String phoneNumber;
     private String paymentDetails;
@@ -18,7 +19,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String username, String password, String name, LocalDate dob, String email,
+    public Customer(int id, String username, String password, String name, String dob, String email,
                     String phoneNumber, String paymentDetails) {
         this.id = id;
         this.username = username;
@@ -62,11 +63,11 @@ public class Customer {
         this.name = name;
     }
 
-    public LocalDate getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 

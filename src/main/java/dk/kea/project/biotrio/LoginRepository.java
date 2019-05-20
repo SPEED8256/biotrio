@@ -1,5 +1,6 @@
 package dk.kea.project.biotrio;
 
+import dk.kea.project.biotrio.Domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Repository
 public class LoginRepository {
@@ -18,7 +20,7 @@ public class LoginRepository {
     //and adds the created objects to a list.
     //returns list
 
-    public List<Customer> findAllCustomers() {
+    /*public List<Customer> findAllCustomers() {
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer");
         List<Customer> customerListUP = new ArrayList<>();
         while (rs.next()) {
@@ -29,7 +31,22 @@ public class LoginRepository {
             customerListUP.add(customer);
         }
         return customerListUP;
+    }*/
+
+    public List<Customer> findCustomerUsernamePassword(){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer WHERE  username = ? and password = ?");
+        List<Customer> customerListUP = new ArrayList<>();
+        while (rs.next()){
+            Customer customer = new Customer();
+            customer.setUsername(rs.getString("username"));
+            customer.setPassword(rs.getString("password"));
+
+            customerListUP.add(customer);
+        }
+        return customerListUP;
     }
+
+
 }
 
 

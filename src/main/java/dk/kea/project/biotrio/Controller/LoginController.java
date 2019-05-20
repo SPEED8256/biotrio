@@ -1,6 +1,6 @@
 package dk.kea.project.biotrio.Controller;
 
-import dk.kea.project.biotrio.Customer;
+import dk.kea.project.biotrio.Domain.Customer;
 import dk.kea.project.biotrio.LoginRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,20 +26,22 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("customerForm") Customer customer, Model model) {
 
-        List<Customer> customerListUP = loginRepo.findAllCustomers();
+        List<Customer> customerListUP = loginRepo.findCustomerUsernamePassword();
 
         for (Customer customerObj : customerListUP) {
+            //if (customer.getUsername().equals("admin") && customer.getPassword().equals("admin")) {
             if (customerObj.getUsername().equals(customer.getUsername())
                     && customerObj.getPassword().equals(customer.getPassword())) {
+                //should return a booking page, where the customer (now logged in) continues to book a ticket.
+                // As of now returns a test page
+                return "login-home";
             }
-            //should return a booking page, where the customer (now logged in) continues to book a ticket.
-            // As of now returns a test page
-            return "login-home";
+
+            model.addAttribute("invalidCredentials", true);
         }
-
-        model.addAttribute("invalidCredentials", true);
-
         return "customer-login";
+
+
     }
 
 

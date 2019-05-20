@@ -1,5 +1,7 @@
-package dk.kea.project.biotrio;
+package dk.kea.project.biotrio.Controller;
 
+import dk.kea.project.biotrio.CustomerRepository;
+import dk.kea.project.biotrio.Domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,7 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute Customer customer){
 
         Customer customerCreated = customerRepo.insert(customer);
-        return "redirect:/customers info";
+        return "redirect:/customers-info";
     }
 
 
@@ -51,14 +53,14 @@ public class CustomerController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCar(Model m, @PathVariable(name = "id") int id){
+    public String editCostumer(Model m, @PathVariable(name = "id") int id){
         Customer customerToEdit = customerRepo.findCustomer(id);
         m.addAttribute("customerform", customerToEdit);
         return "edit-customer";
     }
 
 
-    @PostMapping("/updatecustomer")
+    @PostMapping("/update-customer")
     public String saveEditCustomer(@ModelAttribute Customer customer){
         customerRepo.update(customer);
         return "redirect:/customers-info";
