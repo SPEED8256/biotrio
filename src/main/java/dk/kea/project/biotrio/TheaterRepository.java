@@ -65,9 +65,7 @@ public class TheaterRepository {
     }
 
     public void update(Theater theater) {
-        String sql = "UPDATE theater SET theater_name=? WHERE theater_id=" + theater.getTheaterId();
-
-        jdbc.update(sql, theater.getTheaterName());
+        jdbc.update("UPDATE theater SET theater_name=? WHERE theater_id=" + theater.getTheaterId());
     }
 
     public void delete(int id) {
