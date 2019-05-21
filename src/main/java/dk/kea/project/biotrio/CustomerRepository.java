@@ -22,14 +22,14 @@ public class CustomerRepository {
     private JdbcTemplate jdbc;
 
     public Customer findCustomer(int id){
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer WHERE id = "+id);
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer WHERE customer_id = "+id);
         Customer customer = new Customer();
         while (rs.next()){
-            customer.setId(rs.getInt("id"));
+            customer.setId(rs.getInt("customer_id"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getDate("dob"));
+            customer.setDob(rs.getString("dob"));
             customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
@@ -40,17 +40,16 @@ public class CustomerRepository {
     public List<Customer> findAllCustomers(){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer");
         List<Customer> customerList = new ArrayList<>();
-        Customer customer = new Customer();
         while (rs.next()){
+            Customer customer = new Customer();
             customer.setId(rs.getInt("customer_id"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getDate("dob"));
+            customer.setDob(rs.getString("dob"));
             customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
-
             customerList.add(customer);
         }
         return customerList;
@@ -65,7 +64,7 @@ public class CustomerRepository {
                 ps.setString(1, customer.getUsername());
                 ps.setString(2, customer.getPassword());
                 ps.setString(3, customer.getName());
-                ps.setDate(4, (java.sql.Date) customer.getDob()); //????????????????????????????
+                ps.setString(4, customer.getDob()); //????????????????????????????
                 ps.setString(5, customer.getEmail());
                 ps.setString(6, customer.getPhoneNumber());
                 ps.setString(7, customer.getPaymentDetails());
@@ -82,19 +81,17 @@ public class CustomerRepository {
 
 
     public void delete(int id) {
-        jdbc.update("DELETE FROM customer WHERE id = "+id);
+        jdbc.update("DELETE FROM customer WHERE customer_id = "+id);
     }
 
+
+
     public void update(Customer customer) {
-        jdbc.update("UPDATE customer SET " +
-                "username='" + customer.getUsername() + "', " +
-                "password='" + customer.getPassword() + "', " +
-                "name='" + customer.getName() + "', " +
-                "date of bith=" + customer.getDob() + "' " +
-                "email='" + customer.getEmail() + "', " +
-                "phone number='" + customer.getPhoneNumber() + "', " +
-                "Payment details='" + customer.getPaymentDetails() + "' " +
-                "WHERE id=" + customer.getId());
+        String sql = "UPDATE customer SET username=?, password=?, name=?, dob=?, " +
+                "email=?,phone_number=?, payment_details=? WHERE customer_id=" + customer.getId();
+
+        jdbc.update(sql, customer.getUsername(), customer.getPassword(), customer.getName(), customer.getDob(),
+                customer.getEmail(), customer.getPhoneNumber(), customer.getPaymentDetails());
     }
 }
 

@@ -51,7 +51,7 @@ public class CustomerController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCar(Model m, @PathVariable(name = "id") int id){
+    public String editCustomer(Model m, @PathVariable(name = "id") int id){
         Customer customerToEdit = customerRepo.findCustomer(id);
         m.addAttribute("customerform", customerToEdit);
         return "edit-customer";

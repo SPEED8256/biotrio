@@ -4,87 +4,10 @@
 
     <meta charset="UTF-8">
     <title>New Customer</title>
+    <link rel="stylesheet" type="text/css" href="BioTrio.css">.
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: black;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    /* Add padding to containers */
-    .container {
-        padding: 16px;
-        background-color: white;
-    }
-
-    /* Full-width input fields */
-    input[type=text], input[type=password] {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-    }
-
-    /* Full-width input fields */
-    input[type=expiration] {
-        width: 5%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-    }
-
-    input[type=security] {
-        width: 10%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-    }
-
-    input[type=text]:focus, input[type=password]:focus, input[type=security]:focus, input[type=expiration]:focus {
-        background-color: #ddd;
-        outline: none;
-    }
-
-    /* Set a style for the submit button */
-    .registerbtn {
-        background-color: green;
-        color: white;
-        padding: 16px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    .registerbtn:hover {
-        opacity: 1;
-    }
-
-    /* Add a blue text color to links */
-    a {
-        color: dodgerblue;
-    }
-
-    /* Set a grey background color and center the text of the "sign in" section */
-    .signin {
-        background-color: #f1f1f1;
-        text-align: center;
-    }
-</style>
 
 <body>
 
@@ -95,52 +18,36 @@
         <p class="lead">
 
 
-
             <form action="/save-customer" method="post" th:object="${customerform}">
                 <div class="form-group">
-
                     <label for="username"> <b>Username</b></label>
                     <input type="text" class="form-control" name="Username" placeholder="Enter Username" required
                            th:field="${customerform.username}" id="username" >
 
-
-                    <label for="password"><b>Password</b>
+                    <label for="password"><b>Password</b></label>
                         <input class="form-control" name="password" placeholder="Enter Password"
                                required th:field="${customerform.password}" type="password" id="password">
-                    </label>
 
-                    <label for="psw-repeat"><b>Repeat Password</b>
+                    <label for="psw-repeat"><b>Repeat Password</b></label>
                         <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
-                               required type="password" id="psw-repeat">
-                    </label>
+                        required type="password" id="psw-repeat">
 
-
-                    <div class="form-group">
-                        <label for="name"><b>Full name</b></label>
+                    <label for="name"><b>Full name</b></label>
                         <input class="form-control" name="Name and Surname" placeholder="Name and Surname" required
-                               th:field="${customerform.name}" type="text" id="name">
-                    </div>
+                        th:field="${customerform.name}" type="text" id="name">
 
-                    <div class="form-group">
-                        <label for="dob"><b>Date of birth</b></label>
-                        <input class="form-control" name="dob" placeholder="yyyy-mm-dd" required th:field="${customerform.dob}"
-                               type="text" id="dob">
+                    <label for="dob"><b>Date of birth</b></label>
+                        <input class="form-control" name="dob" placeholder="dd/mm/yyyy" required th:field="${customerform.dob}"
+                               type="text" id="dob"  maxlength="10">
 
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email"><b>Email address</b></label>
+                    <label for="email"><b>Email address</b></label>
                         <input type="text" class="form-control" th:field="${customerform.email}" placeholder="Enter Email" name="email" required id="email">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="phone number"><b>Phone number</b></label>
+                    <label for="phone number"><b>Phone number</b></label>
                         <input class="form-control" name="phone number" placeholder="Enter phone number"
                                required th:field="${customerform.phoneNumber}" type="text" id="phone number">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="payment details"><b>Payment details</b><br></label>
+                    <label for="payment details"><b>Payment details</b><br></label>
                         <input class="form-control" name="Card number" placeholder="card number" required
                                th:field="${customerform.paymentDetails}" type="text" id="payment details">
                         <!-- <input class="form-control" name="month" placeholder="mm" required
@@ -153,7 +60,7 @@
 
 
         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <button type="submit" class="registerbtn">Register</button>
+        <a class="submit">Register </a>
 
         </form>
         </p>
