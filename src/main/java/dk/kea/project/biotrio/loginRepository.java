@@ -1,5 +1,6 @@
 package dk.kea.project.biotrio;
 
+import dk.kea.project.biotrio.Domain.Customer;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class loginRepository {
     private JdbcTemplate jdbc;
 
 
-    public Customer findCustomerUsernamePAssword(int id){
+    public Customer findCustomerUsernamePassword(int id){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer WHERE  username = ? and password = ?");
         Customer customer = new Customer();
         while (rs.next()){
@@ -31,7 +32,7 @@ public class loginRepository {
         return customer;
     }
 
-    public List<Customer> findAllCustomersUsernamePAssword(){
+    public List<Customer> findAllCustomersUsernamePassword(){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customer");
         List<Customer> customerListUP = new ArrayList<>();
         while (rs.next()){

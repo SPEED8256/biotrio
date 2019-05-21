@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer list</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
 
     <style>
         .element1{float:left;}
@@ -43,7 +42,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="customer:${customer}">
+    <tr th:each="customer:${customers}">
         <th scope="row" th:text="${customer.id}"> 1 </th>
         <td th:text="${customer.username}"> avatar</td>
         <td th:text="${customer.password}"> 123456 </td>
@@ -57,7 +56,7 @@
 
 
         <td><a class="btn btn-danger" th:href="@{'/delete-customer/' + ${customer.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/update-customer/' + ${customer.id}}">Edit</a></td>
+        <td><a class="btn btn-success" th:href="@{'/edit/' + ${customer.id}}">Edit</a></td>
     </tr>
     </tbody>
 </table>

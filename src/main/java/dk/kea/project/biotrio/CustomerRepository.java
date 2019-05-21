@@ -1,5 +1,6 @@
 package dk.kea.project.biotrio;
 
+import dk.kea.project.biotrio.Domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
