@@ -15,41 +15,49 @@ public class TheaterController {
     @Autowired
     private TheaterRepository theaterRepo;
 
-    @GetMapping("/my-theater")
-    public String theater(Model model) {
+    @GetMapping("/theater-info")
+    public String showTheaters(Model model) {
         List<Theater> theaterList = theaterRepo.findAllTheaters();
         model.addAttribute("theaters", theaterList);
         return "show-theaters";
     }
 
-    @GetMapping("/add-theater")
+    @GetMapping("/new-theater")
     public String addTheater(Model model){
         model.addAttribute("theater", new Theater());
-        return "add-theater";
+        return "new-theater";
     }
 
     @PostMapping("/save-theater")
     public String save(@ModelAttribute Theater theater) {
+
         Theater theaterInserted = theaterRepo.insert(theater);
-        return "redirect:/my-theater";
+        return "redirect:/theater-info";
     }
 
     @GetMapping("/theater-view")
     @ResponseBody
-    public Theater showTheater(int id) {
-        Theater theater = theaterRepo.findTheater(id);\
+    public Theater showTheater() {
+        Theater theater = theaterRepo.findTheater(1);
         return theater;
-    }
-
-    @PostMapping("/update-theater")
-    public String saveUpdateTheater(@ModelAttribute Theater theater) {
-        theaterRepo.update(theater);
-        return "redirect:/my-theater";
     }
 
     @GetMapping("/delete-theater/{id}")
     public String deleteTheater(@PathVariable(name = "id") int id) {
         theaterRepo.delete(id);
-        return "redirect:/my-theater";
+        return "redirect:/theater-info";
+    }
+
+    @GetMapping("/edit-theater/{id}")
+    public String editTheater(Model m, @PathVariable(name = "id") int id){
+        Theater theaterToEdit = theaterRepo.findTheater(id);
+        m.addAttribute("theater-form", theaterToEdit);
+        return "edit-theater";
+    }
+
+    @PostMapping("/update-theater")
+    public String saveEditTheater(@ModelAttribute Theater theater) {
+        theaterRepo.update(theater);
+        return "redirect:/theater-info";
     }
 }

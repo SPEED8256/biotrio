@@ -33,7 +33,7 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute Customer customer){
 
         Customer customerCreated = customerRepo.insert(customer);
-        return "redirect:/customers info";
+        return "redirect:/customers-info";
     }
 
 
@@ -58,7 +58,7 @@ public class CustomerController {
     }
 
 
-    @PostMapping("/updatecustomer")
+    @PostMapping("/update-customer")
     public String saveEditCustomer(@ModelAttribute Customer customer){
         customerRepo.update(customer);
         return "redirect:/customers-info";
