@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-
     <meta charset="UTF-8">
     <title>New Customer</title>
     <link rel="stylesheet" type="text/css" href="/BioTrio.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
 
-<div class="jumbotron jumbotron-fluid">
+
     <div class="container">
         <h1>Register new user</h1>
         <h2>Please fill in this form to create an account.</h2>
@@ -60,12 +61,12 @@
 
 
         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <button class="submit" th:href="@{'/customers-info/'}"> Register  </button>
+        <a class="submit">Register </a>
 
         </form>
         </p>
     </div>
-</div>
+
 
 <div class="container signin">
     <p>Already have an account? <a href="#">Sign in</a>.</p>
