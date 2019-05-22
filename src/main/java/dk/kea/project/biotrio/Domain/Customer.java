@@ -1,9 +1,8 @@
 package dk.kea.project.biotrio.Domain;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 public class Customer {
     private int id;
@@ -97,7 +96,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "dk.kea.project.biotrio.Domain.Customer{" +
+        return "Customer{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -109,3 +108,4 @@ public class Customer {
                 '}';
     }
 }
+

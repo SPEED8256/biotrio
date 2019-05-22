@@ -1,11 +1,12 @@
 package dk.kea.project.biotrio.Controller;
 
-import dk.kea.project.biotrio.CustomerRepository;
 import dk.kea.project.biotrio.Domain.Customer;
+import dk.kea.project.biotrio.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class CustomerController {
     @GetMapping("/customers-info")
     public String Customer(Model model){
         List<Customer> customerList = customerRepo.findAllCustomers();
-        model.addAttribute("customer", customerList);
+        model.addAttribute("customers", customerList);
         return "show-customers";
     }
 
@@ -53,7 +54,7 @@ public class CustomerController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCostumer(Model m, @PathVariable(name = "id") int id){
+    public String editCustomer(Model m, @PathVariable(name = "id") int id){
         Customer customerToEdit = customerRepo.findCustomer(id);
         m.addAttribute("customerform", customerToEdit);
         return "edit-customer";

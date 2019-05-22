@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Theater list</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
 
     <style>
         .element1{float:left;}
@@ -16,11 +15,11 @@
 <body>
 
 <div class="element1">
-    <h1> All theaters</h1>
+    <h1> All Theaters</h1>
 </div>
 
 <div class="element2">
-    <a class="btn btn-success" th:href="@{'/new-theater/'}">New Theater</a></td>
+    <a class="btn btn-success" th:href="@{'/add-theater/'}">Add New Theater</a></td>
 </div>
 </br></br></br></br>
 
@@ -34,14 +33,14 @@
         <th scope="col">Theater Name</th>
     </tr>
     </thead>
-
     <tbody>
-    <tr th:each="theater:${theater}">
+    <tr th:each="theater:${theaters}">
         <th scope="row" th:text="${theater.theaterId}"> 1 </th>
         <td th:text="${theater.theaterName}"> Blue </td>
 
-        <td><a class="btn btn-danger" th:href="@{'/delete-theater/' + ${theater.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/update-theater/' + ${theater.id}}">Edit</a></td>
+
+        <td><a class="btn btn-danger" th:href="@{'/delete-theater/' + ${theater.theaterId}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/update-theater/' + ${theater.theaterId}}">Edit</a></td>
     </tr>
     </tbody>
 </table>

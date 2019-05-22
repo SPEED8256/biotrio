@@ -1,13 +1,12 @@
 package dk.kea.project.biotrio.Controller;
 
 import dk.kea.project.biotrio.Domain.Customer;
-import dk.kea.project.biotrio.LoginRepository;
+import dk.kea.project.biotrio.loginRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public class LoginController {
 
     //instance of repository class
-    private LoginRepository loginRepo;
+    private loginRepository loginRepo;
 
     //to get login page
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -27,7 +26,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("customerForm") Customer customer, Model model) {
 
-        List<Customer> customerListUP = loginRepo.findCustomerUsernamePassword();
+        List<Customer> customerListUP = loginRepo.findAllCustomersUsernamePassword();
 
         for (Customer customerObj : customerListUP) {
             //if (customer.getUsername().equals("admin") && customer.getPassword().equals("admin")) {

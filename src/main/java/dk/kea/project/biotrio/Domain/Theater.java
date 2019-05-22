@@ -3,8 +3,6 @@ package dk.kea.project.biotrio.Domain;
 public class Theater{
     private int theaterId;
     private String theaterName;
-    //private int rows;
-    //private int seatsPerRow;
 
 
     //Constructors
@@ -12,11 +10,9 @@ public class Theater{
     public Theater() {
     }
 
-    public Theater(int theaterId, String theaterName) { //, int rows, int seatsPerRow) {
+    public Theater(int theaterId, String theaterName) {
         this.theaterId = theaterId;
         this.theaterName = theaterName;
-        //this.rows = rows;
-        //this.seatsPerRow = seatsPerRow;
     }
 
 
@@ -38,21 +34,12 @@ public class Theater{
         this.theaterName = theaterName;
     }
 
-    //public int getRows(){return rows;}
-
-    //public void setRows(int rows){this.rows = rows;}
-
-    //public int getSeatsPerRow(){return seatsPerRow;}
-
-    //public void setSeatsPerRow(int seatsPerRow){this.seatsPerRow = seatsPerRow;}
 
     @Override
     public String toString(){
         return "Theater{" +
                 "theaterId=" + theaterId +
-                ", theaterName='" + theaterName + // '\'' +
-                // ", rows='" + rows + '\'' +
-                // ", seatsPerRow='" + seatsPerRow +
+                ", theaterName='" + theaterName +
                 "}";
     }
 }
