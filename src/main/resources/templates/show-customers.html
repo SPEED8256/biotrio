@@ -8,11 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
+
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="/mymovie">Movies </a></li>
+    <li><a href="/customers-info">Customers</a></li>
+    <li><a href="/theater-info">Theaters</a></li>
+</ul>
+
+
 <div class="container">
     <h1> All customers</h1>
 
     <div class="inline" >
-    <Button class="submit" th:href="@{'/new-user/'}">New Customer</Button>
+    <a class="submit" th:href="@{'/new-user/'}">New Customer</a>
     </div>
 
 </br></br></br></br>

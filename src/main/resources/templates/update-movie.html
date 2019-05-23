@@ -5,94 +5,62 @@
     <title>Update Movie</title>
 
     <link rel="stylesheet" type="text/css" href="/BioTrio.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">BioTrio</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Home </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/mymovie">Movies <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <span class="navbar-text">
-      BioTrio online movie tickets
-    </span>
-    </div>
-</nav>
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="/mymovie">Movies </a></li>
+    <li><a href="/customers-info">Customers</a></li>
+    <li><a href="/theater-info">Theaters</a></li>
+</ul>
 
-
-<div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Update Movie</h1>
+        <h1> Update Movie</h1>
         <p class="lead">
 
         <form action="/saveupdate" method="post" th:object="${movieform}">
             <div class="form-group">
                 <div class="col-sm-10">
                     <input type="hidden" class="form-control" th:field="*{movieId}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="movieTitle">Title</label>
+
+                <label for="movieTitle"><b>Title</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
                        th:placeholder="${movieform.getMovieTitle()}"
                        maxlength="20">
-            </div>
-            <div class="form-group">
-                <label for="movieGenre">Genre</label>
+                <label for="movieGenre"><b>Genre</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
                        th:placeholder="${movieform.getMovieGenre()}">
-            </div>
-            <div class="form-group">
-                <label for="movieYear">Year</label>
+                <label for="movieYear"><b>Year</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieYear}" id="movieYear"
                        th:placeholder="${movieform.getMovieYear()}">
-            </div>
-            <div class="form-group">
-                <label for="movieOrigin">Origin</label>
-                <input type="number" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
+                <label for="movieOrigin"><b>Origin</b></label>
+                <input type="text" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
                        th:placeholder="${movieform.getMovieOrigin()}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="movieDuration">Duration</label>
-                <input type="number" class="form-control" th:field="${movieform.movieDuration}" id="movieDuration"
+                <label for="movieDuration"><b>Duration</b></label>
+                <input type="text" class="form-control" th:field="${movieform.movieDuration}" id="movieDuration"
                        th:placeholder="${movieform.getMovieDuration()}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="movieDirector">Director</label>
+                <label for="movieDirector"><b>Director</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieDirector}" id="movieDirector"
                        th:placeholder="${movieform.getMovieDirector()}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="movieActors">Actors</label>
+                <label for="movieActors"><b>Actors</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieActors}" id="movieActors"
                        th:placeholder="${movieform.getMovieActors()}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" th:field="${movieform.price}" id="price"
+                <label for="price"><b>Price</b></label>
+                <input type="text" class="form-control" th:field="${movieform.price}" id="price"
                        th:placeholder="${movieform.getPrice()}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="imdbCode">Rating</label>
+                <label for="imdbCode"><b>Rating</b></label>
                 <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
                        th:placeholder="${movieform.getImdbCode()}" min="0">
             </div>
-            <button type="submit" class="btn btn-primary">Update Movie</button>
+            <button class="submit">Update Movie</button>
             <button type="reset" class="btn btn-primary">Cancel</button>
+            </div>
         </form>
-
-        </p>
     </div>
-</div>
+</body>
+</html>
