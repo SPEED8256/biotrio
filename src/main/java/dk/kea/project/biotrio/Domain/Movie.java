@@ -1,7 +1,11 @@
 package dk.kea.project.biotrio.Domain;
 
+import javax.persistence.*;
+
+@Entity(name = "movie")
 public class Movie {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
     private String movieTitle;
     private String imdbCode;

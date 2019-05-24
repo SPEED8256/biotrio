@@ -2,21 +2,57 @@ package dk.kea.project.biotrio.Domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @JsonProperty("place")
-    int seat;
-    @JsonProperty("row")
-    int row;
 
-    public Ticket(int id, int seat, int row) {
-        this.id = id;
-        this.seat = seat;
-        this.row = row;
+    @JsonProperty("place")
+    int ticketseat;
+
+    @JsonProperty("row")
+    int ticketRow;
+
+    boolean ticketStatus;
+
+    public boolean isTicketStatus() {
+        return ticketStatus;
     }
 
+    public void setTicketStatus(boolean ticketStatus) {
+        this.ticketStatus = ticketStatus;
+    }
+
+
     public Ticket() {
+    }
+
+    public boolean isStatus() {
+        return ticketStatus;
+    }
+
+    public int getTicketseat() {
+        return ticketseat;
+    }
+
+    public void setTicketseat(int ticketseat) {
+        this.ticketseat = ticketseat;
+    }
+
+    public int getTicketRow() {
+        return ticketRow;
+    }
+
+    public void setTicketRow(int ticketRow) {
+        this.ticketRow = ticketRow;
+    }
+
+    public void setStatus(boolean status) {
+        this.ticketStatus = status;
     }
 
     public int getId() {
@@ -27,19 +63,5 @@ public class Ticket {
         this.id = id;
     }
 
-    public int getSeat() {
-        return seat;
-    }
 
-    public void setSeat(int seat) {
-        this.seat = seat;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
 }

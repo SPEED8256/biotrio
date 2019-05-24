@@ -1,41 +1,38 @@
 package dk.kea.project.biotrio.Domain;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity(name = "theater")
 public class Theater {
-    int id;
-    String name;
-    ArrayList<Row> rows;
-    int width;
-    int height;
 
-    public String getName() {
-        return name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String theaterName;
+    private int theaterRows;
+    private int seatCount;
+
+
+    public Theater() {
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Theater(int id, ArrayList <Row> rows) {
+    public Theater(int id, String theaterName, int rows, int seatCount) {
         this.id = id;
-        this.rows = rows;
+        this.theaterName = theaterName;
+        this.theaterRows = rows;
+        this.seatCount = seatCount;
     }
 
-    public Theater(int id, String name, ArrayList <Row> rows) {
-        this.id = id;
-        this.name = name;
-        this.rows = rows;
+    public int getTheaterRows() {
+        return theaterRows;
     }
 
+    public void setTheaterRows(int theaterRows) {
+        this.theaterRows = theaterRows;
+    }
     public int getId() {
         return id;
     }
@@ -44,17 +41,27 @@ public class Theater {
         this.id = id;
     }
 
-    public ArrayList <Row> getRows() {
-        return rows;
+    public String getTheaterName() {
+        return theaterName;
     }
 
-    public void setRows(ArrayList <Row> rows) {
-        this.rows = rows;
+    public void setTheaterName(String theaterName) {
+        this.theaterName = theaterName;
     }
-    public int getWidth(){
-        return this.getRows().get(0).getSeats().size();
+
+    public int getRows() {
+        return theaterRows;
     }
-    public int getHeight(){
-        return this.getRows().size();
+
+    public void setRows(int rows) {
+        this.theaterRows = rows;
+    }
+
+    public int getSeatCount() {
+        return seatCount;
+    }
+
+    public void setSeatCount(int seatCount) {
+        this.seatCount = seatCount;
     }
 }

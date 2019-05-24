@@ -1,5 +1,5 @@
 $('[data-toggle="tooltip"]').tooltip();
-var tickets;
+let tickets;
 let HallStorage = {
   totalTickets: 0,
   ticket: {},
@@ -120,8 +120,8 @@ $itemFree.on('click', function () {
     row: $(this).data('row'),
     place: $(this).data('pos-x'),
     price: $(this).data('price') };
-  var t = new Ticket($(this).data('row'), $(this).data('pos-x'));
-  ticketArray.push(t);
+    let t = new Ticket($(this).data('row'), $(this).data('pos-x'));
+    ticketArray.push(t);
 
 
   if ($(this).hasClass('is-checked')) {
@@ -136,26 +136,15 @@ $itemFree.on('click', function () {
     hall.addTicket(ticket);
   }
 });
+
 hall.rerender();
 
-let cancelBooking = function () {
-  // Делаем еще что то чтобы сбросить бронь
-  $('#timeoutPopUp').removeClass('hidden');
-};
-
-$('select').select2({
-  minimumResultsForSearch: -1,
-  placeholder: 'Способ оплаты' });
-
-
-
-
 let booking = function(){
-    var customerId = document.getElementById("booking-info").getAttribute("customer_id");
-    var screeningId = document.getElementById("booking-info").getAttribute("screening_id");
+    let customerId = document.getElementById("booking-info").getAttribute("customer_id");
+    let screeningId = document.getElementById("booking-info").getAttribute("screening_id");
 
     let selectedSeats = function(){
-        var ticketsArray = Array();
+        let ticketsArray = Array();
         $(".is-checked").each(function() {
             console.log($(this).html());
 
@@ -174,7 +163,7 @@ let booking = function(){
         return ticketsArray;
     }
 
-    var booking = {customerId: customerId,
+    let booking = {customerId: customerId,
     screeningId: screeningId,
     tickets: selectedSeats()}
 
@@ -184,15 +173,16 @@ let booking = function(){
 
 let submitTickets = function(){
     xhr = new XMLHttpRequest();
-    var url = "/booking";
+    let url = "/booking";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var json = JSON.parse(xhr.responseText);
+            let json = JSON.parse(xhr.responseText);
         }
     }
-    var data = format(booking());
+    let data = format(booking());
     console.log(data);
     xhr.send(data);
+    window.location.href='/pay';
 }

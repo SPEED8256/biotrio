@@ -1,26 +1,48 @@
 package dk.kea.project.biotrio.Domain;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-
-import java.time.LocalDateTime;
-
+@Entity
 public  class Screening {
-    int id;
-    LocalDateTime screeningDateTime;
-    int price;
-    Movie movie;
-    Theater theater;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Temporal(TemporalType.DATE)
+    private Date screeningDateTime;
+
+    private int price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Ticket> tickets;
+
+    public Set <Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set <Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Screening() {
     }
 
-    public Screening(int id, LocalDateTime screeningDateTime, int price, Movie movie, Theater theater) {
-        this.id = id;
-        this.screeningDateTime = screeningDateTime;
-        this.price = price;
-        this.movie = movie;
-        this.theater = theater;
-    }
 
     public int getId() {
         return id;
@@ -30,11 +52,11 @@ public  class Screening {
         this.id = id;
     }
 
-    public LocalDateTime getScreeningDateTime() {
+    public Date getScreeningDateTime() {
         return screeningDateTime;
     }
 
-    public void setScreeningDateTime(LocalDateTime screeningDateTime) {
+    public void setScreeningDateTime(Date screeningDateTime) {
         this.screeningDateTime = screeningDateTime;
     }
 
