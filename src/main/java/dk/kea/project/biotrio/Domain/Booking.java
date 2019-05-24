@@ -1,86 +1,62 @@
 package dk.kea.project.biotrio.Domain;
 
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "booking")
 public class Booking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private int bookingId;
-    private int customerId;
-    private int movieId;
-    private int theaterId;
-    private int screeningId;
-    private int seatId;
+    @OneToOne
+    User user;
 
-    //constructors
+    @OneToOne
+    Screening screening;
 
-    public Booking(){}
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Ticket> tickets = new ArrayList<>();
 
-    public Booking(int bookingId, int customerId, int movieId, int theaterId, int screeningId, int seatId) {
-        this.bookingId = bookingId;
-        this.customerId = customerId;
-        this.movieId = movieId;
-        this.theaterId = theaterId;
-        this.screeningId = screeningId;
-        this.seatId = seatId;
+    public Booking() {
     }
 
-    //getters and setters
 
-
-    public int getBookingId() {
-        return bookingId;
+    public Long getId() {
+        return id;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getMovieId() {
-        return movieId;
+    public Screening getScreening() {
+        return screening;
     }
 
-    public void setMovieId(int movieId) { this.movieId = movieId;
+    public void setScreening(Screening screening) {
+        this.screening = screening;
     }
 
-    public int getTheaterId() {
-        return theaterId;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTheaterId(int theaterId) {
-        this.theaterId = theaterId;
-    }
-
-    public int getScreeningId() {
-        return screeningId;
-    }
-
-    public void setScreeningId(int screeningId) {
-        this.screeningId = screeningId;
-    }
-
-    public int getSeatId() {
-        return seatId;
-    }
-
-    public void setSeatId(int seatId) {
-        this.seatId = seatId;
-    }
-
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "bookingId=" + bookingId +
-                ", customerId=" + customerId +
-                ", movieId=" + movieId +
-                ", theaterId=" + theaterId +
-                ", screeningId=" + screeningId +
-                ", seatId=" + seatId +
-                '}';
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

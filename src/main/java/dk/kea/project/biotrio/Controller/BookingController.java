@@ -1,52 +1,63 @@
 package dk.kea.project.biotrio.Controller;
 
-import dk.kea.project.biotrio.BookingRepository;
-import dk.kea.project.biotrio.Domain.Booking;
+import dk.kea.project.biotrio.Domain.Screening;
+import dk.kea.project.biotrio.Domain.Ticket;
+import dk.kea.project.biotrio.Domain.User;
+import dk.kea.project.biotrio.Repository.MovieRepository;
+import dk.kea.project.biotrio.Repository.ScreeningRepository;
+import dk.kea.project.biotrio.Repository.TheaterRepository;
+import dk.kea.project.biotrio.Service.ScreeningService;
+import dk.kea.project.biotrio.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
+import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class BookingController {
+
     @Autowired
-    private BookingRepository bookingRepo;
+    private UserService userService;
+    @Autowired
+    private ScreeningRepository screeningRepository;
+    @Autowired
+    private ScreeningService screeningService;
+    @Autowired
+    private TheaterRepository theaterRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
-    @GetMapping("/mybooking")
-    public String booking(Model model) {
-        List<Booking> bookingList = bookingRepo.findAllBookings();
-        model.addAttribute("bookings", bookingList);
-        return "show-bookings";
+    @GetMapping("/booking/{screeningId}")
+    public String book(Model model, Principal principal, @PathVariable int screeningId){
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("customer", user);
+
+        Screening screening = screeningRepository.findById(screeningId);
+
+        model.addAttribute("screening", screening);
+
+        ArrayList<ArrayList<Ticket>> rows = new ArrayList<>();
+        for (int i = 0; i<screening.getTheater().getRows(); i++){
+        rows.add(new ArrayList<Ticket>());
+        }
+
+        for(Ticket ticket : screening.getTickets()){
+            for (int r = 1; r<=screening.getTheater().getRows(); r++){
+                if (ticket.getTicketRow()==r){
+                    rows.get(r-1).add(ticket);
+                }
+            }
+        }
+
+        model.addAttribute("rows",rows);
+        model.addAttribute("theater", screening.getTheater());
+        model.addAttribute("movie", screening.getMovie());
+        return "booking";
+
     }
-
-    @GetMapping("/addbooking")
-    public String addBooking(Model m) {
-        m.addAttribute("bookingform", new Booking());
-        return "add-booking";
-    }
-
-    @PostMapping("/savebooking")
-    //    @ResponseBody
-    public String save(@ModelAttribute Booking booking) {
-        Booking bookingInserted = bookingRepo.insert(booking);
-        return "redirect:/mybooking";
-    }
-
-    @GetMapping("/adminv")
-    @ResponseBody
-    public Booking showBooking(int id) {
-        Booking booking = bookingRepo.findBooking(id);
-        return booking;
-    }
-
-    @GetMapping("/deletebooking/{id}")
-    public String deletebooking(@PathVariable(name = "id") int id) {
-        bookingRepo.delete(id);
-        return "redirect:/mybooking";
-    }
-
-
 
 }

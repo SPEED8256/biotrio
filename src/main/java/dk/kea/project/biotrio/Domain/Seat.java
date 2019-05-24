@@ -1,66 +1,33 @@
 package dk.kea.project.biotrio.Domain;
 
+
+
+
 public class Seat {
+    int id;
+    boolean status;
 
-    private int seatId;
-    private String seatRow;
-    private int seatNumber;
-    private boolean seatStatus;
-
-    //constructors
-
-    public Seat(){}
-
-    public Seat(int seatId, String seatRow, int seatNumber, boolean seatStatus) {
-        this.seatId = seatId;
-        this.seatRow = seatRow;
-        this.seatNumber = seatNumber;
-        this.seatStatus = seatStatus;
+    public Seat() {
     }
 
-    //getters and setters
-
-
-    public int getSeatId() {
-        return seatId;
+    public Seat(int id, boolean status) {
+        this.id = id;
+        this.status = status;
     }
 
-    public void setSeatId(int seatId) {
-        this.seatId = seatId;
+    public int getId() {
+        return id;
     }
 
-    public String getSeatRow() {
-        return seatRow;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setSeatRow(String seatRow) {
-        this.seatRow = seatRow;
+    public boolean isStatus() {
+        return status;
     }
 
-    public int getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public boolean isSeatStatus() {
-        return seatStatus;
-    }
-
-    public void setSeatStatus(boolean seatStatus) {
-        this.seatStatus = seatStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Seat{" +
-                "seatId=" + seatId +
-                ", seatRow='" + seatRow + '\'' +
-                ", seatNumber=" + seatNumber +
-                ", seatStatus=" + seatStatus +
-                '}';
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
-

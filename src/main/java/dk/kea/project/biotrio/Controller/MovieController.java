@@ -1,7 +1,7 @@
 package dk.kea.project.biotrio.Controller;
 
 import dk.kea.project.biotrio.Domain.Movie;
-import dk.kea.project.biotrio.MovieRepository;
+import dk.kea.project.biotrio.Repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class MovieController {
     //mapping movie list for admin view
     @GetMapping("/mymovie")
     public String movie(Model model) {
-        List<Movie> movieList = movieRepo.findAllMovies();
+        List<Movie> movieList = movieRepo.findAll();
         model.addAttribute("movies", movieList);
         return "show-movies";
     }
@@ -42,13 +42,13 @@ public class MovieController {
     @PostMapping("/savemovie")
     //    @ResponseBody
     public String save(@ModelAttribute Movie movie) {
-        Movie movieInserted = movieRepo.insert(movie);
+        Movie movieInserted = movieRepo.save(movie);
         return "redirect:/mymovie";
     }
 
     @GetMapping("/updatemovie/{id}")
     public String updateMovie(@PathVariable(name = "id") int id, Model m) {
-        Movie movieData = movieRepo.findMovie(id);
+        Movie movieData = movieRepo.findByMovieId(id);
         m.addAttribute("movieform", movieData);
         return "update-movie";
     }
@@ -57,19 +57,19 @@ public class MovieController {
     @GetMapping("/moviev")
     @ResponseBody
     public Movie showMovie(int id) {
-        Movie movie = movieRepo.findMovie(id);
+        Movie movie = movieRepo.findByMovieId(id);
         return movie;
     }
 
     @PostMapping("/saveupdate")
     public String saveUpdateMovie(@ModelAttribute Movie movie) {
-        movieRepo.update(movie);
+        movieRepo.save(movie);
         return "redirect:/mymovie";
     }
 
     @GetMapping("/deletemovie/{id}")
     public String deleteMovie(@PathVariable(name = "id") int id) {
-        movieRepo.delete(id);
+        movieRepo.delete(movieRepo.findByMovieId(id));
         return "redirect:/mymovie";
     }
 }

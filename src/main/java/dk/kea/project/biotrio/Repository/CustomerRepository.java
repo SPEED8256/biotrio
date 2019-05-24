@@ -1,4 +1,4 @@
-package dk.kea.project.biotrio;
+package dk.kea.project.biotrio.Repository;
 
 import dk.kea.project.biotrio.Domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CustomerRepository {
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getString("dob"));
+            customer.setDob(LocalDate.parse(rs.getString("dob")));
             customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
@@ -47,7 +48,7 @@ public class CustomerRepository {
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
             customer.setName(rs.getString("name"));
-            customer.setDob(rs.getString("dob"));
+            customer.setDob(LocalDate.parse(rs.getString("dob")));
             customer.setEmail(rs.getString("email"));
             customer.setPhoneNumber(rs.getString("phone_number"));
             customer.setPaymentDetails(rs.getString("payment_details"));
@@ -65,7 +66,7 @@ public class CustomerRepository {
                 ps.setString(1, customer.getUsername());
                 ps.setString(2, customer.getPassword());
                 ps.setString(3, customer.getName());
-                ps.setString(4, customer.getDob()); //????????????????????????????
+                ps.setString(4, String.valueOf(customer.getDob())); //????????????????????????????
                 ps.setString(5, customer.getEmail());
                 ps.setString(6, customer.getPhoneNumber());
                 ps.setString(7, customer.getPaymentDetails());
@@ -95,5 +96,3 @@ public class CustomerRepository {
                 customer.getEmail(), customer.getPhoneNumber(), customer.getPaymentDetails());
     }
 }
-
-

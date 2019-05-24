@@ -1,46 +1,84 @@
 package dk.kea.project.biotrio.Domain;
 
-import java.time.LocalTime;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
-public class Screening {
+@Entity
+public  class Screening {
 
-    private int screeningId;
-    private LocalTime screeningTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    //constructors
+    @Temporal(TemporalType.DATE)
+    private Date screeningDateTime;
+
+    private int price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Ticket> tickets;
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Screening() {
     }
 
-    public Screening(int screeningId, LocalTime screeningTime) {
-        this.screeningId = screeningId;
-        this.screeningTime = screeningTime;
+
+    public int getId() {
+        return id;
     }
 
-    //getters and setters
-
-    public int getScreeningId() {
-        return screeningId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setScreeningId(int screeningId) {
-        this.screeningId = screeningId;
+    public Date getScreeningDateTime() {
+        return screeningDateTime;
     }
 
-    public LocalTime getScreeningTime() {
-        return screeningTime;
+    public void setScreeningDateTime(Date screeningDateTime) {
+        this.screeningDateTime = screeningDateTime;
     }
 
-    public void setScreeningTime(LocalTime screeningTime) {
-        this.screeningTime = screeningTime;
+    public int getPrice() {
+        return price;
     }
 
-    @Override
-    public String toString() {
-        return "Screening{" +
-                "screeningId=" + screeningId +
-                ", screeningTime=" + screeningTime +
-                '}';
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Theater getTheater() {
+        return theater;
+    }
+
+    public void setTheater(Theater theater) {
+        this.theater = theater;
     }
 }
-
