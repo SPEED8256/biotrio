@@ -47,13 +47,10 @@
                 <label for="movieDirector"><b>Director</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieDirector}" id="movieDirector"
                        th:placeholder="${movieform.getMovieDirector()}" min="0">
-                <label for="movieActors"><b>Actors</b></label>
-                <input type="text" class="form-control" th:field="${movieform.movieActors}" id="movieActors"
-                       th:placeholder="${movieform.getMovieActors()}" min="0">
-                <label for="price"><b>Price</b></label>
-                <input type="text" class="form-control" th:field="${movieform.price}" id="price"
-                       th:placeholder="${movieform.getPrice()}" min="0">
-                <label for="imdbCode"><b>Rating</b></label>
+                <label for="movieActor"><b>Actors</b></label>
+                <input type="text" class="form-control" th:field="${movieform.movieActor}" id="movieActor"
+                       th:placeholder="${movieform.getMovieActor()}" min="0">
+                <label for="imdbCode"><b>IMDb Code</b></label>
                 <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
                        th:placeholder="${movieform.getImdbCode()}" min="0">
             </div>
