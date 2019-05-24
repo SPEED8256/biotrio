@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 public class Ticket {
+    @JsonProperty("ticket_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

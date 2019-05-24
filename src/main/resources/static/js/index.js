@@ -149,8 +149,9 @@ let booking = function(){
             console.log($(this).html());
 
             let ticket = {
+                ticket_id: $(this).data('ticket_id'),
                 row: $(this).data('row'),
-                place: $(this).data('pos-x') };
+                place: $(this).data('pos-x')};
             if (ticket.place==undefined||ticket.row==undefined) {
 
             }
@@ -184,5 +185,5 @@ let submitTickets = function(){
     let data = format(booking());
     console.log(data);
     xhr.send(data);
-    window.location.href='/pay';
+    // window.location.href='/pay';
 }
