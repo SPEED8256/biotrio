@@ -15,12 +15,23 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepo;
 
+    //mapping movie list for admin view
     @GetMapping("/mymovie")
     public String movie(Model model) {
         List<Movie> movieList = movieRepo.findAllMovies();
         model.addAttribute("movies", movieList);
         return "show-movies";
     }
+
+    //mapping movies for customer view
+    @GetMapping("/frontpage")
+    public String frontPage() {
+
+        return "front-page";
+    }
+
+
+
 
     @GetMapping("/addmovie")
     public String addMovie(Model m) {

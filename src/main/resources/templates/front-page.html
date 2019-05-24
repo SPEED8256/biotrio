@@ -1,45 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href=href='https://fonts.googleapis.com/css?family=Merriweather'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-black w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
-           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
-                class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-        <a href="#movies" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MOVIES</a>
-        <a href="#register" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTER</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT US</a>
-
-        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-                class="fa fa-search"></i></a>
-    </div>
-</div>
-
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- navbar -->
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="/frontpage">Movies </a></li>
+            <li><a href="/new-user">Register</a></li>
+            <li><a href="/contact-form">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
 <!-- The Movies Section -->
-<div class="w3-black" id="movie">
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-        <h2 class="w3-wide w3-center">TICKETS FOR CURRENT MOVIES</h2>
-
-        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-            <div class="w3-third w3-margin-bottom"><img src="http://www.impawards.com/1982/posters/blade_runner.jpg"
-                                                        alt="Blade_Runner" style="width:100%" class="w3-hover-opacity">
-                <div class="w3-container w3-white">
-                    <p><b>Blade Runner</b></p>
-                    <button class="w3-button w3-black w3-margin-bottom"
-                            onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets
-                    </button>
-                </div>
-            </div>
+<section id="fp-background">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="front-page">TICKETS FOR CURRENT MOVIES</h1>
+    <br>
+    <div class="fp-container">
+        <div classs="fp-img"><img src="/arrival.jpg" alt="arrival">
+            <div class="fp-movie-title"><b><p>Arrival</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/blade_runner.jpg" alt="blade_runner">
+            <div class="fp-movie-title"><b><p>Blade Runner</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/ex_machina.jpg" alt="ex">
+            <div class="fp-movie-title"><b><p>Ex-Machina</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/fight_club.jpg" alt="fight">
+            <div class="fp-movie-title"><b><p>Fight Club</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/dunkirk.jpg" alt="dunkirk">
+            <div class="fp-movie-title"><b><p>Dunkirk</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/revenant.jpg" alt="revenant">
+            <div class="fp-movie-title"><b><p>The Revenant</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/seven.jpg" alt="seven">
+            <div class="fp-movie-title"><b><p>Seven</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/godfatherII.jpg" alt="godfather">
+            <div class="fp-movie-title"><b><p>The Godfather II</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        </div>
+        <div class="fp-img"><img src="/pulp_fiction.jpg" alt="pulp">
+            <div class="fp-movie-title"><b><p>Pulp Fiction</p></b></div>
+            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
         </div>
     </div>
-</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
 

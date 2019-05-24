@@ -10,13 +10,13 @@
     border-radius: 8px;
 }
 
-.inline{
+.inline {
     display: inline;
     position: absolute;
     top: 8px;
     right: 16px;
     font-size: 18px;
-    padding: 20px ;
+    padding: 20px;
 }
 
 /* Full-width input fields */
@@ -51,7 +51,7 @@ input[type=security] {
 input[type=text]:focus, input[type=password]:focus, input[type=security]:focus, input[type=expiration]:focus {
     background-color: #ddd;
     outline: none;
-    text-align:left;
+    text-align: left;
 }
 
 
@@ -86,7 +86,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 23px;
-    text-align:left;
+    text-align: left;
 }
 
 .form-group {
@@ -107,7 +107,7 @@ body {
     border: 2px solid rgba(0, 0, 0, 0.02);
     margin-left: 46px;
     font-family: 'Ubuntu', sans-serif;
-    text-align:left;
+    text-align: left;
 }
 
 input[type=submit] {
@@ -120,7 +120,7 @@ input[type=submit] {
 }
 
 
-.form-control:focus{
+.form-control:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
 }
 
@@ -129,7 +129,7 @@ input[type=submit] {
     border-radius: 5em;
     color: #fff;
     background: linear-gradient(to right, Black, #E040FB);
-    padding:10px;
+    padding: 10px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -137,10 +137,10 @@ input[type=submit] {
     display: block;
     border: none;
     width: 100%;
-    margin-left:0;
-    margin-right:0;
-    padding-left:0;
-    padding-right:0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .form-submit-button {
@@ -148,7 +148,7 @@ input[type=submit] {
     border-radius: 5em;
     color: #fff;
     background: linear-gradient(to right, Black, #E040FB);
-    padding:10px;
+    padding: 10px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -176,7 +176,9 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
 
 th {
     background-color: #a9a9af;
@@ -192,7 +194,7 @@ ul {
     background-color: Black;
     border-radius: 5em;
     color: #fff;
-    padding:10px;
+    padding: 10px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -215,4 +217,56 @@ li a {
 
 li a:hover {
     background-color: #E040FB;
+}
+
+/*front page*/
+
+h1.front-page {
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+
+.fp-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.fp-img >div{
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    max-height: 310px;
+}
+
+.fp-submit {
+    cursor: pointer;
+    border-radius: 10em;
+    color: #fff;
+    background: linear-gradient(to right, Black, #CD5C5C);
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    display: block;
+    border: none;
+    width: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.fp-movie-title{
+    text-align: center;
+    color: black;
+}
+
+#fp-background{
+    background-color: #f1f1f1;
 }
