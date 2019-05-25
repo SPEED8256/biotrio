@@ -1,39 +1,35 @@
 package dk.kea.project.biotrio.Domain;
 
+import javax.persistence.*;
+
+@Entity(name = "movie")
 public class Movie {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
     private String movieTitle;
+    private String imdbCode;
     private String movieGenre;
-    private int movieYear;
+    private String movieYear;
     private String movieOrigin;
     private int movieDuration;
     private String movieDirector;
-    private String movieActors;
-    private double price;
-    private String  imdbCode;
-
-
-    //constructors
+    private String movieActor;
 
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String movieGenre, int movieYear, String movieOrigin,
-                 int movieDuration, String movieDirector, String movieActors, double price, String imdbCode) {
+    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear, String movieOrigin, int movieDuration, String movieDirector, String movieActor) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
+        this.imdbCode = imdbCode;
         this.movieGenre = movieGenre;
         this.movieYear = movieYear;
         this.movieOrigin = movieOrigin;
         this.movieDuration = movieDuration;
         this.movieDirector = movieDirector;
-        this.movieActors = movieActors;
-        this.price = price;
-        this.imdbCode = imdbCode;
+        this.movieActor = movieActor;
     }
-
-    //getters and setters
 
 
     public int getMovieId() {
@@ -52,6 +48,14 @@ public class Movie {
         this.movieTitle = movieTitle;
     }
 
+    public String getImdbCode() {
+        return imdbCode;
+    }
+
+    public void setImdbCode(String imdbCode) {
+        this.imdbCode = imdbCode;
+    }
+
     public String getMovieGenre() {
         return movieGenre;
     }
@@ -60,11 +64,11 @@ public class Movie {
         this.movieGenre = movieGenre;
     }
 
-    public int getMovieYear() {
+    public String getMovieYear() {
         return movieYear;
     }
 
-    public void setMovieYear(int movieYear) {
+    public void setMovieYear(String movieYear) {
         this.movieYear = movieYear;
     }
 
@@ -92,43 +96,11 @@ public class Movie {
         this.movieDirector = movieDirector;
     }
 
-    public String getMovieActors() {
-        return movieActors;
+    public String getMovieActor() {
+        return movieActor;
     }
 
-    public void setMovieActors(String movieActors) {
-        this.movieActors = movieActors;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getImdbCode() {
-        return imdbCode;
-    }
-
-    public void setImdbCode(String imdbCode) {
-        this.imdbCode = imdbCode;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movieId=" + movieId +
-                ", movieTitle='" + movieTitle + '\'' +
-                ", movieGenre='" + movieGenre + '\'' +
-                ", movieYear=" + movieYear +
-                ", movieOrigin='" + movieOrigin + '\'' +
-                ", movieDuration=" + movieDuration +
-                ", movieDirector='" + movieDirector + '\'' +
-                ", movieActors='" + movieActors + '\'' +
-                ", price=" + price +
-                ", imdbCode='" + imdbCode + '\'' +
-                '}';
+    public void setMovieActor(String movieActor) {
+        this.movieActor = movieActor;
     }
 }

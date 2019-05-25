@@ -35,7 +35,6 @@
             <th scope="col">Duration</th>
             <th scope="col">Director</th>
             <th scope="col">Actors</th>
-            <th scope="col">Price</th>
             <th scope="col">Rating</th>
 
         </tr>
@@ -48,13 +47,10 @@
             <td th:text="${movie.movieOrigin}">USA</td>
             <td th:text="${movie.movieDuration}">2h 16min</td>
             <td th:text="${movie.movieDirector}"> J.J. Abrams</td>
-            <td th:text="${movie.movieActors}"> Daisy Ridley, Domhnall Gleeson</td>
-            <td th:text="${movie.price}">50 DKK</td>
-            <td th:text="${movie.imdbCode}"><span class="imdbRatingPlugin" data-user="ur62746291" data-title="tt2488496"
-                                                  data-style="p2"><a
-                    href="https://www.imdb.com/title/tt2488496/?ref_=plg_rt_1"><img
-                    src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png" alt=" Star Wars: Episódio VII - O Despertar da Força
-                (2015) on IMDb"/>
+            <td th:text="${movie.movieActor}"> Daisy Ridley, Domhnall Gleeson</td>
+            <td ><span class="imdbRatingPlugin" data-user="ur62746291" th:attr="data-title=${movie.imdbCode}"
+                                                  data-style="p2"><a th:href="'https://www.imdb.com/title/'+${movie.imdbCode}+'/?ref_=plg_rt_1'"><img
+                    src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png">
             </a></span>
                 <script>(function (d, s, id) {
                     var js, stags = d.getElementsByTagName(s)[0];
@@ -67,10 +63,7 @@
                     stags.parentNode.insertBefore(js, stags);
                 })(document, "script", "imdb-rating-api");</script>
             </td>
-
-
-            <td><a target="_blank" th:href="@{'https://www.imdb.com/' + ${movie.movieTitle}}">Details</a></td>
-            <td><a class="sumbit" th:href="@{'/deletemovie/' + ${movie.movieId}}">Delete</a></td>
+            <td><a class="submit" th:href="@{'/deletemovie/' + ${movie.movieId}}">Delete</a></td>
             <td><a class="submit" th:href="@{'/updatemovie/' + ${movie.movieId}}">Update</a></td>
         </tr>
         </tbody>
