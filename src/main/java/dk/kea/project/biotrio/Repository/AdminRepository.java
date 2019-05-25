@@ -1,4 +1,4 @@
-package dk.kea.project.biotrio;
+package dk.kea.project.biotrio.Repository;
 
 import dk.kea.project.biotrio.Domain.Admin;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package dk.kea.project.biotrio.Controller;
 
+import dk.kea.project.biotrio.Repository.CustomerRepository;
 import dk.kea.project.biotrio.Domain.Customer;
-import dk.kea.project.biotrio.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

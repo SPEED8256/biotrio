@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema hall like Rambler kassa</title>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+</head>
+
+<body>
+
+
+<script>alert( 'Hello, world!' );</script>
+<div class="hall" id="hall">
+    <span id="booking-info" th:attr="customer_id = ${customer.id}, screening_id=${screening.id}"> </span>
+
+    <!-- Высота wrapper это высота зала плюс, его pagging x*20+20 50px сверху 10px снизу   -->
+    <div class="hall__wrapper"  th:attr="style=${'height: '+(theater.theaterRows*20+80)+'px; '}">
+        <div class="hall__box" th:attr="style=${'width: '+(theater.seatCount*20+20)+'px; '}">
+            <div class="hall__screen">
+                <span class="hall__screen-tip _left">Screen</span>
+                <div class="hall__screen-cloth"></div>
+                <span class="hall__screen-tip _right">Screen</span>
+            </div>
+            <div class="hall_places">
+                <!-- Левая метка метка -->
+                <!-- Дублирует data-row data-trubune и top в стилях -->
+                <!-- Атрибут data-row выводится контекстом, data-trubune не используется, но мб понадобится для чего то-->
+                <span class="hall__row" th:each="row, row_iterator : ${rows}">
+                    <div  class="hall__places-row _left" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"> </div>
+                    <div th:each="ticket : ${row}">
+                        <div class="hall__places-item " th:classappend= "${ticket.ticketStatus}? 'is-busy' : 'is-free'" th:attr="data-ticket_id = ${ticket.id}, data-row=${ticket.ticketRow}, data-pos-x=${ticket.ticketseat}, data-pos-y=${ticket.ticketRow}, data-state=${ticket.ticketStatus}? 'busy' : 'is-free', data-price=${screening.price}, style=${'left: '+((ticket.ticketseat)*20)+'px;'+'top: '+((ticket.ticketRow-1)*20)+'px'}">
+                            <div class="hall__places-chair" th:attr="data-title=${screening.price} + ' DKK'" data-toggle="tooltip" data-placement="top">[(${ticket.ticketseat})] </div>
+                        </div>
+                    </div>
+                    <div class="hall__places-row _right" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index )*20)+'px'}"> </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="hall__box _lines" th:each="row, row_iterator : ${rows}">
+            <div class="hall__line" th:attr="id=${'hallLine_'+(row_iterator.index+1)}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"></div>
+        </div>
+    </div>
+    <div class="hall-info">
+        <div class="hall-info__title">
+            [(${theater.theaterName})]
+        </div>
+        <div class="hall-info__legend is-dark">
+            <div class="hall-info__story is-free">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Seats ([(${screening.price})])</div>
+            </div>
+            <div class="hall-info__story is-busy">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Seat busy</div>
+            </div>
+            <div class="hall-info__story is-checked">
+                <div class="hall-info__story-pointer"></div>
+                <div class="hall-info__story-descr">Seat selected</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hall-buy">
+    <div class="hall-buy__no-data col-xs-12 col-md-8" id='hallNoData'>
+        Select seats
+    </div>
+    <div class="hall-buy__data hidden col-xs-12 col-md-8" id='hallData'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3 hall-buy__overall">
+                Total:
+                <br>
+                <span class="hall-buy__overall-count" id='hallCountTickets'>0 tickets</span>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9 hall-buy__places" id='hallPlaces'>
+            </div>
+        </div>
+    </div>
+    <div class="hall-buy__btns col-xs-12 col-md-4">
+        <div class="hall-buy__cost">
+            <div class="hall-buy__cost-value">
+                Total <span class="hall-buy__cost-total" id='hallTotalSum'>0 DKK</span>
+            </div>
+            <div class="hall-buy__cost-tax">
+                VAT <span class="hall-buy__cost-tax-total" id='hallTotalTax'>0 DKK</span>
+            </div>
+        </div>
+        <button class="hall-buy__btn-buy " onclick="submitTickets()">
+            Buy tickets
+        </button>
+    </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src="https://unpkg.com/notie"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
+
+
+
+<script  src="/js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

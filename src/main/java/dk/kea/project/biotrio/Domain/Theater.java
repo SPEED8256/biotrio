@@ -1,45 +1,67 @@
 package dk.kea.project.biotrio.Domain;
 
-public class Theater{
-    private int theaterId;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name = "theater")
+public class Theater {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String theaterName;
+    private int theaterRows;
+    private int seatCount;
 
-
-    //Constructors
 
     public Theater() {
     }
 
-    public Theater(int theaterId, String theaterName) {
-        this.theaterId = theaterId;
+    public Theater(int id, String theaterName, int rows, int seatCount) {
+        this.id = id;
         this.theaterName = theaterName;
+        this.theaterRows = rows;
+        this.seatCount = seatCount;
     }
 
-
-    //Getters and Setters
-
-    public int getTheaterId(){
-        return theaterId;
+    public int getTheaterRows() {
+        return theaterRows;
     }
 
-    public void setTheaterId(int theaterId){
-        this.theaterId = theaterId;
+    public void setTheaterRows(int theaterRows) {
+        this.theaterRows = theaterRows;
+    }
+    public int getId() {
+        return id;
     }
 
-    public String getTheaterName(){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTheaterName() {
         return theaterName;
     }
 
-    public void setTheaterName(String theaterName){
+    public void setTheaterName(String theaterName) {
         this.theaterName = theaterName;
     }
 
+    public int getRows() {
+        return theaterRows;
+    }
 
-    @Override
-    public String toString(){
-        return "Theater{" +
-                "theaterId=" + theaterId +
-                ", theaterName='" + theaterName +
-                "}";
+    public void setRows(int rows) {
+        this.theaterRows = rows;
+    }
+
+    public int getSeatCount() {
+        return seatCount;
+    }
+
+    public void setSeatCount(int seatCount) {
+        this.seatCount = seatCount;
     }
 }
