@@ -5,30 +5,47 @@ import dk.kea.project.biotrio.Domain.Screening;
 import dk.kea.project.biotrio.Repository.MovieRepository;
 import dk.kea.project.biotrio.Repository.ScreeningRepository;
 import dk.kea.project.biotrio.Repository.TheaterRepository;
-import dk.kea.project.biotrio.Service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Date;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 public class ScreeningController {
 
     @Autowired
-    private TheaterRepository theaterRepository;
+    private ScreeningRepository screeningRepository;
+
     @Autowired
     private MovieRepository movieRepository;
-    @Autowired
-    private ScreeningRepository screeningRepository;
-    @Autowired
-    private ScreeningService screeningService;
 
-    @GetMapping("/savescreening")
-    public String book(Model model) {
+    @Autowired
+    private TheaterRepository theaterRepository;
 
-        return "pay";
+    @GetMapping("/admin/view-screenings")
+    public String viewScreenings(Model m) {
+
+        m.addAttribute("screeningList", screeningRepository.findAll());
+
+        return "show-screenings";
     }
+
+
+    @GetMapping("admin/add-screening")
+    public String addMovie(Model m) {
+        m.addAttribute("movies", movieRepository.findAll());
+        m.addAttribute("theatres", theaterRepository.findAll());
+
+        m.addAttribute("screeningForm", new Screening());
+        return "add-screening";
+    }
+
+    @PostMapping("/admin/save-screening")
+    public String save(@ModelAttribute Screening screening) {
+        screeningRepository.save(screening);
+        return "redirect:/admin/view-screenings";
+    }
+
+
 }
