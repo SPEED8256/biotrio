@@ -24,10 +24,6 @@
 
     <form action="/save-theater" method="post" th:object="${theater}">
         <div class="form-group">
-            <label for="id"><b>Theater ID</b></label>
-            <input type="text" class="form-control" th:field="${theater.id}" id="id"
-                   placeholder="id"
-                   min="0">
             <label for="theaterName"><b>Theater Name</b></label>
             <input type="text" class="form-control" th:field="${theater.theaterName}" id="theaterName"
                    placeholder="name"

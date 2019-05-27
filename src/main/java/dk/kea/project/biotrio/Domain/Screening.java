@@ -15,7 +15,7 @@ public  class Screening {
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mma")
+    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")
     private Date screeningDateTime;
 
     private int price;

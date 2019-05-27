@@ -3,9 +3,10 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View Screenings</title>
 </head>
 <body>
+
 
 <table class="table table-hover" >
     <thead class="thead-dark">
@@ -15,6 +16,8 @@
         <th scope="col">Theatre</th>
         <th scope="col">Time</th>
         <th scope="col">Price</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -22,15 +25,18 @@
         <th scope="row" th:text="${screening.id}" > 1 </th>
         <td><a th:href="@{'/movie/' + ${screening.movie.movieId}}">[(${screening.movie.movieTitle})]</a></td>
         <td><a th:href="'/theater/' + ${screening.theater.id}">[(${screening.theater.theaterName})]</a></td>
-        <td>[(${screening.screeningDateTime})]</td>
+        <td>[(${#dates.format(screening.screeningDateTime,'dd-MM-yyyy hh:mm a')})]</td>
         <td>[(${screening.price})]</td>
 
 
-        <td><a class="btn btn-danger" th:href="@{'/admin/screening/delete' + ${screening.id}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/admin/screening/update' + ${screening.id}}">Update</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/admin/screening/delete/' + ${screening.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/admin/screening/edit/' + ${screening.id}}">Update</a></td>
     </tr>
     </tbody>
 </table>
+
+
+<a href="/admin/add-screening" class="btn btn-info">Add Screening</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

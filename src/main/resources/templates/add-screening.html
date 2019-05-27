@@ -7,20 +7,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <meta charset="UTF-8">
-    <title>gfd</title>
+    <title>Add Screening</title>
 
 </head>
 <body>
-
-<th scope="col">Movie</th>
-<th scope="col">Theatre</th>
-<th scope="col">Time</th>
-<th scope="col">Price</th>
-
+<div class="container">
+    <h1>Add Screening</h1>
 <form action="/admin/save-screening" method="post" th:object="${screeningForm}">
     <div class="form-group">
         <label for="movie">Movie</label>
         <select class="form-control" id="movie" th:field="${screeningForm.movie}">
+            <option value="" disabled selected>Select your option</option>
             <div th:each="movie:${movies}">
             <option th:value="${movie.movieId}" th:text="${movie.movieTitle}"></option>
             </div>
@@ -29,6 +26,7 @@
     <div class="form-group">
         <label for="theater">Theatre</label>
         <select class="form-control" id="theater" th:field="${screeningForm.theater}">
+            <option value="" disabled selected>Select your option</option>
             <div th:each="theater:${theatres}">
             <option th:value="${theater.id}" th:text="${theater.theaterName}"></option>
             </div>
@@ -42,10 +40,10 @@
          <label for="Price">Price</label>
          <input type="text" pattern="\d+"  class="form-control" th:field="${screeningForm.price}" id="Price" min="1">
     </div>
-    <button class="submit">Add Screening</button>
-    <button type="reset" class="btn btn-primary">Cancel</button>
+    <button type="submit" class="btn btn-primary">Add Screening</button>
+    <button type="reset" class="btn btn-danger">Cancel</button>
 </form>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
