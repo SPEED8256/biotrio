@@ -33,6 +33,7 @@ public class Theater {
     public void setTheaterRows(int theaterRows) {
         this.theaterRows = theaterRows;
     }
+
     public int getId() {
         return id;
     }

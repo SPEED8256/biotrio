@@ -15,17 +15,17 @@ public class TheaterController {
     @Autowired
     private TheaterRepository theaterRepo;
 
-    @GetMapping("/theater-info")
+    @GetMapping("/admin/theater-info")
     public String showTheaters(Model model) {
         List<Theater> theaterList = theaterRepo.findAll();
         model.addAttribute("theaters", theaterList);
         return "show-theaters";
     }
 
-    @GetMapping("/new-theater")
+    @GetMapping("/add-theater")
     public String addTheater(Model model){
         model.addAttribute("theater", new Theater());
-        return "new-theater";
+        return "add-theater";
     }
 
     @PostMapping("/save-theater")
@@ -35,10 +35,10 @@ public class TheaterController {
         return "redirect:/theater-info";
     }
 
-    @GetMapping("/theater-view")
+    @GetMapping("/theater/{id}")
     @ResponseBody
-    public Theater showTheater() {
-        Theater theater = theaterRepo.findById(1);
+    public Theater showTheater(@PathVariable(name = "id") int id) {
+        Theater theater = theaterRepo.findById(id);
         return theater;
     }
 
@@ -51,7 +51,7 @@ public class TheaterController {
     @GetMapping("/edit-theater/{id}")
     public String editTheater(Model m, @PathVariable(name = "id") int id){
         Theater theaterToEdit = theaterRepo.findById(id);
-        m.addAttribute("theater-form", theaterToEdit);
+        m.addAttribute("theater", theaterToEdit);
         return "edit-theater";
     }
 

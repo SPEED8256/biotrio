@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Theater</title>
+
+    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+<body>
+
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="/mymovie">Movies </a></li>
+    <li><a href="/customers-info">Customers</a></li>
+    <li><a href="/theater-info">Theaters</a></li>
+</ul>
+
+<div class="container">
+    <h1> Add New Theater</h1>
+    <p class="lead">
+
+    <form action="/save-theater" method="post" th:object="${theater}">
+        <div class="form-group">
+            <label for="id"><b>Theater ID</b></label>
+            <input type="text" class="form-control" th:field="${theater.id}" id="id"
+                   placeholder="id"
+                   min="0">
+            <label for="theaterName"><b>Theater Name</b></label>
+            <input type="text" class="form-control" th:field="${theater.theaterName}" id="theaterName"
+                   placeholder="name"
+                   maxlength="20">
+            <label for="theaterRows"><b>Rows</b></label>
+            <input type="text" class="form-control" th:field="${theater.theaterRows}" id="theaterRows"
+                   placeholder="rows"
+                   min="0">
+            <label for="seatCount"><b>Seats</b></label>
+            <input type="text" class="form-control" th:field="${theater.seatCount}" id="seatCount"
+                   placeholder="seats"
+                   min="0">
+        </div>
+        <button class="submit">Add Theater</button>
+        <button type="reset" class="btn btn-primary">Cancel</button>
+    </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta charset="UTF-8">
+    <title>gfd</title>
+
+</head>
+<body>
+
+<th scope="col">Movie</th>
+<th scope="col">Theatre</th>
+<th scope="col">Time</th>
+<th scope="col">Price</th>
+
+<form action="/admin/save-screening" method="post" th:object="${screeningForm}">
+    <div class="form-group">
+        <label for="movie">Movie</label>
+        <select class="form-control" id="movie" th:field="${screeningForm.movie}">
+            <div th:each="movie:${movies}">
+            <option th:value="${movie.movieId}" th:text="${movie.movieTitle}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="theater">Theatre</label>
+        <select class="form-control" id="theater" th:field="${screeningForm.theater}">
+            <div th:each="theater:${theatres}">
+            <option th:value="${theater.id}" th:text="${theater.theaterName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="form-group">
+        <div style="position: relative"><label for="screeningDateTime">Date and Time</label>
+        <input type="text" class="form-control" id="screeningDateTime" th:field="${screeningForm.screeningDateTime}"></div>
+    </div>
+    <div class="form-group">
+         <label for="Price">Price</label>
+         <input type="text" pattern="\d+"  class="form-control" th:field="${screeningForm.price}" id="Price" min="1">
+    </div>
+    <button class="submit">Add Screening</button>
+    <button type="reset" class="btn btn-primary">Cancel</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $(function () {
+        $('#screeningDateTime').datetimepicker();
+    });
+</script>
+</body>
+</html>

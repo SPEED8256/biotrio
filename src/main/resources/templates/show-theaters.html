@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Theater list</title>
+    <title>Theater List</title>
+
     <link rel="stylesheet" type="text/css" href="/BioTrio.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 
 </head>
@@ -35,16 +36,20 @@
     <tr>
         <th scope="col">Theater ID</th>
         <th scope="col">Theater Name</th>
+        <th scope="col">Rows</th>
+        <th scope="col">Seats</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="theater:${theaters}">
-        <th scope="row" th:text="${theater.theaterId}"> 1 </th>
+        <th scope="row" th:text="${theater.id}"> 1 </th>
         <td th:text="${theater.theaterName}"> Blue </td>
+        <td th:text="${theater.theaterRows}"> 8 </td>
+        <td th:text="${theater.seatCount}"> 20 </td>
 
 
-        <td><a class="btn btn-danger" th:href="@{'/delete-theater/' + ${theater.theaterId}}">Delete</a></td>
-        <td><a class="btn btn-success" th:href="@{'/update-theater/' + ${theater.theaterId}}">Edit</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/delete-theater/' + ${theater.id}}">Delete</a></td>
+        <td><a class="btn btn-success" th:href="@{'/update-theater/' + ${theater.id}}">Update</a></td>
     </tr>
     </tbody>
 </table>
