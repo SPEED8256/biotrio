@@ -1,5 +1,7 @@
 package dk.kea.project.biotrio.Domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -11,7 +13,9 @@ public  class Screening {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Temporal(TemporalType.DATE)
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mma")
     private Date screeningDateTime;
 
     private int price;

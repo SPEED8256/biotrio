@@ -15,7 +15,7 @@ public class TheaterController {
     @Autowired
     private TheaterRepository theaterRepo;
 
-    @GetMapping("/theater-info")
+    @GetMapping("/admin/theater-info")
     public String showTheaters(Model model) {
         List<Theater> theaterList = theaterRepo.findAll();
         model.addAttribute("theaters", theaterList);
@@ -35,10 +35,10 @@ public class TheaterController {
         return "redirect:/theater-info";
     }
 
-    @GetMapping("/theater-view")
+    @GetMapping("/theater/{id}")
     @ResponseBody
-    public Theater showTheater() {
-        Theater theater = theaterRepo.findById(1);
+    public Theater showTheater(@PathVariable(name = "id") int id) {
+        Theater theater = theaterRepo.findById(id);
         return theater;
     }
 

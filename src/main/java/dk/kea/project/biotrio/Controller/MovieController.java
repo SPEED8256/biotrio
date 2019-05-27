@@ -23,16 +23,6 @@ public class MovieController {
         return "show-movies";
     }
 
-    //mapping movies for customer view
-    @GetMapping("/frontpage")
-    public String frontPage() {
-
-        return "front-page";
-    }
-
-
-
-
     @GetMapping("/addmovie")
     public String addMovie(Model m) {
         m.addAttribute("movieform", new Movie());
@@ -40,7 +30,6 @@ public class MovieController {
     }
 
     @PostMapping("/savemovie")
-    //    @ResponseBody
     public String save(@ModelAttribute Movie movie) {
         Movie movieInserted = movieRepo.save(movie);
         return "redirect:/mymovie";
@@ -53,10 +42,9 @@ public class MovieController {
         return "update-movie";
     }
 
-
-    @GetMapping("/moviev")
+    @GetMapping("/movie/{id}")
     @ResponseBody
-    public Movie showMovie(int id) {
+    public Movie showMovie(@PathVariable(name = "id") int id) {
         Movie movie = movieRepo.findByMovieId(id);
         return movie;
     }
