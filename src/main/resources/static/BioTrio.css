@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box;
+
 }
 
 /* Add padding to containers */
@@ -186,6 +187,7 @@ th {
 }
 
 /* for navigation bar */
+
 
 ul {
     list-style-type: none;
