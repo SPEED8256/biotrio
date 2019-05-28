@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity(name = "movie")
 public class Movie {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
     private String movieTitle;
     private String imdbCode;
@@ -15,11 +16,13 @@ public class Movie {
     private int movieDuration;
     private String movieDirector;
     private String movieActor;
+    private String imagePathName;
 
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear, String movieOrigin, int movieDuration, String movieDirector, String movieActor) {
+    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear,
+                 String movieOrigin, int movieDuration, String movieDirector, String movieActor, String imagePathName) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.imdbCode = imdbCode;
@@ -29,6 +32,7 @@ public class Movie {
         this.movieDuration = movieDuration;
         this.movieDirector = movieDirector;
         this.movieActor = movieActor;
+        this.imagePathName=imagePathName;
     }
 
 
@@ -103,4 +107,16 @@ public class Movie {
     public void setMovieActor(String movieActor) {
         this.movieActor = movieActor;
     }
+
+    public String getImagePathName() {
+        return imagePathName;
+    }
+
+    public void setImagePathName(String imagePathName) {
+        this.imagePathName = imagePathName;
+    }
+
+
+
 }
+

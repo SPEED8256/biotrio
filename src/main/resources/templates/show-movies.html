@@ -37,6 +37,7 @@
             <th scope="col">Director</th>
             <th scope="col">Actors</th>
             <th scope="col">Rating</th>
+            <th scope="col">imagePath</th>
 
         </tr>
         </thead>
@@ -63,6 +64,7 @@
                     js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
                     stags.parentNode.insertBefore(js, stags);
                 })(document, "script", "imdb-rating-api");</script>
+            <td th:text="${movie.imagePathName}"> </td>
             </td>
             <td><a class="submit" th:href="@{'/deletemovie/' + ${movie.movieId}}">Delete</a></td>
             <td><a class="submit" th:href="@{'/updatemovie/' + ${movie.movieId}}">Update</a></td>

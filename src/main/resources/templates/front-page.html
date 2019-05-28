@@ -28,42 +28,12 @@
     <h1 class="front-page">TICKETS FOR CURRENT MOVIES</h1>
     <br>
     <div class="fp-container">
-        <div classs="fp-img"><img src="/arrival.jpg" alt="arrival">
-            <div class="fp-movie-title"><b><p>Arrival</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
+        <th:block th:each="movie:${movies}">
+            <div class="fp-img"><img th:src="${movie.imagePathName}" alt="img">
+                <div class="fp-movie-title" th:text="${movie.movieTitle}"></div>
+                <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
         </div>
-        <div class="fp-img"><img src="/blade_runner.jpg" alt="blade_runner">
-            <div class="fp-movie-title"><b><p>Blade Runner</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/ex_machina.jpg" alt="ex">
-            <div class="fp-movie-title"><b><p>Ex-Machina</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/fight_club.jpg" alt="fight">
-            <div class="fp-movie-title"><b><p>Fight Club</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/dunkirk.jpg" alt="dunkirk">
-            <div class="fp-movie-title"><b><p>Dunkirk</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/revenant.jpg" alt="revenant">
-            <div class="fp-movie-title"><b><p>The Revenant</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/seven.jpg" alt="seven">
-            <div class="fp-movie-title"><b><p>Seven</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/godfatherII.jpg" alt="godfather">
-            <div class="fp-movie-title"><b><p>The Godfather II</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
-        <div class="fp-img"><img src="/pulp_fiction.jpg" alt="pulp">
-            <div class="fp-movie-title"><b><p>Pulp Fiction</p></b></div>
-            <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
+        </th:block>
     </div>
     <br>
     <br>
@@ -77,7 +47,8 @@
     <br>
     <br>
     <br>
-    
+    <br>
+
 </section>
 
 </body>

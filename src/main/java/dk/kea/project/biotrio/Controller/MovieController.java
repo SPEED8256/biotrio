@@ -31,9 +31,18 @@ public class MovieController {
 
     @PostMapping("/savemovie")
     public String save(@ModelAttribute Movie movie) {
-        Movie movieInserted = movieRepo.save(movie);
+        movieRepo.save(movie);
         return "redirect:/mymovie";
     }
+
+    //mapping movie list for customer view
+    @GetMapping("/frontpage")
+    public String frontPage(Model model){
+        List<Movie> movieList = movieRepo.findAll();
+        model.addAttribute("movies", movieList);
+        return "front-page";
+    }
+
 
     @GetMapping("/updatemovie/{id}")
     public String updateMovie(@PathVariable(name = "id") int id, Model m) {

@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="/BioTrio.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 </head>
 
@@ -19,14 +19,14 @@
     <li><a href="/theater-info">Theaters</a></li>
 </ul>
 
-    <div class="container">
-        <h1> Update Movie</h1>
-        <p class="lead">
+<div class="container">
+    <h1> Update Movie</h1>
+    <p class="lead">
 
-        <form action="/saveupdate" method="post" th:object="${movieform}">
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="hidden" class="form-control" th:field="*{movieId}"/>
+    <form action="/saveupdate" method="post" th:object="${movieform}">
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="hidden" class="form-control" th:field="*{movieId}"/>
 
                 <label for="movieTitle"><b>Title</b></label>
                 <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
@@ -53,11 +53,14 @@
                 <label for="imdbCode"><b>IMDb Code</b></label>
                 <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
                        th:placeholder="${movieform.getImdbCode()}" min="0">
+                <label for="imagePathName"><b>Image path</b></label>
+                <input type="text" class="form-control" th:field="${movieform.imagePathName}" id="imagePathName"
+                       placeholder="imagePathName" min="0">
             </div>
             <button class="submit">Update Movie</button>
-            <button type="reset" class="btn btn-primary">Cancel</button>
-            </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
+</div>
 </body>
 </html>
