@@ -16,35 +16,26 @@ public class MovieController {
     private MovieRepository movieRepo;
 
     //mapping movie list for admin view
-    @GetMapping("/mymovie")
+    @GetMapping("/admin/movies")
     public String movie(Model model) {
         List<Movie> movieList = movieRepo.findAll();
         model.addAttribute("movies", movieList);
         return "show-movies";
     }
 
-    @GetMapping("/addmovie")
+    @GetMapping("/admin/addmovie")
     public String addMovie(Model m) {
         m.addAttribute("movieform", new Movie());
         return "add-movie";
     }
 
-    @PostMapping("/savemovie")
+    @PostMapping("/admin/savemovie")
     public String save(@ModelAttribute Movie movie) {
-        movieRepo.save(movie);
-        return "redirect:/mymovie";
+        Movie movieInserted = movieRepo.save(movie);
+        return "redirect:/admin/movies";
     }
 
-    //mapping movie list for customer view
-    @GetMapping("/frontpage")
-    public String frontPage(Model model){
-        List<Movie> movieList = movieRepo.findAll();
-        model.addAttribute("movies", movieList);
-        return "front-page";
-    }
-
-
-    @GetMapping("/updatemovie/{id}")
+    @GetMapping("/admin/updatemovie/{id}")
     public String updateMovie(@PathVariable(name = "id") int id, Model m) {
         Movie movieData = movieRepo.findByMovieId(id);
         m.addAttribute("movieform", movieData);
@@ -58,15 +49,15 @@ public class MovieController {
         return movie;
     }
 
-    @PostMapping("/saveupdate")
+    @PostMapping("/admin/saveupdate")
     public String saveUpdateMovie(@ModelAttribute Movie movie) {
         movieRepo.save(movie);
-        return "redirect:/mymovie";
+        return "redirect:/admin/movies";
     }
 
-    @GetMapping("/deletemovie/{id}")
+    @GetMapping("/admin/deletemovie/{id}")
     public String deleteMovie(@PathVariable(name = "id") int id) {
         movieRepo.delete(movieRepo.findByMovieId(id));
-        return "redirect:/mymovie";
+        return "redirect:/admin/movies";
     }
 }

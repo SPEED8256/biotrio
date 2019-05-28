@@ -189,37 +189,37 @@ th {
 /* for navigation bar */
 
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    overflow: hidden;
-    background-color: Black;
-    border-radius: 5em;
-    color: #fff;
-    padding: 10px;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 13px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    text-align: center;
-    display: block;
-    border: none;
-}
+/*ul {*/
+    /*list-style-type: none;*/
+    /*margin: 0;*/
+    /*overflow: hidden;*/
+    /*background-color: Black;*/
+    /*border-radius: 5em;*/
+    /*color: #fff;*/
+    /*padding: 10px;*/
+    /*font-family: 'Ubuntu', sans-serif;*/
+    /*font-size: 13px;*/
+    /*box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);*/
+    /*text-align: center;*/
+    /*display: block;*/
+    /*border: none;*/
+/*}*/
 
-li {
-    float: left;
-}
+/*li {*/
+    /*float: left;*/
+/*}*/
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+/*li a {*/
+    /*display: block;*/
+    /*color: white;*/
+    /*text-align: center;*/
+    /*padding: 14px 16px;*/
+    /*text-decoration: none;*/
+/*}*/
 
-li a:hover {
-    background-color: #E040FB;
-}
+/*li a:hover {*/
+    /*background-color: #E040FB;*/
+/*}*/
 
 /*front page*/
 
