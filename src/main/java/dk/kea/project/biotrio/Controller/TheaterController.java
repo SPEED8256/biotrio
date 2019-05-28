@@ -22,42 +22,42 @@ public class TheaterController {
         return "show-theaters";
     }
 
-    @GetMapping("/add-theater")
+    @GetMapping("/admin/add-theater")
     public String addTheater(Model model){
         model.addAttribute("theater", new Theater());
         return "add-theater";
     }
 
-    @PostMapping("/save-theater")
+    @PostMapping("/admin/save-theater")
     public String save(@ModelAttribute Theater theater) {
 
         Theater theaterInserted = theaterRepo.save(theater);
-        return "redirect:/theater-info";
+        return "redirect:/admin/theater-info";
     }
 
-    @GetMapping("/theater/{id}")
+    @GetMapping("/admin/theater/{id}")
     @ResponseBody
     public Theater showTheater(@PathVariable(name = "id") int id) {
         Theater theater = theaterRepo.findById(id);
         return theater;
     }
 
-    @GetMapping("/delete-theater/{id}")
+    @GetMapping("/admin/delete-theater/{id}")
     public String deleteTheater(@PathVariable(name = "id") int id) {
         theaterRepo.delete(theaterRepo.findById(id));
-        return "redirect:/theater-info";
+        return "redirect:/admin/theater-info";
     }
 
-    @GetMapping("/edit-theater/{id}")
+    @GetMapping("/admin/edit-theater/{id}")
     public String editTheater(Model m, @PathVariable(name = "id") int id){
         Theater theaterToEdit = theaterRepo.findById(id);
         m.addAttribute("theater", theaterToEdit);
         return "edit-theater";
     }
 
-    @PostMapping("/update-theater")
+    @PostMapping("/admin/update-theater")
     public String saveEditTheater(@ModelAttribute Theater theater) {
         theaterRepo.save(theater);
-        return "redirect:/theater-info";
+        return "redirect:/admin/theater-info";
     }
 }

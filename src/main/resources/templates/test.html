@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Movie List</title>
+    <title>Edit Theater</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -68,91 +68,7 @@
 
     <div id="content">
 
-
-        <div class="container">
-            <h1> All Movies</h1>
-            <div class="inline">
-                <a class="btn btn-primary" th:href="@{'/admin/addmovie/'}">Add New Movie</a>
-            </div>
-
-            </br></br></br></br>
-
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Year</th>
-            <th scope="col">Origin</th>
-            <th scope="col">Duration</th>
-            <th scope="col">Director</th>
-            <th scope="col">Actors</th>
-            <th scope="col">Rating</th>
-            <th scope="col">imagePath</th>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Origin</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Director</th>
-                    <th scope="col">Actors</th>
-                    <th scope="col">Rating</th>
-                    <th></th>
-                    <th></th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="movie:${movies}">
-                    <th scope="row" th:text="${movie.movieTitle}">Star Wars: Episode VII - The Force Awakens</th>
-                    <td th:text="${movie.movieGenre}"> Action, Adventure, Fantasy</td>
-                    <td th:text="${movie.movieYear}">2015</td>
-                    <td th:text="${movie.movieOrigin}">USA</td>
-                    <td th:text="${movie.movieDuration}">2h 16min</td>
-                    <td th:text="${movie.movieDirector}"> J.J. Abrams</td>
-                    <td th:text="${movie.movieActor}"> Daisy Ridley, Domhnall Gleeson</td>
-                    <td ><span class="imdbRatingPlugin" data-user="ur62746291" th:attr="data-title=${movie.imdbCode}"
-                               data-style="p2"><a th:href="'https://www.imdb.com/title/'+${movie.imdbCode}+'/?ref_=plg_rt_1'"><img
-                            src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png">
-            </a></span>
-                <script>(function (d, s, id) {
-                    var js, stags = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {
-                        return;
-                    }
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
-                    stags.parentNode.insertBefore(js, stags);
-                })(document, "script", "imdb-rating-api");</script>
-            <td th:text="${movie.imagePathName}"> </td>
-            </td>
-            <td><a class="submit" th:href="@{'/deletemovie/' + ${movie.movieId}}">Delete</a></td>
-            <td><a class="submit" th:href="@{'/updatemovie/' + ${movie.movieId}}">Update</a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-                        <script>(function (d, s, id) {
-                            var js, stags = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) {
-                                return;
-                            }
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
-                            stags.parentNode.insertBefore(js, stags);
-                        })(document, "script", "imdb-rating-api");</script>
-                    </td>
-                    <td><a class="btn btn-danger" th:href="@{'/admin/deletemovie/' + ${movie.movieId}}">Delete</a></td>
-                    <td><a class="btn btn-success" th:href="@{'/admin/updatemovie/' + ${movie.movieId}}">Update</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <h1>Welcome to Control Panel.</h1>
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
