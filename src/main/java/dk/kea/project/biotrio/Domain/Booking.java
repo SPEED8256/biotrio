@@ -1,6 +1,8 @@
 package dk.kea.project.biotrio.Domain;
 
 
+import dk.kea.project.biotrio.Generator.BookingGenerator;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,8 +14,10 @@ import java.util.List;
 @Table(name = "booking")
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(columnDefinition="VARCHAR(64)")
+    @GeneratedValue(generator = BookingGenerator.generatorName)
+    @GenericGenerator(name = BookingGenerator.generatorName, strategy = "dk.kea.project.biotrio.Generator.BookingGenerator")
+    private String id;
 
     @OneToOne
     User user;
@@ -42,11 +46,11 @@ public class Booking {
         this.bookingDateTime = bookingDateTime;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

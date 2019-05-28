@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -65,7 +68,7 @@ public class BookingController {
 
     @RequestMapping(path="/booking", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String postBooking(@RequestBody BookingInfo bookinginfo){
+    public void postBooking(@RequestBody BookingInfo bookinginfo){
 
 
         List<Ticket> tickets = new ArrayList<>();
@@ -85,9 +88,24 @@ public class BookingController {
         booking.setUser(userRepository.findById((long) bookinginfo.getCustomerId()).get());
         booking.setTickets(tickets);
         booking.setBookingDateTime(new Date());
+
         bookingRepository.save(booking);
 
-    return "redirect://";
+    }
+
+    @GetMapping("/booking-info")
+    public String showBooking(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+
+        Booking booking = bookingRepository.findLastBooking(user).get(0);
+
+        model.addAttribute(booking);
+        return "booking-info";
+    }
+
+    @GetMapping("/bookinginfo")
+    public String bookingInfo() {
+        return "redirect:/booking-info";
     }
 
 }
