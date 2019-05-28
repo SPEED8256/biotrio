@@ -49,11 +49,11 @@
 </nav>
 
 <th:block sec:authorize="isAuthenticated()">
-    <script type="text/javascript">
-        <!--
-        window.location = "/profile"
-        //-->
-    </script></th:block>
+
+<div class="container">
+    <h2>You are already have an account. Go to <a href="/profile">Profile</a></h2>
+</div>
+</th:block>
 <th:block sec:authorize="isAnonymous()">
 <div class="container">
     <h1>Register new user</h1>

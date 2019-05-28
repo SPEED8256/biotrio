@@ -52,7 +52,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect://";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
