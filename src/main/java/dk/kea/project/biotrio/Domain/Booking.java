@@ -1,8 +1,11 @@
 package dk.kea.project.biotrio.Domain;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +18,7 @@ public class Booking {
     @OneToOne
     User user;
 
-    @OneToOne
+    @OneToOne(orphanRemoval=true)
     Screening screening;
 
     @OneToMany(
@@ -24,9 +27,20 @@ public class Booking {
     )
     List<Ticket> tickets = new ArrayList<>();
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")
+    private Date bookingDateTime;
+
     public Booking() {
     }
 
+    public Date getBookingDateTime() {
+        return bookingDateTime;
+    }
+
+    public void setBookingDateTime(Date bookingDateTime) {
+        this.bookingDateTime = bookingDateTime;
+    }
 
     public Long getId() {
         return id;

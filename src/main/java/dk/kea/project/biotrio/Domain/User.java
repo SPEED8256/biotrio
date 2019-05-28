@@ -26,7 +26,7 @@ public class User {
     private String name;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date dob;
 
     private String email;

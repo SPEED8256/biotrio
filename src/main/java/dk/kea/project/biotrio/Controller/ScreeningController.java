@@ -36,7 +36,7 @@ public class ScreeningController {
     }
 
 
-    @GetMapping("admin/add-screening")
+    @GetMapping("/admin/add-screening")
     public String addScreening(Model m) {
         m.addAttribute("movies", movieRepository.findAll());
         m.addAttribute("theatres", theaterRepository.findAll());
@@ -57,7 +57,7 @@ public class ScreeningController {
         return "redirect:/admin/view-screenings";
     }
 
-    @GetMapping("/admin//screening/edit/{id}")
+    @GetMapping("/admin/screening/edit/{id}")
     public String editScreening(Model m, @PathVariable(name = "id") int id){
         m.addAttribute("movies", movieRepository.findAll());
         m.addAttribute("theatres", theaterRepository.findAll());

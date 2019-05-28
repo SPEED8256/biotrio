@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
-    <title>Cinema hall like Rambler kassa</title>
+    <title>Seat Selection</title>
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <link rel='stylesheet' href='https://raw.githubusercontent.com/jaredreich/notie/master/dist/notie.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'>
 
     <link rel="stylesheet" href="/css/booking_style.css">
-
-
 </head>
 
 <body>
 
 
-<script>alert( 'Hello, world!' );</script>
+
 <div class="hall" id="hall">
     <span id="booking-info" th:attr="customer_id = ${customer.id}, screening_id=${screening.id}"> </span>
 
@@ -70,6 +69,35 @@
         </div>
     </div>
 </div>
+
+<div class="col-xs-12" style="background-image: url(https://media.wired.com/photos/599349d8d5c2fb3991a1a037/master/w_799,c_limit/movie-TA.jpg); background-size:cover;">
+
+    <div class="ticket-form row">
+        <div class="ticket-form__form col-xs-12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ticket-form__info">
+                    <div class="ticket-form__data">
+                        <div class="ticket-form__date" th:text="${#dates.format(screening.screeningDateTime,'dd-MM-yyyy hh:mm a')}">
+                            SCREENING DATETIME
+                        </div>
+                        <div class="ticket-form__cinema">
+                            BioTrio Cinema
+                        </div>
+                    </div>
+                    <div class="ticket-form__film-title" th:text="${screening.movie.movieTitle}">
+                        Movie
+                    </div>
+                </div>
+                <div class="ticket-form__data col-xs-12 col-sm-6 col-md-5">
+            <h2>Your details:</h2>
+                    <p th:text="${customer.name}"></p>
+                    <p th:text="${customer.email}"></p>
+                    <p th:text="${customer.phoneNumber}"></p>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
 <div class="hall-buy">
     <div class="hall-buy__no-data col-xs-12 col-md-8" id='hallNoData'>
         Select seats
@@ -99,12 +127,11 @@
         </button>
     </div>
 </div>
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
-<script src="https://unpkg.com/notie"></script>
+<script src='https://raw.githubusercontent.com/jaredreich/notie/master/dist/notie.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
-<script  src="/js/booking_index.js"></script>
+<script src="/js/booking_index.js"></script>
 
 
 

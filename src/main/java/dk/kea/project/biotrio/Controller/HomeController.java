@@ -15,4 +15,9 @@ public class HomeController {
     public String pay() {
         return "pay";
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "test";
+    }
 }

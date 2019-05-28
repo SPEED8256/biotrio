@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -64,12 +65,8 @@ public class BookingController {
 
     @RequestMapping(path="/booking", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void postBooking(@RequestBody BookingInfo bookinginfo){
+    public String postBooking(@RequestBody BookingInfo bookinginfo){
 
-
-        System.out.println(bookinginfo.getCustomerId());
-        System.out.println(bookinginfo.getScreeningId());
-        System.out.println(bookinginfo.getTickets().length);
 
         List<Ticket> tickets = new ArrayList<>();
         for (Ticket t : bookinginfo.getTickets()
@@ -87,9 +84,10 @@ public class BookingController {
         booking.setScreening(screeningRepository.findById(bookinginfo.getScreeningId()));
         booking.setUser(userRepository.findById((long) bookinginfo.getCustomerId()).get());
         booking.setTickets(tickets);
+        booking.setBookingDateTime(new Date());
         bookingRepository.save(booking);
 
-
+    return "redirect://";
     }
 
 }

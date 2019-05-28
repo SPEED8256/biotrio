@@ -2,54 +2,120 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Add Movie</title>
-    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Add movie</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
 </head>
 <body>
-<ul>
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="/mymovie">Movies </a></li>
-    <li><a href="/customers-info">Customers</a></li>
-    <li><a href="/theater-info">Theaters</a></li>
-</ul>
-<div class="container">
-    <h1> Add New Movie</h1>
-    <p class="lead">
-    <form action="/savemovie" method="post" th:object="${movieform}">
-        <div class="form-group">
-            <label for="movieTitle"><b>Title</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
-                   placeholder="title"
-                   maxlength="20">
-            <label for="movieGenre"><b>Genre</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
-                   placeholder="genre">
-            <label for="movieYear"><b>Year</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieYear}" id="movieYear"
-                   placeholder="year">
-            <label for="movieOrigin"><b>Origin</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
-                   placeholder="origin" min="0">
-            <label for="movieDuration"><b>Duration</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieDuration}" id="movieDuration"
-                   placeholder="duration" min="0">
-            <label for="movieDirector"><b>Director</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieDirector}" id="movieDirector"
-                   placeholder="director" min="0">
-            <label for="movieActors"><b>Actors</b></label>
-            <input type="text" class="form-control" th:field="${movieform.movieActor}" id="movieActors"
-                   placeholder="actors" min="0"><label for="imdbCode"><b>Rating</b></label>
-            <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
-                   placeholder="imdbCode" min="0">
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Control Panel</h3>
         </div>
-    <button class="submit">Add Movie</button>
-    <button type="reset" class="btn btn-primary">Cancel</button>
-</form>
+
+        <ul class="list-unstyled components">
+
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/movies' || #httpServletRequest.getRequestURI() == '/admin/addmovie' ? 'active':''}">
+                <a href="#movieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Movies</a>
+                <ul class="collapse list-unstyled" id="movieSubmenu">
+                    <li>
+                        <a href="/admin/movies">Manage movies</a>
+                    </li>
+                    <li>
+                        <a href="/admin/addmovie">Add movie</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/theater-info' || #httpServletRequest.getRequestURI() == '/admin/add-theater' ? 'active':''}">
+                <a href="#theatreSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Theatres</a>
+                <ul class="collapse list-unstyled" id="theatreSubmenu">
+                    <li>
+                        <a href="/admin/theater-info">Manage theaters</a>
+                    </li>
+                    <li>
+                        <a href="/admin/add-theater">Add theatre</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/view-screenings' || #httpServletRequest.getRequestURI() == '/admin/add-screening' ? 'active':''}">
+                <a href="#screeningSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Screenings</a>
+                <ul class="collapse list-unstyled" id="screeningSubmenu">
+                    <li>
+                        <a href="/admin/view-screenings">Manage screenings</a>
+                    </li>
+                    <li>
+                        <a href="/admin/add-screening">Add screening</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
+
+
+    <div id="content">
+        <div class="container">
+            <h1> Add New Movie</h1>
+            <p class="lead">
+            <form action="/admin/savemovie" method="post" th:object="${movieform}">
+                <div class="form-group">
+                    <label for="movieTitle"><b>Title</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
+                           placeholder="title"
+                           maxlength="20">
+                    <label for="movieGenre"><b>Genre</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
+                           placeholder="genre">
+                    <label for="movieYear"><b>Year</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieYear}" id="movieYear"
+                           placeholder="year">
+                    <label for="movieOrigin"><b>Origin</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
+                           placeholder="origin" min="0">
+                    <label for="movieDuration"><b>Duration</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieDuration}" id="movieDuration"
+                           placeholder="duration" min="0">
+                    <label for="movieDirector"><b>Director</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieDirector}" id="movieDirector"
+                           placeholder="director" min="0">
+                    <label for="movieActors"><b>Actors</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.movieActor}" id="movieActors"
+                           placeholder="actors" min="0"><label for="imdbCode"><b>Rating</b></label>
+                    <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
+                           placeholder="imdbCode" min="0">
+                </div>
+                <button class="submit">Add Movie</button>
+                <button type="reset" class="btn btn-primary">Cancel</button>
+            </form>
+    </div>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
 </body>
 </html>
