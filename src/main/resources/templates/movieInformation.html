@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie information</title>
+    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="/frontpage">Movies </a></li>
+    <li><a href="/new-user">Register</a></li>
+    <li><a href="/contact-form">Contact Us</a></li>
+</ul>
+
+<div class="container">
+    <h1><b><span th:text="${movie.movieTitle}"></span></b></h1>
+<br>
+
+<!-- update with th:src="${movie.imagePathName} -->
+<div class="imgage">
+    <img src="//drive.google.com/uc?id=1n0dLToI4cA3cOpE35z5lQpc8xb1TyGAA" >
+</div>
+    <div class="movieInfo">
+    <p>
+        Movie genre: <span th:text="${movie.movieGenre}"></span><br>
+        Year of release: <span th:text="${movie.movieYear}"></span><br>
+        Movie origin: <span th:text="${movie.movieOrigin}"></span><br>
+        Duration: <span th:text="${movie.movieDuration}"></span><br>
+        Director: <span th:text="${movie.movieDirector}"></span><br>
+        Actors: <span th:text="${movie.movieActor}"></span><br>
+        <span class="imdbRatingPlugin" data-user="ur62746291" th:attr="data-title=${movie.imdbCode}"
+              data-style="p2"><a th:href="'https://www.imdb.com/title/'+${movie.imdbCode}+'/?ref_=plg_rt_1'"><img
+                src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png">
+            </a></span>
+    </p>
+</div>
+
+
+
+    <!-- buttons in sibnlge line -->
+    <span><a class="submit">Screening 1 </a> <a class="submit">Screening 2</a> </span>
+    <!-- <button class="form-submit-button"> <p>th ref here</p>>Buy Tickets</button>-->
+</div>
+</div>
+
+
+
+</body>
+</html>

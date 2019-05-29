@@ -60,4 +60,14 @@ public class MovieController {
         movieRepo.delete(movieRepo.findByMovieId(id));
         return "redirect:/admin/movies";
     }
+
+
+    //code for single movie information
+    @GetMapping("/movieInfo/{id}")
+    public String showSingleMovie(@PathVariable(name = "id") int id,Model m) {
+        Movie movieInfo = (movieRepo.findByMovieId(id));
+        m.addAttribute(movieInfo);
+        return "movieInformation";
+    }
+
 }
