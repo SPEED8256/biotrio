@@ -12,11 +12,6 @@ public class Theater {
     private String theaterName;
     private int theaterRows;
     private int seatCount;
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Screening> screenings;
 
 
     public Theater() {
