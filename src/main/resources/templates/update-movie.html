@@ -82,8 +82,7 @@
 
                         <label for="movieTitle"><b>Title</b></label>
                         <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
-                               th:placeholder="${movieform.getMovieTitle()}"
-                               maxlength="20">
+                               th:placeholder="${movieform.getMovieTitle()}">
                         <label for="movieGenre"><b>Genre</b></label>
                         <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
                                th:placeholder="${movieform.getMovieGenre()}">

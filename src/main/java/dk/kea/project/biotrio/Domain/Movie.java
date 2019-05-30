@@ -21,11 +21,6 @@ public class Movie {
     private boolean spotlight;
     private boolean upcoming;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Screening> screenings;
 
     public Movie() {
     }
