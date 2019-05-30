@@ -122,9 +122,26 @@
                 VAT <span class="hall-buy__cost-tax-total" id='hallTotalTax'>0 DKK</span>
             </div>
         </div>
-            <button class="hall-buy__btn-buy " onclick="submitTickets()">
+            <button class="btn hall-buy__btn-buy" data-toggle="modal" data-target="#bookinginfo" data-backdrop="false" data-keyboard="false" onclick="submitTickets()">
                 Buy tickets
             </button>
+        <div class="modal fade bookinginfo" id="bookinginfo" tabindex="-1" role="dialog" aria-labelledby="Title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="Title"><b>Booking Completed</b></h4>
+                    </div>
+                    <div class="modal-body justify-content-center">
+                        <br>
+                        <div class="alert alert-success" role="alert">
+                            Booking has been completed succesfully!
+                        </div>
+                        <div class="modal-footer"> <a class="btn btn-primary btn-lg" href="/booking-info">View Booking Details</a></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

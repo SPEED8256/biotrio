@@ -18,63 +18,68 @@
 </head>
 <body>
 <div class="wrapper">
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Control Panel</h3>
-    </div>
 
-    <ul class="list-unstyled components">
+    <!--SIDEBAR-->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Control Panel</h3>
+        </div>
 
-        <li>
-            <a href="/">Home</a>
-        </li>
-        <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/movies' || #httpServletRequest.getRequestURI() == '/admin/addmovie' ? 'active':''}">
-            <a href="#movieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Movies</a>
-            <ul class="collapse list-unstyled" id="movieSubmenu">
-                <li>
-                    <a href="/admin/movies">Manage movies</a>
-                </li>
-                <li>
-                    <a href="/admin/addmovie">Add movie</a>
-                </li>
-            </ul>
-        </li>
-        <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/theater-info' || #httpServletRequest.getRequestURI() == '/admin/add-theater' ? 'active':''}">
-            <a href="#theatreSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Theatres</a>
-            <ul class="collapse list-unstyled" id="theatreSubmenu">
-                <li>
-                    <a href="/admin/theater-info">Manage theaters</a>
-                </li>
-                <li>
-                    <a href="/admin/add-theater">Add theatre</a>
-                </li>
-            </ul>
-        </li>
-        <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/view-screenings' || #httpServletRequest.getRequestURI() == '/admin/add-screening' ? 'active':''}">
-            <a href="#screeningSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Screenings</a>
-            <ul class="collapse list-unstyled" id="screeningSubmenu">
-                <li>
-                    <a href="/admin/view-screenings">Manage screenings</a>
-                </li>
-                <li>
-                    <a href="/admin/add-screening">Add screening</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+        <ul class="list-unstyled components">
 
-</nav>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/booking/search' ? 'active':''}">
+                <a href="/admin/booking/search">Search booking</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/movies' || #httpServletRequest.getRequestURI() == '/admin/addmovie' ? 'active':''}">
+                <a href="#movieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Movies</a>
+                <ul class="collapse list-unstyled" id="movieSubmenu">
+                    <li>
+                        <a href="/admin/movies">Manage movies</a>
+                    </li>
+                    <li>
+                        <a href="/admin/addmovie">Add movie</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/theater-info' || #httpServletRequest.getRequestURI() == '/admin/add-theater' ? 'active':''}">
+                <a href="#theatreSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Theatres</a>
+                <ul class="collapse list-unstyled" id="theatreSubmenu">
+                    <li>
+                        <a href="/admin/theater-info">Manage theaters</a>
+                    </li>
+                    <li>
+                        <a href="/admin/add-theater">Add theatre</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/view-screenings' || #httpServletRequest.getRequestURI() == '/admin/add-screening' ? 'active':''}">
+                <a href="#screeningSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Screenings</a>
+                <ul class="collapse list-unstyled" id="screeningSubmenu">
+                    <li>
+                        <a href="/admin/view-screenings">Manage screenings</a>
+                    </li>
+                    <li>
+                        <a href="/admin/add-screening">Add screening</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
 
 
     <div id="content">
 <div class="container">
     <h1> All Theaters</h1>
-
+    <br> <br>
 <div class="inline">
-    <a class="submit" th:href="@{'/admin/add-theater/'}">Add New Theater</a></td>
+    <a class="btn btn-primary" th:href="@{'/admin/add-theater/'}">Add New Theater</a></td>
 </div>
 
-</br></br></br></br>
+    <br> <br>
 
 <h2>Here you can see all the theaters in BioTrio.</h2>
 

@@ -23,6 +23,8 @@
     <title>Profile</title>
 </head>
 <body>
+
+
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <a class="navbar-brand" href="/">
         <img src="/logo.png" height="50" width="100"  alt="BioTrio">
@@ -58,11 +60,9 @@
 </nav>
 
 
+
 <div class="container">
     <br>
-    <div class="alert alert-success" role="alert">
-        Booking has been completed succesfully!
-    </div>
     <p><h2 class="display-4"><b>Your booking code is: </b></h2></p>
     <p><h2 class="display-4 bg-info text-center" th:text="${booking.id}"><b>id </b></h2></p>
 
@@ -89,7 +89,7 @@
                                 <div class="card-body">
                                     <p><b>Movie: </b><span th:text="${booking.screening.movie.movieTitle}"></span></p>
                                     <p><b>Theater: </b><span th:text="${booking.screening.theater.theaterName}"></span></p>
-                                    <p><b>Time: </b><span th:text="${booking.bookingDateTime}"></span></p>
+                                    <p><b>Time: </b><span th:text="${booking.screening.screeningDateTime}"></span></p>
                                     <p><b>Row: </b><span class="card-title" th:text="${ticket.ticketRow}"></span></p>
                                     <p><b>Seat: </b><span class="card-title" th:text="${ticket.ticketseat}"></span></p>
                                 </div>

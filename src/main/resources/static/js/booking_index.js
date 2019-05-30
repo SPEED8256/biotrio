@@ -185,5 +185,5 @@ let submitTickets = function(){
     let data = format(booking());
     console.log(data);
     xhr.send(data);
-    window.location='/bookinginfo';
+    //window.location='/bookinginfo';
 }

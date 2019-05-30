@@ -1,52 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Movie information</title>
-    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <title>[(${movie.movieTitle})]</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-<ul>
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="/frontpage">Movies </a></li>
-    <li><a href="/new-user">Register</a></li>
-    <li><a href="/contact-form">Contact Us</a></li>
-</ul>
+<!-- navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img src="/logo.png" height="50" width="100"  alt="BioTrio">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Control Panel</a>
+                </li>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" sec:authentication="name" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        USERNAME
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </th:block>
+            <th:block sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Create Account</a>
+                </li>
+            </th:block>
 
-<div class="container">
+        </ul>
+    </div>
+</nav>
+<div class="container col-md-6">
     <h1><b><span th:text="${movie.movieTitle}"></span></b></h1>
 <br>
 
 <!-- update with th:src="${movie.imagePathName} -->
-<div class="imgage">
-    <img src="//drive.google.com/uc?id=1n0dLToI4cA3cOpE35z5lQpc8xb1TyGAA" >
+    <div class="row">
+        <div class="col-md-auto">
+<div class="image">
+    <img th:src="${movie.imagePathName}"height="360" width="240">
 </div>
-    <div class="movieInfo">
+        </div>
+    <div class="movieInfo col">
+        <br>
     <p>
-        Movie genre: <span th:text="${movie.movieGenre}"></span><br>
-        Year of release: <span th:text="${movie.movieYear}"></span><br>
-        Movie origin: <span th:text="${movie.movieOrigin}"></span><br>
-        Duration: <span th:text="${movie.movieDuration}"></span><br>
-        Director: <span th:text="${movie.movieDirector}"></span><br>
-        Actors: <span th:text="${movie.movieActor}"></span><br>
-        <span class="imdbRatingPlugin" data-user="ur62746291" th:attr="data-title=${movie.imdbCode}"
-              data-style="p2"><a th:href="'https://www.imdb.com/title/'+${movie.imdbCode}+'/?ref_=plg_rt_1'"><img
-                src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png">
+        <b>Genre: </b><span th:text="${movie.movieGenre}"></span><br>
+        <b>Year: </b><span th:text="${movie.movieYear}"></span><br>
+        <b>Origin: </b><span th:text="${movie.movieOrigin}"></span><br>
+        <b>Duration: </b><span th:text="${movie.movieDuration}"></span> minutes<br>
+        <b>Director: </b><span th:text="${movie.movieDirector}"></span><br>
+        <b>Actors: </b><span th:text="${movie.movieActor}"></span><br>
+      <span class="imdbRatingPlugin" data-user="ur62746291" th:attr="data-title=${movie.imdbCode}"
+              data-style="p1"><a th:href="'https://www.imdb.com/title/'+${movie.imdbCode}+'/?ref_=plg_rt_1'"><img
+                src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png">
             </a></span>
+        <script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";stags.parentNode.insertBefore(js,stags);})(document,"script","imdb-rating-api");</script>
+
     </p>
 </div>
 
 
 
     <!-- buttons in sibnlge line -->
-    <span><a class="submit">Screening 1 </a> <a class="submit">Screening 2</a> </span>
-    <!-- <button class="form-submit-button"> <p>th ref here</p>>Buy Tickets</button>-->
+        <div class="container">
+    <th:block th:each="screening:${screenings}">
+        <a th:href="@{'/booking/'+${screening.id}}" type="button" class="btn btn-primary btn-lg btn-block" th:text="${#dates.format(screening.screeningDateTime,'dd-MM-yyyy hh:mm a')+' at '+screening.theater.theaterName}">Block level button</a>
+    </th:block>
+        </div>
+    </div>
 </div>
-</div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -18,6 +18,8 @@
 </head>
 <body>
 <div class="wrapper">
+
+    <!--SIDEBAR-->
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3>Control Panel</h3>
@@ -27,6 +29,9 @@
 
             <li>
                 <a href="/">Home</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/booking/search' ? 'active':''}">
+                <a href="/admin/booking/search">Search booking</a>
             </li>
             <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/movies' || #httpServletRequest.getRequestURI() == '/admin/addmovie' ? 'active':''}">
                 <a href="#movieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Movies</a>

@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
-    <link rel="stylesheet" type="text/css" href="/BioTrio.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/BioTrio.css">
+    <link rel="stylesheet" type="text/css" href="css/carousel.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 </head>
@@ -52,42 +54,125 @@
     </div>
 </nav>
 
-<!-- The Movies Section -->
+<!-- SPOTLIGHT MOVIES Section -->
 <section id="fp-background">
+    <div class="container col-md-8" style="min-height: 100%; height: 100%;">
     <br>
+        <h1 class="front-page">SPOTLIGHT</h1>
     <br>
-    <br>
-    <br>
-    <h1 class="front-page">TICKETS FOR CURRENT MOVIES</h1>
-    <br>
-    <div class="fp-container">
-        <th:block th:each="movie:${movies}">
-            <div class="fp-img"><img th:src="${movie.imagePathName}" alt="img">
-                <div class="fp-movie-title" th:text="${movie.movieTitle}"></div>
-                <a class="fp-submit" th:href="@{'/new-user/'}">Buy Tickets</a>
-        </div>
+
+    <div class="row justify-content-md-center ">
+
+        <th:block th:each="movie:${spotlightMovies}">
+            <div class="col-md-auto">
+
+            <div class="fp-img"><img th:src="${movie.imagePathName}" alt="img" width="203" height="300">
+                <a th:href="@{'/movieInfo/'+ ${movie.movieId}}">
+                    <div class="poster_box"><div class="fp-movie-title" th:text="${movie.movieTitle}"></div></div>
+                </a>
+                <div class="justify-content-md-center">
+                    <a type="button" th:href="@{'/movieInfo/'+ ${movie.movieId}}" class="btn btn-outline-secondary btn-block">Buy Tickets <i class='fa fa-dollar'></i></a>
+                </div>
+            </div>
+            </div>
         </th:block>
+
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
+    </div>
+
+
+<br>
+<br>
+<br>
+<!--REST OF MOVIES CONTAINER-->
+<div class="container col-md-8">
+    <br>
+    <h1 class="front-page">MOVIES</h1>
+    <br>
+    <!--TABS-->
+    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="current-movies-tab" data-toggle="tab" href="#current-movies" role="tab" aria-controls="current-movies-tab" aria-selected="true"><h5>Current Movies</h5></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming-tab" aria-selected="false"><h5>Upcoming movies</h5></a>
+        </li>
+    </ul>
+    <!--CONTENT-->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="current-movies" role="tabpanel" aria-labelledby="current-movies-tab">
+            <!--Current movies showing-->
+            <br>
+            <div class="row justify-content-md-center ">
+            <th:block th:each="movie:${currentMovies}">
+                <div class="col-md-auto">
+
+                    <div class="fp-img"><img th:src="${movie.imagePathName}" alt="img" width="203" height="300">
+                        <a th:href="@{'/movieInfo/'+ ${movie.movieId}}">
+                            <div class="poster_box"><div class="fp-movie-title" th:text="${movie.movieTitle}"></div></div>
+                        </a>
+                        <div class="justify-content-md-center">
+                            <a type="button" th:href="@{'/movieInfo/'+ ${movie.movieId}}" class="btn btn-outline-secondary btn-block">Buy Tickets <i class='fa fa-dollar'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+            <!--Upcoming movies showing-->
+            <br>
+            <div class="row justify-content-md-center ">
+            <th:block th:each="movie:${upcomingMovies}">
+                <div class="col-md-auto">
+
+                    <div class="fp-img"><img th:src="${movie.imagePathName}" alt="img" width="203" height="300">
+                        <a th:href="@{'/movieInfo/'+ ${movie.movieId}}">
+                            <div class="poster_box"><div class="fp-movie-title" th:text="${movie.movieTitle}"></div></div>
+                        </a>
+                        <div class="justify-content-md-center">
+                            <a type="button" th:href="@{'/movieInfo/'+ ${movie.movieId}}" class="btn btn-outline-secondary btn-block">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 </section>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!--BOOTSTRAP Multi-item Carousel SCRIPT-->
+<!--SOURCE: https://medium.com/wdstack/bootstrap-4-custom-carousel-94a537364fde-->
+<script>
+    $('#carouselExample').on('slide.bs.carousel', function (e) {
+
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 4;
+        var totalItems = $('.carousel-item').length;
+
+        if (idx >= totalItems-(itemsPerSlide-1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i=0; i<it; i++) {
+                // append slides to end
+                if (e.direction=="left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

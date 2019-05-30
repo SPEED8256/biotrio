@@ -20,7 +20,7 @@ public  class Screening {
 
     private int price;
 
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval=true )
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 

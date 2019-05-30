@@ -1,9 +1,7 @@
 package dk.kea.project.biotrio.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "theater")
 public class Theater {
@@ -14,6 +12,11 @@ public class Theater {
     private String theaterName;
     private int theaterRows;
     private int seatCount;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Screening> screenings;
 
 
     public Theater() {

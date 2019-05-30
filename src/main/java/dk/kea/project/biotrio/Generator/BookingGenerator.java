@@ -13,7 +13,7 @@ public class BookingGenerator implements IdentifierGenerator {
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object object) throws HibernateException {
 
-        return Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0,6).toUpperCase();
+        return Long.toHexString(Double.doubleToLongBits(Math.random())).substring(4,10).toUpperCase();
 
     }
 }

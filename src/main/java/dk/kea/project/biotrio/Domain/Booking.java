@@ -22,7 +22,7 @@ public class Booking {
     @OneToOne
     User user;
 
-    @OneToOne(orphanRemoval=true)
+    @ManyToOne
     Screening screening;
 
     @OneToMany(

@@ -6,4 +6,6 @@ public interface ScreeningService {
     void save(Screening screening);
 
     Screening findById(int id);
+
+    void delete(Screening screening);
 }

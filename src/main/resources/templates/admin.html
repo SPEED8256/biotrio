@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Add Theater</title>
+    <title>Edit Theater</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -18,7 +18,6 @@
 </head>
 <body>
 <div class="wrapper">
-
     <!--SIDEBAR-->
     <nav id="sidebar">
         <div class="sidebar-header">
@@ -73,29 +72,7 @@
 
     <div id="content">
 
-        <div class="container">
-            <h1> Add New Theater</h1>
-            <p class="lead">
-
-            <form action="/admin/save-theater" method="post" th:object="${theater}">
-                <div class="form-group">
-                    <label for="theaterName"><b>Theater Name</b></label>
-                    <input type="text" class="form-control" th:field="${theater.theaterName}" id="theaterName"
-                           placeholder="name"
-                           maxlength="20">
-                    <label for="theaterRows"><b>Rows</b></label>
-                    <input type="text" class="form-control" th:field="${theater.theaterRows}" id="theaterRows"
-                           placeholder="rows"
-                           min="0">
-                    <label for="seatCount"><b>Seats</b></label>
-                    <input type="text" class="form-control" th:field="${theater.seatCount}" id="seatCount"
-                           placeholder="seats"
-                           min="0">
-                </div>
-                <button class="submit">Add Theater</button>
-                <button type="reset" class="btn btn-primary">Cancel</button>
-            </form>
-        </div>
+    <h1>Welcome to Control Panel.</h1>
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->

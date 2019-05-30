@@ -1,19 +1,26 @@
 package dk.kea.project.biotrio.Controller;
 
 import dk.kea.project.biotrio.Domain.Movie;
+import dk.kea.project.biotrio.Domain.Screening;
 import dk.kea.project.biotrio.Repository.MovieRepository;
+import dk.kea.project.biotrio.Repository.ScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
 
 @Controller
 public class MovieController {
 
     @Autowired
     private MovieRepository movieRepo;
+    @Autowired
+    private ScreeningRepository screeningRepository;
 
     //mapping movie list for admin view
     @GetMapping("/admin/movies")
@@ -67,6 +74,11 @@ public class MovieController {
     public String showSingleMovie(@PathVariable(name = "id") int id,Model m) {
         Movie movieInfo = (movieRepo.findByMovieId(id));
         m.addAttribute(movieInfo);
+        Date today = Calendar.getInstance().getTime();
+        System.out.println(today);
+        List<Screening> screenings = screeningRepository.findAllByMovieAndScreeningDateTimeAfter(movieInfo, today);
+
+        m.addAttribute("screenings", screenings);
         return "movieInformation";
     }
 

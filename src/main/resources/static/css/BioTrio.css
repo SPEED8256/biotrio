@@ -1,3 +1,14 @@
+.image {
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+    margin: 20px 30px 0 0;
+}
+
+/* Text in single movie info */
+.movieInfo{
+    display: inline;
+}
 
 * {
     box-sizing: border-box;
@@ -10,13 +21,14 @@
     border-radius: 8px;
 }
 
-.inline{
+
+.inline {
     display: inline;
     position: absolute;
     top: 8px;
     right: 16px;
     font-size: 18px;
-    padding: 20px ;
+    padding: 20px;
 }
 
 /* Full-width input fields */
@@ -51,7 +63,7 @@ input[type=security] {
 input[type=text]:focus, input[type=password]:focus, input[type=security]:focus, input[type=expiration]:focus {
     background-color: #ddd;
     outline: none;
-    text-align:left;
+    text-align: left;
 }
 
 
@@ -60,14 +72,13 @@ a {
     color: dodgerblue;
 }
 
-/* Set a grey background color and center the text of the "sign in" section */
 .signin {
     background-color: #fff;
     text-align: center;
 }
 
 body {
-    background: linear-gradient(to right, Black, #E040FB);
+    background: white;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -86,7 +97,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 23px;
-    text-align:left;
+    text-align: left;
 }
 
 .form-group {
@@ -105,14 +116,21 @@ body {
     outline: none;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
     margin-left: 46px;
-    margin-bottom: 27px;
     font-family: 'Ubuntu', sans-serif;
-    text-align:left;
+    text-align: left;
 }
 
-.form-control:focus{
+input[type=submit] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-control:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
 }
 
@@ -121,13 +139,29 @@ body {
     border-radius: 5em;
     color: #fff;
     background: linear-gradient(to right, Black, #E040FB);
-    padding:10px;
+    padding: 10px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
     text-align: center;
     display: block;
-    width:100%;
+    border: none;
+    width: 100%;
+}
+
+.form-submit-button {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, Black, #E040FB);
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    display: block;
+    border: none;
+    width: 100%
 }
 
 .admin {
@@ -146,10 +180,91 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
 
 th {
     background-color: #a9a9af;
     color: white;
 }
 
+/*front page*/
+
+h1.front-page {
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+
+.fp-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.fp-img {
+    position: relative;
+    height: 360px;
+    width: 203px;
+}
+.fp-img:hover .poster_box {
+    height: 300px;
+    visibility: visible;
+    opacity: 1;
+}
+.fp-movie-title{
+    margin: auto;
+    font: 600 1.5em/1 'Raleway', sans-serif;
+    color: rgb(145, 153, 161);
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 25%;
+    width: 203px;
+}
+
+.fp-submit {
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10em;
+    color: #fff;
+    background: linear-gradient(to right, Black, #CD5C5C);
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    display: block;
+    border: none;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.poster_box{
+    position: absolute;
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(25, 25, 25, 0.72);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    vertical-align: middle;
+    text-align: center;
+
+    /* transition effect. */
+    transition: opacity .2s, visibility .2s;
+}
+
+#fp-background{
+    background-color: #f1f1f1;
+}

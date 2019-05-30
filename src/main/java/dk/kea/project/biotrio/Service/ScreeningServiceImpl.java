@@ -2,6 +2,7 @@ package dk.kea.project.biotrio.Service;
 
 import dk.kea.project.biotrio.Domain.Screening;
 import dk.kea.project.biotrio.Domain.Ticket;
+import dk.kea.project.biotrio.Repository.BookingRepository;
 import dk.kea.project.biotrio.Repository.ScreeningRepository;
 import dk.kea.project.biotrio.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Autowired
     private TicketRepository ticketRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @Override
     public void save(Screening screening){
@@ -42,5 +46,11 @@ public class ScreeningServiceImpl implements ScreeningService {
     @Override
     public Screening findById(int id){
         return screeningRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Screening screening){
+        bookingRepository.deleteAllByScreening(screening);
+        screeningRepository.delete(screening);
     }
 }

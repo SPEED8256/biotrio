@@ -93,13 +93,15 @@ public class BookingController {
 
     }
 
-    @GetMapping("/booking-info")
+
+    @RequestMapping(path="/booking-info", method= RequestMethod.GET)
     public String showBooking(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
 
         Booking booking = bookingRepository.findLastBooking(user).get(0);
 
         model.addAttribute(booking);
+
         return "booking-info";
     }
 
@@ -108,4 +110,12 @@ public class BookingController {
         return "redirect:/booking-info";
     }
 
+
+
+    @RequestMapping(path = "/admin/booking/search", method = RequestMethod.GET)
+    public String showBookingsById(@RequestParam (value = "id", required = false) String id, Model model) {
+
+        model.addAttribute("search", bookingRepository.findById(id));
+        return "bookingsearch";
+    }
 }

@@ -1,6 +1,7 @@
 package dk.kea.project.biotrio.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "movie")
 public class Movie {
@@ -17,24 +18,33 @@ public class Movie {
     private String movieDirector;
     private String movieActor;
     private String imagePathName;
+    private boolean spotlight;
+    private boolean upcoming;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Screening> screenings;
 
     public Movie() {
     }
 
-    public Movie(int movieId, String movieTitle, String imdbCode, String movieGenre, String movieYear,
-                 String movieOrigin, int movieDuration, String movieDirector, String movieActor, String imagePathName) {
-        this.movieId = movieId;
-        this.movieTitle = movieTitle;
-        this.imdbCode = imdbCode;
-        this.movieGenre = movieGenre;
-        this.movieYear = movieYear;
-        this.movieOrigin = movieOrigin;
-        this.movieDuration = movieDuration;
-        this.movieDirector = movieDirector;
-        this.movieActor = movieActor;
-        this.imagePathName=imagePathName;
+    public boolean isUpcoming() {
+        return upcoming;
     }
 
+    public void setUpcoming(boolean upcoming) {
+        this.upcoming = upcoming;
+    }
+
+    public boolean isSpotlight() {
+        return spotlight;
+    }
+
+    public void setSpotlight(boolean spotlight) {
+        this.spotlight = spotlight;
+    }
 
     public int getMovieId() {
         return movieId;

@@ -53,7 +53,7 @@ public class ScreeningController {
 
     @GetMapping("/admin/screening/delete/{id}")
     public String deleteScreening(@PathVariable(name = "id") int id) {
-        screeningRepository.delete(screeningRepository.findById(id));
+        screeningService.delete(screeningRepository.findById(id));
         return "redirect:/admin/view-screenings";
     }
 
