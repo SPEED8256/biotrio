@@ -1,5 +1,7 @@
 package dk.kea.project.biotrio.Domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,12 +22,14 @@ public  class Screening {
 
     private int price;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Movie movie;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "theater_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Theater theater;
 
     @OneToMany(

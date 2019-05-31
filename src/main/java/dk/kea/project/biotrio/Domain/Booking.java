@@ -22,7 +22,7 @@ public class Booking {
     @OneToOne
     User user;
 
-    @ManyToOne
+    @OneToOne
     Screening screening;
 
     @OneToMany(
