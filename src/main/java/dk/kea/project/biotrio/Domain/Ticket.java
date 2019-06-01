@@ -9,15 +9,15 @@ public class Ticket {
     @JsonProperty("ticket_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @JsonProperty("place")
-    int ticketseat;
+    private int ticketseat;
 
     @JsonProperty("row")
-    int ticketRow;
+    private int ticketRow;
 
-    boolean ticketStatus;
+    private boolean ticketStatus;
 
     public boolean isTicketStatus() {
         return ticketStatus;

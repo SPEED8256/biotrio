@@ -20,16 +20,16 @@ public class Booking {
     private String id;
 
     @OneToOne
-    User user;
+    private User user;
 
     @OneToOne
-    Screening screening;
+    private Screening screening;
 
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    List<Ticket> tickets = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")

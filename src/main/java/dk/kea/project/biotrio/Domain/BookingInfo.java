@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BookingInfo {
 
     @JsonProperty("customerId")
-    int customerId;
+    private int customerId;
 
 
     @JsonProperty("screeningId")
-    int screeningId;
+    private int screeningId;
 
     @JsonProperty("tickets")
-    Ticket[] tickets;
+    private Ticket[] tickets;
 
     public BookingInfo() {
     }
