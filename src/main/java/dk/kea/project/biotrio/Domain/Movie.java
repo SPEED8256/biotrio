@@ -1,7 +1,7 @@
 package dk.kea.project.biotrio.Domain;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity(name = "movie")
 public class Movie {

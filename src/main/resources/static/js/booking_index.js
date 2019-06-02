@@ -90,9 +90,7 @@ class HallActions {
   }
 }
 
-function format(obj) {
-    return JSON.stringify(obj, null, " ");
-}
+
 let hall = new HallActions(HallStorage);
 
 const $hall = $('#hall');
@@ -139,6 +137,17 @@ $itemFree.on('click', function () {
 
 hall.rerender();
 
+
+
+// Our implementations
+
+
+//format object to JSON
+function format(obj) {
+    return JSON.stringify(obj, null, " ");
+}
+
+//Create object with booking information
 let booking = function(){
     let customerId = document.getElementById("booking-info").getAttribute("customer_id");
     let screeningId = document.getElementById("booking-info").getAttribute("screening_id");
@@ -172,6 +181,8 @@ let booking = function(){
 
 }
 
+
+//POST the object to server
 let submitTickets = function(){
     xhr = new XMLHttpRequest();
     let url = "/booking";
