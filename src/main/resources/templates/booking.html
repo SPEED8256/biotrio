@@ -21,7 +21,7 @@
 <div class="hall" id="hall">
     <span id="booking-info" th:attr="customer_id = ${customer.id}, screening_id=${screening.id}"> </span>
 
-    <!-- Высота wrapper это высота зала плюс, его pagging x*20+20 50px сверху 10px снизу   -->
+<!--Cinema hall wrapper-->
     <div class="hall__wrapper"  th:attr="style=${'height: '+(theater.theaterRows*20+80)+'px; '}">
         <div class="hall__box" th:attr="style=${'width: '+(theater.seatCount*20+20)+'px; '}">
             <div class="hall__screen">
