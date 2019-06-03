@@ -30,21 +30,25 @@
                 <span class="hall__screen-tip _right">Screen</span>
             </div>
             <div class="hall_places">
-                <!-- Левая метка метка -->
-                <!-- Дублирует data-row data-trubune и top в стилях -->
-                <!-- Атрибут data-row выводится контекстом, data-trubune не используется, но мб понадобится для чего то-->
+                <!--ROW-->
                 <span class="hall__row" th:each="row, row_iterator : ${rows}">
+                    <!--Left row number-->
                     <div  class="hall__places-row _left" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"> </div>
+                    <!--Seats in row-->
                     <div th:each="ticket : ${row}">
                         <div class="hall__places-item " th:classappend= "${ticket.ticketStatus}? 'is-busy' : 'is-free'" th:attr="data-ticket_id = ${ticket.id}, data-row=${ticket.ticketRow}, data-pos-x=${ticket.ticketseat}, data-pos-y=${ticket.ticketRow}, data-state=${ticket.ticketStatus}? 'busy' : 'is-free', data-price=${screening.price}, style=${'left: '+((ticket.ticketseat)*20)+'px;'+'top: '+((ticket.ticketRow-1)*20)+'px'}">
                             <div class="hall__places-chair" th:attr="data-title=${screening.price} + ' DKK'" data-toggle="tooltip" data-placement="top">[(${ticket.ticketseat})] </div>
                         </div>
                     </div>
+                    <!--Right row number-->
                     <div class="hall__places-row _right" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index )*20)+'px'}"> </div>
                 </span>
             </div>
         </div>
 
+
+
+        <!--Lines when hovering rows-->
         <div class="hall__box _lines" th:each="row, row_iterator : ${rows}">
             <div class="hall__line" th:attr="id=${'hallLine_'+(row_iterator.index+1)}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"></div>
         </div>

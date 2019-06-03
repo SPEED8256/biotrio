@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Entity(name = "movie")
 public class Movie {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id                                                         //Specifies that the field is ID (primary key)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)         //Specifies that the field should be auto generated using the strategy IDENTITY
     private int movieId;
     private String movieTitle;
     private String imdbCode;
