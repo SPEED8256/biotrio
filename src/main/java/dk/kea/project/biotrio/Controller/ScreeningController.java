@@ -58,7 +58,7 @@ public class ScreeningController {
     }
 
     @GetMapping("/admin/screening/edit/{id}")
-    public String editScreening(Model m, @PathVariable(name = "id") int id){
+    public String editScreening(Model m, @PathVariable(name = "id") int id) {
         m.addAttribute("movies", movieRepository.findAll());
         m.addAttribute("theatres", theaterRepository.findAll());
 

@@ -35,8 +35,9 @@ public class BookingController {
     @Autowired
     private TicketRepository ticketRepository;
 
+
     @GetMapping("/booking/{screeningId}")
-    public String book(Model model, Principal principal, @PathVariable int screeningId){
+    public String book(Model model, Principal principal, @PathVariable int screeningId) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("customer", user);
 
@@ -47,33 +48,33 @@ public class BookingController {
         //Storing tickets as objects in nested list
         //for displaying as rows layout
         ArrayList<ArrayList<Ticket>> rows = new ArrayList<>();
-        for (int i = 0; i<screening.getTheater().getRows(); i++){
-        rows.add(new ArrayList<Ticket>());
+        for (int i = 0; i < screening.getTheater().getRows(); i++) {
+            rows.add(new ArrayList<Ticket>());
         }
 
-        for(Ticket ticket : screening.getTickets()){
-            for (int r = 1; r<=screening.getTheater().getRows(); r++){
-                if (ticket.getTicketRow()==r){
-                    rows.get(r-1).add(ticket);
+        for (Ticket ticket : screening.getTickets()) {
+            for (int r = 1; r <= screening.getTheater().getRows(); r++) {
+                if (ticket.getTicketRow() == r) {
+                    rows.get(r - 1).add(ticket);
                 }
             }
         }
 
-        model.addAttribute("rows",rows);
+        model.addAttribute("rows", rows);
         model.addAttribute("theater", screening.getTheater());
         model.addAttribute("movie", screening.getMovie());
         return "booking";
 
     }
 
-    @RequestMapping(path="/booking", method= RequestMethod.POST)
+    @RequestMapping(path = "/booking", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void postBooking(@RequestBody BookingInfo bookinginfo){
+    public void postBooking(@RequestBody BookingInfo bookinginfo) {
 
 
         List<Ticket> tickets = new ArrayList<>();
         for (Ticket t : bookinginfo.getTickets()
-             ) {
+        ) {
             Ticket ticketToUpdate = ticketRepository.getOne(t.getId());
             ticketToUpdate.setTicketStatus(true);
             ticketRepository.save(ticketToUpdate);
@@ -94,7 +95,7 @@ public class BookingController {
     }
 
 
-    @RequestMapping(path="/booking-info", method= RequestMethod.GET)
+    @RequestMapping(path = "/booking-info", method = RequestMethod.GET)
     public String showBooking(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
 
@@ -111,9 +112,10 @@ public class BookingController {
     }
 
 
-
+    // ---------------------------------------- ADMINISTRATOR - VIEW --------------------------------------------------
+    // returns page to perform a booking search by code
     @RequestMapping(path = "/admin/booking/search", method = RequestMethod.GET)
-    public String showBookingsById(@RequestParam (value = "id", required = false) String id, Model model) {
+    public String showBookingsById(@RequestParam(value = "id", required = false) String id, Model model) {
 
         model.addAttribute("search", bookingRepository.findById(id));
         return "bookingsearch";

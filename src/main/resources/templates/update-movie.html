@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>Update Movie</title>
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
     <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -44,7 +49,8 @@
                 </ul>
             </li>
             <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/theater-info' || #httpServletRequest.getRequestURI() == '/admin/add-theater' ? 'active':''}">
-                <a href="#theatreSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Theatres</a>
+                <a href="#theatreSubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Theatres</a>
                 <ul class="collapse list-unstyled" id="theatreSubmenu">
                     <li>
                         <a href="/admin/theater-info">Manage theaters</a>
@@ -75,64 +81,75 @@
             <h1> Update Movie</h1>
             <p class="lead">
 
-            <form action="/admin/saveupdate" method="post" th:object="${movieform}">
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <input type="hidden" class="form-control" th:field="*{movieId}"/>
+                <form action="/admin/saveupdate" method="post" th:object="${movieform}">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" th:field="*{movieId}"/>
 
-                        <label for="movieTitle"><b>Title</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
-                               th:placeholder="${movieform.getMovieTitle()}">
-                        <label for="movieGenre"><b>Genre</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
-                               th:placeholder="${movieform.getMovieGenre()}">
-                        <label for="movieYear"><b>Year</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieYear}" id="movieYear"
-                               th:placeholder="${movieform.getMovieYear()}">
-                        <label for="movieOrigin"><b>Origin</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
-                               th:placeholder="${movieform.getMovieOrigin()}" min="0">
-                        <label for="movieDuration"><b>Duration</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieDuration}" id="movieDuration"
-                               th:placeholder="${movieform.getMovieDuration()}" min="0">
-                        <label for="movieDirector"><b>Director</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieDirector}" id="movieDirector"
-                               th:placeholder="${movieform.getMovieDirector()}" min="0">
-                        <label for="movieActor"><b>Actors</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.movieActor}" id="movieActor"
-                               th:placeholder="${movieform.getMovieActor()}" min="0">
-                        <label for="imdbCode"><b>IMDb Code</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
-                               th:placeholder="${movieform.getImdbCode()}" min="0">
-                        <label for="imagePathName"><b>Image path</b></label>
-                        <input type="text" class="form-control" th:field="${movieform.imagePathName}" id="imagePathName"
-                               placeholder="imagePathName" min="0">
+                            <label for="movieTitle"><b>Title</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieTitle}" id="movieTitle"
+                                   th:placeholder="${movieform.getMovieTitle()}">
+                            <label for="movieGenre"><b>Genre</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieGenre}" id="movieGenre"
+                                   th:placeholder="${movieform.getMovieGenre()}">
+                            <label for="movieYear"><b>Year</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieYear}" id="movieYear"
+                                   th:placeholder="${movieform.getMovieYear()}">
+                            <label for="movieOrigin"><b>Origin</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieOrigin}" id="movieOrigin"
+                                   th:placeholder="${movieform.getMovieOrigin()}" min="0">
+                            <label for="movieDuration"><b>Duration</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieDuration}"
+                                   id="movieDuration"
+                                   th:placeholder="${movieform.getMovieDuration()}" min="0">
+                            <label for="movieDirector"><b>Director</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieDirector}"
+                                   id="movieDirector"
+                                   th:placeholder="${movieform.getMovieDirector()}" min="0">
+                            <label for="movieActor"><b>Actors</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.movieActor}" id="movieActor"
+                                   th:placeholder="${movieform.getMovieActor()}" min="0">
+                            <label for="imdbCode"><b>IMDb Code</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.imdbCode}" id="imdbCode"
+                                   th:placeholder="${movieform.getImdbCode()}" min="0">
+                            <label for="imagePathName"><b>Image path</b></label>
+                            <input type="text" class="form-control" th:field="${movieform.imagePathName}"
+                                   id="imagePathName"
+                                   placeholder="imagePathName" min="0">
             <p></p>
-            <p><b>Spotlight: </b><input type="checkbox" th:field="${movieform.spotlight}" th:checked="${movieform.spotlight} ? 'checked'"></p>
-            <p><b>Upcoming: </b><input type="checkbox" th:field="${movieform.upcoming}" th:checked="${movieform.upcoming} ? 'checked'"></p>
+            <p><b>Spotlight: </b><input type="checkbox" th:field="${movieform.spotlight}"
+                                        th:checked="${movieform.spotlight} ? 'checked'"></p>
+            <p><b>Upcoming: </b><input type="checkbox" th:field="${movieform.upcoming}"
+                                       th:checked="${movieform.upcoming} ? 'checked'"></p>
 
         </div>
-                    <button class="submit">Update Movie</button>
-                    <button type="reset" class="btn btn-primary">Cancel</button>
-                </div>
-            </form>
-        </div>
+        <button class="submit">Update Movie</button>
+        <button type="reset" class="btn btn-primary">Cancel</button>
     </div>
+    </form>
+</div>
+</div>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
         });
-    </script>
+    });
+</script>
 </div>
 </body>
 </html>

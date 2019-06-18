@@ -11,6 +11,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     Movie findByMovieId(Integer id);
 
     List<Movie> findBySpotlight(boolean isSpotlight);
+
     List<Movie> findByUpcoming(boolean isSpotlight);
 
     @Query("select s.movie from Screening s where s.screeningDateTime >= NOW()")

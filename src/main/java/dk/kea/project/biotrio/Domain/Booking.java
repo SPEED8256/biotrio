@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "booking")
 public class Booking {
     @Id
-    @Column(columnDefinition="VARCHAR(64)")
+    @Column(columnDefinition = "VARCHAR(64)")
     @GeneratedValue(generator = BookingGenerator.generatorName)
     @GenericGenerator(name = BookingGenerator.generatorName, strategy = "dk.kea.project.biotrio.Generator.BookingGenerator")
     private String id;

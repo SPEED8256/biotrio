@@ -18,7 +18,7 @@ public class HomeController {
 
     //mapping movie list for customer view
     @GetMapping("/")
-    public String frontPage(Model model){
+    public String frontPage(Model model) {
         List<Movie> spotlightList = movieRepository.findBySpotlight(true);
         model.addAttribute("spotlightMovies", spotlightList);
 
@@ -31,6 +31,7 @@ public class HomeController {
 
         return "front-page";
     }
+
     @GetMapping("/admin")
     public String admin() {
         return "admin";

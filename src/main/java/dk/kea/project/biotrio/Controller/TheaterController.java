@@ -23,7 +23,7 @@ public class TheaterController {
     }
 
     @GetMapping("/admin/add-theater")
-    public String addTheater(Model model){
+    public String addTheater(Model model) {
         model.addAttribute("theater", new Theater());
         return "add-theater";
     }
@@ -49,7 +49,7 @@ public class TheaterController {
     }
 
     @GetMapping("/admin/edit-theater/{id}")
-    public String editTheater(Model m, @PathVariable(name = "id") int id){
+    public String editTheater(Model m, @PathVariable(name = "id") int id) {
         Theater theaterToEdit = theaterRepo.findById(id);
         m.addAttribute("theater", theaterToEdit);
         return "edit-theater";

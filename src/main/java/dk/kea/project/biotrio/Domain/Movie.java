@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Movie {
 
     @Id                                                         //Specifies that the field is ID (primary key)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)         //Specifies that the field should be auto generated using the strategy IDENTITY
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Specifies that the field should be auto generated using the strategy IDENTITY
     private int movieId;
     private String movieTitle;
     private String imdbCode;
@@ -120,7 +121,6 @@ public class Movie {
     public void setImagePathName(String imagePathName) {
         this.imagePathName = imagePathName;
     }
-
 
 
 }

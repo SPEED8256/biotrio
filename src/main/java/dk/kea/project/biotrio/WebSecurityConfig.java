@@ -27,16 +27,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/booking", "/booking/**", "/profile","/booking-info").authenticated()
+                .authorizeRequests()
+                .antMatchers("/booking", "/booking/**", "/profile", "/booking-info").authenticated()
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
                 .permitAll();
     }
 

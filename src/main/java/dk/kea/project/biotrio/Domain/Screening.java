@@ -9,28 +9,36 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public  class Screening {
+public class Screening {
 
+    //Annotations will map variables in java to columns in mysql db
+    //creates column id which is the primary key for Screening table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
+    //creates screeningDateTime column for Screening table
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")
     private Date screeningDateTime;
 
+    //creates price column for Screening table
     private int price;
 
+    //creates movie_id column for Screening table,
+    //defined as a foreign key with a ManyToOne association with Movie table
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Movie movie;
 
+    //creates theater_id column for Screening table,
+    //defined as a foreign key with a ManyToOne association with Theater table
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "theater_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Theater theater;
+
 
     @OneToMany(
             cascade = CascadeType.ALL,
@@ -48,7 +56,6 @@ public  class Screening {
 
     public Screening() {
     }
-
 
     public int getId() {
         return id;

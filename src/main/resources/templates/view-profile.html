@@ -2,25 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .fill {
             min-height: 100%;
             height: 100%;
         }
+
         a.deco-none {
-            color:#000000 !important;
-            text-decoration:none;
+            color: #000000 !important;
+            text-decoration: none;
 
         }
 
         .bg-menu:hover {
-            background-color:#0079C1;
-            color:#FFFFFF;
+            background-color: #0079C1;
+            color: #FFFFFF;
         }
 
         .clickable {
-            cursor:pointer;
+            cursor: pointer;
         }
     </style>
     <meta charset="UTF-8">
@@ -29,9 +31,10 @@
 <body>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <a class="navbar-brand" href="/">
-        <img src="/logo.png" height="50" width="100"  alt="BioTrio">
+        <img src="/logo.png" height="50" width="100" alt="BioTrio">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="  collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="  collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -40,7 +43,8 @@
         <ul class="navbar-nav ml-auto">
             <th:block sec:authorize="isAuthenticated()">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" sec:authentication="name" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" sec:authentication="name" href="#" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         USERNAME
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -62,35 +66,39 @@
 </nav>
 
 <div class="container border col-md-5 bg-light h-100">
-<table class="table table-hover">
-<tr>
-    <td class="font-weight-bold">Username:</td>
-    <td th:text="${user.username}">John</td>
-</tr>
-<tr>
-    <td class="font-weight-bold">Name:</td>
-    <td th:text="${user.name}">John</td>
-</tr>
-<tr>
-    <td class="font-weight-bold">Date of Birth:</td>
-    <td th:text="${user.dob}">John</td>
-</tr>
-<tr>
-    <td class="font-weight-bold">E-mail:</td>
-    <td th:text="${user.email}">John</td>
-</tr>
-<tr>
-    <td class="font-weight-bold">Phone Number:</td>
-    <td th:text="${user.phoneNumber}">John</td>
-</tr>
-    <tr>
-    <td class="font-weight-bold">Payment details:</td>
-    <td th:text="${user.paymentDetails}">John</td>
-</tr></table>
-    <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#bookingHistory">Booking History</button>
+    <table class="table table-hover">
+        <tr>
+            <td class="font-weight-bold">Username:</td>
+            <td th:text="${user.username}">John</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Name:</td>
+            <td th:text="${user.name}">John</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Date of Birth:</td>
+            <td th:text="${user.dob}">John</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">E-mail:</td>
+            <td th:text="${user.email}">John</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Phone Number:</td>
+            <td th:text="${user.phoneNumber}">John</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Payment details:</td>
+            <td th:text="${user.paymentDetails}">John</td>
+        </tr>
+    </table>
+    <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#bookingHistory">
+        Booking History
+    </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="bookingHistory" tabindex="-1" role="dialog" aria-labelledby="bookingHistory" aria-hidden="true">
+    <div class="modal fade" id="bookingHistory" tabindex="-1" role="dialog" aria-labelledby="bookingHistory"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,7 +123,9 @@
                         <tr th:each="booking:${bookings}">
                             <th scope="row" class="table-info" th:text="${booking.id}">1</th>
                             <td th:text="${booking.screening.movie.movieTitle}">Mark</td>
-                            <td th:text="${#dates.format(booking.screening.screeningDateTime,'dd-MM-yyyy hh:mm a')}">Mark</td>
+                            <td th:text="${#dates.format(booking.screening.screeningDateTime,'dd-MM-yyyy hh:mm a')}">
+                                Mark
+                            </td>
                             <td th:text="${booking.screening.theater.theaterName}">Otto</td>
                             <td th:text="${#dates.format(booking.bookingDateTime,'dd-MM-yyyy hh:mm a')}">@mdo</td>
                             <td th:text="${booking.tickets.size()}">@mdo</td>
@@ -129,13 +139,21 @@
             </div>
         </div>
     </div>
-    <a class="deco-none" href="/logout"> <button type="button" class="btn btn-danger btn-lg btn-block">Log Out</button></a>
+    <a class="deco-none" href="/logout">
+        <button type="button" class="btn btn-danger btn-lg btn-block">Log Out</button>
+    </a>
 
 </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

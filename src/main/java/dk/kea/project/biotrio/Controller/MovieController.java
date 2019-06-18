@@ -22,6 +22,7 @@ public class MovieController {
     @Autowired
     private ScreeningRepository screeningRepository;
 
+    // ------------------------------------------- CUSTOMER - VIEW -----------------------------------------------------
     //mapping movie list for admin view
     @GetMapping("/admin/movies")
     public String movie(Model model) {
@@ -68,10 +69,10 @@ public class MovieController {
         return "redirect:/admin/movies";
     }
 
-
+    // ---------------------------------------------- ADMINISTRATOR - VIEW ---------------------------------------------
     //code for single movie information
     @GetMapping("/movieInfo/{id}")
-    public String showSingleMovie(@PathVariable(name = "id") int id,Model m) {
+    public String showSingleMovie(@PathVariable(name = "id") int id, Model m) {
         Movie movieInfo = (movieRepo.findByMovieId(id));
         m.addAttribute(movieInfo);
         Date today = Calendar.getInstance().getTime();

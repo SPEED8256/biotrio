@@ -12,7 +12,9 @@ import java.util.List;
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     List<Booking> findAllByUser(User user);
+
     Booking findById(String id);
+
     void deleteAllByScreening(Screening screening);
 
     @Query("select b from Booking b where b.user = ?1 and b.bookingDateTime = (SELECT MAX(b.bookingDateTime) FROM Booking b where b.user = ?1)")

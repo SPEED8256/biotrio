@@ -2,21 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         a.deco-none {
-            color:#000000 !important;
-            text-decoration:none;
+            color: #000000 !important;
+            text-decoration: none;
 
         }
 
         .bg-menu:hover {
-            background-color:#0079C1;
-            color:#FFFFFF;
+            background-color: #0079C1;
+            color: #FFFFFF;
         }
 
         .clickable {
-            cursor:pointer;
+            cursor: pointer;
         }
     </style>
     <meta charset="UTF-8">
@@ -27,9 +28,10 @@
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <a class="navbar-brand" href="/">
-        <img src="/logo.png" height="50" width="100"  alt="BioTrio">
+        <img src="/logo.png" height="50" width="100" alt="BioTrio">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="  collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="  collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -38,7 +40,8 @@
         <ul class="navbar-nav ml-auto">
             <th:block sec:authorize="isAuthenticated()">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" sec:authentication="name" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" sec:authentication="name" href="#" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         USERNAME
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -60,11 +63,12 @@
 </nav>
 
 
-
 <div class="container">
     <br>
-    <p><h2 class="display-4"><b>Your booking code is: </b></h2></p>
-    <p><h2 class="display-4 bg-info text-center" th:text="${booking.id}"><b>id </b></h2></p>
+    <p>
+    <h2 class="display-4"><b>Your booking code is: </b></h2></p>
+    <p>
+    <h2 class="display-4 bg-info text-center" th:text="${booking.id}"><b>id </b></h2></p>
 
     <h3>Present this code to the employee of BioTrio.</h3>
     <br>
@@ -74,7 +78,8 @@
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                    <button class="btn btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="btn btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne">
                         Tickets
                     </button>
                 </h5>
@@ -88,7 +93,8 @@
                                 <img src="/logo.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <p><b>Movie: </b><span th:text="${booking.screening.movie.movieTitle}"></span></p>
-                                    <p><b>Theater: </b><span th:text="${booking.screening.theater.theaterName}"></span></p>
+                                    <p><b>Theater: </b><span th:text="${booking.screening.theater.theaterName}"></span>
+                                    </p>
                                     <p><b>Time: </b><span th:text="${booking.screening.screeningDateTime}"></span></p>
                                     <p><b>Row: </b><span class="card-title" th:text="${ticket.ticketRow}"></span></p>
                                     <p><b>Seat: </b><span class="card-title" th:text="${ticket.ticketseat}"></span></p>
@@ -104,9 +110,15 @@
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

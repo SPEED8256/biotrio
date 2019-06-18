@@ -24,9 +24,9 @@ public class ScreeningServiceImpl implements ScreeningService {
     private BookingRepository bookingRepository;
 
     @Override
-    public void save(Screening screening){
+    public void save(Screening screening) {
         Set<Ticket> set = new HashSet<>();
-        for (int r = 1; r<=screening.getTheater().getRows(); r++) {
+        for (int r = 1; r <= screening.getTheater().getRows(); r++) {
             for (int s = 1; s <= screening.getTheater().getSeatCount(); s++) {
                 Ticket t = new Ticket();
                 t.setTicketRow(r);
@@ -44,12 +44,12 @@ public class ScreeningServiceImpl implements ScreeningService {
 
 
     @Override
-    public Screening findById(int id){
+    public Screening findById(int id) {
         return screeningRepository.findById(id);
     }
 
     @Override
-    public void delete(Screening screening){
+    public void delete(Screening screening) {
         bookingRepository.deleteAllByScreening(screening);
         screeningRepository.delete(screening);
     }

@@ -6,7 +6,7 @@
 }
 
 /* Text in single movie info */
-.movieInfo{
+.movieInfo {
     display: inline;
 }
 
@@ -210,12 +210,14 @@ h1.front-page {
     height: 360px;
     width: 203px;
 }
+
 .fp-img:hover .poster_box {
     height: 300px;
     visibility: visible;
     opacity: 1;
 }
-.fp-movie-title{
+
+.fp-movie-title {
     margin: auto;
     font: 600 1.5em/1 'Raleway', sans-serif;
     color: rgb(145, 153, 161);
@@ -247,7 +249,7 @@ h1.front-page {
 
 }
 
-.poster_box{
+.poster_box {
     position: absolute;
     height: 300px;
     top: 0;
@@ -265,6 +267,6 @@ h1.front-page {
     transition: opacity .2s, visibility .2s;
 }
 
-#fp-background{
+#fp-background {
     background-color: #f1f1f1;
 }

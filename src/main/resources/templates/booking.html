@@ -8,7 +8,8 @@
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://raw.githubusercontent.com/jaredreich/notie/master/dist/notie.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css'>
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'>
 
     <link rel="stylesheet" href="/css/booking_style.css">
@@ -17,12 +18,11 @@
 <body>
 
 
-
 <div class="hall" id="hall">
     <span id="booking-info" th:attr="customer_id = ${customer.id}, screening_id=${screening.id}"> </span>
 
-<!--Cinema hall wrapper-->
-    <div class="hall__wrapper"  th:attr="style=${'height: '+(theater.theaterRows*20+80)+'px; '}">
+    <!--Cinema hall wrapper-->
+    <div class="hall__wrapper" th:attr="style=${'height: '+(theater.theaterRows*20+80)+'px; '}">
         <div class="hall__box" th:attr="style=${'width: '+(theater.seatCount*20+20)+'px; '}">
             <div class="hall__screen">
                 <span class="hall__screen-tip _left">Screen</span>
@@ -33,24 +33,28 @@
                 <!--ROW-->
                 <span class="hall__row" th:each="row, row_iterator : ${rows}">
                     <!--Left row number-->
-                    <div  class="hall__places-row _left" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"> </div>
+                    <div class="hall__places-row _left" th:attr="data-row=${row_iterator.index + 1}"
+                         th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"> </div>
                     <!--Seats in row-->
                     <div th:each="ticket : ${row}">
-                        <div class="hall__places-item " th:classappend= "${ticket.ticketStatus}? 'is-busy' : 'is-free'" th:attr="data-ticket_id = ${ticket.id}, data-row=${ticket.ticketRow}, data-pos-x=${ticket.ticketseat}, data-pos-y=${ticket.ticketRow}, data-state=${ticket.ticketStatus}? 'busy' : 'is-free', data-price=${screening.price}, style=${'left: '+((ticket.ticketseat)*20)+'px;'+'top: '+((ticket.ticketRow-1)*20)+'px'}">
-                            <div class="hall__places-chair" th:attr="data-title=${screening.price} + ' DKK'" data-toggle="tooltip" data-placement="top">[(${ticket.ticketseat})] </div>
+                        <div class="hall__places-item " th:classappend="${ticket.ticketStatus}? 'is-busy' : 'is-free'"
+                             th:attr="data-ticket_id = ${ticket.id}, data-row=${ticket.ticketRow}, data-pos-x=${ticket.ticketseat}, data-pos-y=${ticket.ticketRow}, data-state=${ticket.ticketStatus}? 'busy' : 'is-free', data-price=${screening.price}, style=${'left: '+((ticket.ticketseat)*20)+'px;'+'top: '+((ticket.ticketRow-1)*20)+'px'}">
+                            <div class="hall__places-chair" th:attr="data-title=${screening.price} + ' DKK'"
+                                 data-toggle="tooltip" data-placement="top">[(${ticket.ticketseat})] </div>
                         </div>
                     </div>
                     <!--Right row number-->
-                    <div class="hall__places-row _right" th:attr="data-row=${row_iterator.index + 1}" th:attrappend="style=${'top: '+((row_iterator.index )*20)+'px'}"> </div>
+                    <div class="hall__places-row _right" th:attr="data-row=${row_iterator.index + 1}"
+                         th:attrappend="style=${'top: '+((row_iterator.index )*20)+'px'}"> </div>
                 </span>
             </div>
         </div>
 
 
-
         <!--Lines when hovering rows-->
         <div class="hall__box _lines" th:each="row, row_iterator : ${rows}">
-            <div class="hall__line" th:attr="id=${'hallLine_'+(row_iterator.index+1)}" th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"></div>
+            <div class="hall__line" th:attr="id=${'hallLine_'+(row_iterator.index+1)}"
+                 th:attrappend="style=${'top: '+((row_iterator.index)*20)+'px'}"></div>
         </div>
     </div>
     <div class="hall-info">
@@ -74,14 +78,16 @@
     </div>
 </div>
 
-<div class="col-xs-12" style="background-image: url(https://media.wired.com/photos/599349d8d5c2fb3991a1a037/master/w_799,c_limit/movie-TA.jpg); background-size:cover;">
+<div class="col-xs-12"
+     style="background-image: url(https://media.wired.com/photos/599349d8d5c2fb3991a1a037/master/w_799,c_limit/movie-TA.jpg); background-size:cover;">
 
     <div class="ticket-form row">
         <div class="ticket-form__form col-xs-12">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ticket-form__info">
                     <div class="ticket-form__data">
-                        <div class="ticket-form__date" th:text="${#dates.format(screening.screeningDateTime,'dd-MM-yyyy hh:mm a')}">
+                        <div class="ticket-form__date"
+                             th:text="${#dates.format(screening.screeningDateTime,'dd-MM-yyyy hh:mm a')}">
                             SCREENING DATETIME
                         </div>
                         <div class="ticket-form__cinema">
@@ -93,12 +99,12 @@
                     </div>
                 </div>
                 <div class="ticket-form__data col-xs-12 col-sm-6 col-md-5">
-            <h2>Your details:</h2>
+                    <h2>Your details:</h2>
                     <p th:text="${customer.name}"></p>
                     <p th:text="${customer.email}"></p>
                     <p th:text="${customer.phoneNumber}"></p>
-        </div>
-    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -126,10 +132,12 @@
                 VAT <span class="hall-buy__cost-tax-total" id='hallTotalTax'>0 DKK</span>
             </div>
         </div>
-            <button class="btn hall-buy__btn-buy" data-toggle="modal" data-target="#bookinginfo" data-backdrop="false" data-keyboard="false" onclick="submitTickets()">
-                Buy tickets
-            </button>
-        <div class="modal fade bookinginfo" id="bookinginfo" tabindex="-1" role="dialog" aria-labelledby="Title" aria-hidden="true">
+        <button class="btn hall-buy__btn-buy" data-toggle="modal" data-target="#bookinginfo" data-backdrop="false"
+                data-keyboard="false" onclick="submitTickets()">
+            Buy tickets
+        </button>
+        <div class="modal fade bookinginfo" id="bookinginfo" tabindex="-1" role="dialog" aria-labelledby="Title"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -140,7 +148,8 @@
                         <div class="alert alert-success" role="alert">
                             Booking has been completed succesfully!
                         </div>
-                        <div class="modal-footer"> <a class="btn btn-primary btn-lg" href="/booking-info">View Booking Details</a></div>
+                        <div class="modal-footer"><a class="btn btn-primary btn-lg" href="/booking-info">View Booking
+                            Details</a></div>
                     </div>
 
                 </div>
@@ -154,8 +163,6 @@
 <script src='https://raw.githubusercontent.com/jaredreich/notie/master/dist/notie.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
 <script src="/js/booking_index.js"></script>
-
-
 
 
 </body>

@@ -5,7 +5,7 @@ import dk.kea.project.biotrio.Repository.MovieRepository;
 import dk.kea.project.biotrio.Repository.ScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl implements MovieService {
 
     @Autowired
     ScreeningRepository screeningRepository;
@@ -13,7 +13,7 @@ public class MovieServiceImpl implements MovieService{
     MovieRepository movieRepository;
 
     @Override
-    public void delete(Movie movie){
+    public void delete(Movie movie) {
         screeningRepository.deleteAllByMovie(movie);
         movieRepository.delete(movie);
     }
