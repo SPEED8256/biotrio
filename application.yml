@@ -1,3 +1,5 @@
 spring:
   datasource:
-    url: ${CLEARDB_DATABASE_URL}
+    url: ${AWS_DB}
+    username: ${AWS_USER}
+    password: ${AWS_PWD}
